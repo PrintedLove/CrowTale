@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class playerManager : MonoBehaviour
 {
-    public float maxSpeed;
-    public float jumpSpeed;
-    public float horizontalFriction;
-    public float runStopSpeed;
+    public float maxSpeed;      //최대 속도
+    public float jumpSpeed;     //점프 가속도
+    public float horizontalFriction;    //가로축 공기저항
+    public float runStopSpeed;          //가로 이동 정지 속도
 
     private bool isGrounded;
-    private bool isFly;
 
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
@@ -21,13 +20,11 @@ public class playerManager : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-
-        isFly = false;
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))        //점프
+        if (Input.GetButtonDown("Jump"))        //점프, 날기
         {
             if (isGrounded)
             {
@@ -35,11 +32,11 @@ public class playerManager : MonoBehaviour
                 animator.SetBool("isJump", true);
             } else
             {
-                if (isFly)
+                if (!animator.GetBool("isJump"))
                 {
-                    rigidBody.AddForce(Vector2.up * jumpSpeed * 0.75f, ForceMode2D.Impulse);
+                    rigidBody.AddForce(Vector2.up * jumpSpeed * 0.8f, ForceMode2D.Impulse);
                     animator.SetBool("isFly", true);
-                    rigidBody.drag = 10;
+                    rigidBody.drag = 8;
                     rigidBody.gravityScale = 1;
                 }
             }
@@ -49,9 +46,16 @@ public class playerManager : MonoBehaviour
         {
             animator.SetBool("isJump", false);
             animator.SetBool("isFly", false);
-            isFly = true;
+            animator.SetBool("isDown", false);
         }
 
+        if (Input.GetAxisRaw("Vertical") == (-1))        //하강
+        {
+            animator.SetBool("isDown", true);
+            rigidBody.drag = 3;
+            rigidBody.gravityScale = 2;
+        }
+        
         if (Input.GetButtonUp("Horizontal"))        //좌우 정지시 마찰
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.normalized.x * horizontalFriction, rigidBody.velocity.y);
@@ -65,29 +69,32 @@ public class playerManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        //좌우 이동
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        rigidBody.AddForce(Vector2.right * horizontalInput * 2, ForceMode2D.Impulse);   //플레이어 좌우 이동
+        rigidBody.AddForce(Vector2.right * horizontalInput * 2, ForceMode2D.Impulse);
 
-        if (horizontalInput < 0)            //플레이어 방향
+        //스프라이트 방향 조정
+        if (horizontalInput < 0)
             spriteRenderer.flipX = true;
         else if (horizontalInput > 0)
             spriteRenderer.flipX = false;
 
-        if (rigidBody.velocity.x > maxSpeed)    //좌우 최대 속도
+        //좌우 최대 속도
+        if (rigidBody.velocity.x > maxSpeed)
             rigidBody.velocity = new Vector2(maxSpeed, rigidBody.velocity.y);
         else if (rigidBody.velocity.x < maxSpeed * (-1))
             rigidBody.velocity = new Vector2(maxSpeed * (-1), rigidBody.velocity.y);
 
         //바닥에 닿았는지 계산
+        bool platformHit = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.72f)
+            , new Vector2(0.71f, 0.1f), 0, LayerMask.GetMask("Platform"));
 
-        RaycastHit2D rayHit = Physics2D.Raycast(rigidBody.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
-
-        if (rayHit.collider != null && rayHit.distance < 0.75f)
+        if (platformHit)
         {
             isGrounded = true;
             animator.SetBool("isGrounded", true);
-            isFly = false;
+            animator.SetBool("isFly", false);
             rigidBody.drag = 3;
             rigidBody.gravityScale = 2;
         }
@@ -97,4 +104,10 @@ public class playerManager : MonoBehaviour
             animator.SetBool("isGrounded", false);
         }
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireCube(new Vector2(transform.position.x, transform.position.y - 0.72f), new Vector2(0.71f, 0.1f));
+    //}
 }
