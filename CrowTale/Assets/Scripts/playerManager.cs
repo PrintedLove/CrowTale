@@ -8,7 +8,9 @@ public class playerManager : MonoBehaviour
     public float jumpSpeed;     //점프 가속도
     public float horizontalFriction;    //가로축 공기저항
     public float runStopSpeed;          //가로 이동 정지 속도
-    public bool isAttack;
+    public bool updateAttackCombo = false;
+    public bool createAttack = false;
+    public int powerCharged = 0;
     public Transform firePoint;
     public GameObject playerAttackObject;
 
@@ -16,6 +18,11 @@ public class playerManager : MonoBehaviour
     private bool flip;          //스프라이트 좌우 반전
     private bool flip_before;
     private bool verticalInputToggle;   //점프<->비행 토글
+    private bool isAttack;
+    private bool isAttacking;
+    private bool isCreateAttack;
+    private bool isUpdateAttackCombo = false;
+    private short attackCombo;
 
     Rigidbody2D rigidBody;
     Animator animator;
@@ -29,64 +36,133 @@ public class playerManager : MonoBehaviour
         flip_before = false;
         verticalInputToggle = false;
         isAttack = false;
+        isAttacking = false;
+        isCreateAttack = false;
+        isUpdateAttackCombo = true;
+        attackCombo = 1;
     }
 
     void Update()
     {
-        // 점프 and 비행
-        if (Input.GetAxisRaw("Vertical") == 1)
+        // 공격
+        if (Input.GetButtonDown("Fire1") && isGrounded && isAttacking == false)
         {
-            if (!verticalInputToggle)
+            isAttack = true;
+            isAttacking = true;
+            isCreateAttack = true;
+            animator.SetTrigger("isAttack");
+            animator.SetBool("isAttacking", true);
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            isAttack = false;
+        }
+
+        if (isAttacking)
+        {
+            if (createAttack && isCreateAttack)
             {
-                if (isGrounded)     // 점프
+                isCreateAttack = false;
+                isUpdateAttackCombo = true;
+
+                if (attackCombo != 3)               // 콤보 1, 2
+                    Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
+                else
                 {
-                    rigidBody.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-                    animator.SetBool("isJump", true);
+                    for (int i = 0; i < 5; i++)     // 콤보 3
+                    {
+                        GameObject playerAtk = Instantiate(playerAttackObject, firePoint.position
+                            , firePoint.rotation);
+
+                        playerAtk.transform.Rotate(new Vector3(0, 0, i * 10 - 20));
+                    }
+                }
+            }
+
+            if (updateAttackCombo)
+            {
+                if (isAttack)
+                {
+                    if (isUpdateAttackCombo)
+                    {
+                        if (attackCombo < 2)
+                            attackCombo += 1;
+                        else if (attackCombo == 2)
+                        {
+                            if (powerCharged > 0)
+                                attackCombo = 3;
+                            else
+                                attackCombo = 1;
+                        }
+                        else
+                            attackCombo = 1;
+
+                        animator.SetInteger("AttackCombo", attackCombo);
+                        isCreateAttack = true;
+                        isUpdateAttackCombo = false;
+                    }
+                } else
+                {
+                    isAttacking = false;
+                    isCreateAttack = true;
+                    isUpdateAttackCombo = true;
+                    attackCombo = 1;
+                    animator.SetBool("isAttacking", false);
+                }
+            }
+        } else
+        {
+            // 점프 and 비행
+            if (Input.GetAxisRaw("Vertical") == 1)
+            {
+                if (!verticalInputToggle)
+                {
+                    if (isGrounded)     // 점프
+                    {
+                        rigidBody.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+                        animator.SetBool("isJump", true);
+                    }
+                    else
+                    {
+                        if (!animator.GetBool("isJump"))    // 비행
+                        {
+                            rigidBody.AddForce(Vector2.up * jumpSpeed * 0.8f, ForceMode2D.Impulse);
+                            animator.SetBool("isFly", true);
+                            rigidBody.drag = 8;
+                            rigidBody.gravityScale = 1;
+                        }
+                    }
+
+                    verticalInputToggle = true;
                 }
                 else
                 {
-                    if (!animator.GetBool("isJump"))    // 비행
-                    {
-                        rigidBody.AddForce(Vector2.up * jumpSpeed * 0.8f, ForceMode2D.Impulse);
-                        animator.SetBool("isFly", true);
-                        rigidBody.drag = 8;
-                        rigidBody.gravityScale = 1;
-                    }
+                    animator.SetBool("isFly", false);
                 }
-
-                verticalInputToggle = true;
-            } else
-            {
-                animator.SetBool("isFly", false);
             }
-        }
-        // 하강
-        else if (Input.GetAxisRaw("Vertical") == (-1))
-        {
-            if (!verticalInputToggle)
+            // 하강
+            else if (Input.GetAxisRaw("Vertical") == (-1))
             {
-                animator.SetBool("isDown", true);
-                rigidBody.drag = 3;
-                rigidBody.gravityScale = 2;
-                verticalInputToggle = true;
+                if (!verticalInputToggle)
+                {
+                    animator.SetBool("isDown", true);
+                    rigidBody.drag = 3;
+                    rigidBody.gravityScale = 2;
+                    verticalInputToggle = true;
+                }
             }
-        }
-        // 점프 버튼 해제
-        else
-        {
-            if (verticalInputToggle)
+            // 점프 버튼 해제
+            else
             {
-                animator.SetBool("isJump", false);
-                animator.SetBool("isFly", false);
-                animator.SetBool("isDown", false);
-                verticalInputToggle = false;
+                if (verticalInputToggle)
+                {
+                    animator.SetBool("isJump", false);
+                    animator.SetBool("isFly", false);
+                    animator.SetBool("isDown", false);
+                    verticalInputToggle = false;
+                }
             }
-        }
-
-        // 공격
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
         }
 
         // 좌우 이동 정지시 마찰
@@ -105,23 +181,28 @@ public class playerManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 좌우 이동
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        rigidBody.AddForce(Vector2.right * horizontalInput * 2, ForceMode2D.Impulse);
-
-        // 스프라이트 방향 조정
-        if (horizontalInput != 0)
+        if (!isAttacking)
         {
-            if (flip == false && horizontalInput < 0)
-                flip = true;
-            else if (flip == true && horizontalInput > 0)
-                flip = false;
+            // 좌우 이동
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-            if (flip != flip_before) {
-                transform.Rotate(0f, 180f, 0f);
-                flip_before = flip;
-            }     
+            rigidBody.AddForce(Vector2.right * horizontalInput * 2, ForceMode2D.Impulse);
+
+
+            // 스프라이트 방향 조정
+            if (horizontalInput != 0)
+            {
+                if (flip == false && horizontalInput < 0)
+                    flip = true;
+                else if (flip == true && horizontalInput > 0)
+                    flip = false;
+
+                if (flip != flip_before)
+                {
+                    transform.Rotate(0f, 180f, 0f);
+                    flip_before = flip;
+                }
+            }
         }
 
         // 좌우 최대 속도
@@ -131,10 +212,8 @@ public class playerManager : MonoBehaviour
             rigidBody.velocity = new Vector2(maxSpeed * (-1), rigidBody.velocity.y);
 
         // 바닥에 닿았는지 계산
-        bool platformHit = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.72f)
-            , new Vector2(0.71f, 0.1f), 0, LayerMask.GetMask("Platform"));
-
-        if (platformHit)
+        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.72f)
+            , new Vector2(0.71f, 0.1f), 0, LayerMask.GetMask("Platform")))
         {
             isGrounded = true;
             animator.SetBool("isGrounded", true);
