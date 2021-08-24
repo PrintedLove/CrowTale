@@ -9,11 +9,11 @@ public enum EnemyType
 
 public class Enemy : MonoBehaviour
 {
-    public int hp = 100;
+    public int maxHealth = 100;
+    public int health = 100;
     public EnemyType enemyType;
     public GameObject deathEffect;
 
-    private int health;
     private short hitAction;
     private bool hitDirection;
 
@@ -23,7 +23,6 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        health = hp;
         hitAction = -1;
     }
 
@@ -48,6 +47,9 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage, float hitDir)
     {
         health -= damage;
+
+        if (GameManager.Instance.angerCharged == 0)
+            GameManager.Instance.angerLevel += 2;
 
         // Á×À½ Ã³¸®
         if (health <= 0)

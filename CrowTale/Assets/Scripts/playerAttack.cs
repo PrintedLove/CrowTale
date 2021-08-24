@@ -8,11 +8,12 @@ public class playerAttack : MonoBehaviour
     public int damage = 10;
     public new Rigidbody2D rigidbody;
     public GameObject destroyEffect;
+    public Color fixedColor;
 
     void Start()
     {
         rigidbody.velocity = transform.right * speed;
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 2.0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,7 +37,10 @@ public class playerAttack : MonoBehaviour
 
         if (isDestroy)
         {
-            Instantiate(destroyEffect, transform.position, transform.rotation);
+            GameObject destroyEft = Instantiate(destroyEffect, transform.position, transform.rotation);
+            SpriteRenderer destroyEftRenderer = destroyEft.GetComponent<SpriteRenderer>();
+
+            destroyEftRenderer.material.SetColor("_Color", fixedColor);
             Destroy(gameObject);
         }
     }

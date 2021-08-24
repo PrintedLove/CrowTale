@@ -52,6 +52,12 @@ TagManager:
   - name: Enemy
     uniqueID: 2331731937
     locked: 0
+  - name: Background 2
+    uniqueID: 289955487
+    locked: 0
   - name: Effect
     uniqueID: 3295478851
+    locked: 0
+  - name: UI
+    uniqueID: 3128592929
     locked: 0

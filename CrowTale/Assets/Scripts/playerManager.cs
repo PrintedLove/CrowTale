@@ -10,7 +10,6 @@ public class playerManager : MonoBehaviour
     public float runStopSpeed;          //가로 이동 정지 속도
     public bool updateAttackCombo = false;
     public bool createAttack = false;
-    public int powerCharged = 0;
     public Transform firePoint;
     public GameObject playerAttackObject;
 
@@ -18,11 +17,11 @@ public class playerManager : MonoBehaviour
     private bool flip;          //스프라이트 좌우 반전
     private bool flip_before;
     private bool verticalInputToggle;   //점프<->비행 토글
-    private bool isAttack;
-    private bool isAttacking;
-    private bool isCreateAttack;
-    private bool isUpdateAttackCombo = false;
-    private short attackCombo;
+    private bool isAttack;              //공격 키 입력 여부
+    private bool isAttacking;           //공격 프로세스 동작 여부
+    private bool isCreateAttack;        //공격 투사체 생성 트리거
+    private bool isUpdateAttackCombo = false;   //공격 콤보 업데이트 트리거
+    private short attackCombo;          //공격 콤보
 
     Rigidbody2D rigidBody;
     Animator animator;
@@ -45,7 +44,7 @@ public class playerManager : MonoBehaviour
     void Update()
     {
         // 공격
-        if (Input.GetButtonDown("Fire1") && isGrounded && isAttacking == false)
+        if (Input.GetButtonDown("Fire1") && !animator.GetBool("isAttack") && isGrounded && isAttacking == false)
         {
             isAttack = true;
             isAttacking = true;
@@ -57,6 +56,9 @@ public class playerManager : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             isAttack = false;
+            attackCombo = 1;
+            animator.SetInteger("AttackCombo", attackCombo);
+            animator.SetBool("isAttack", false);
         }
 
         if (isAttacking)
@@ -65,18 +67,18 @@ public class playerManager : MonoBehaviour
             {
                 isCreateAttack = false;
                 isUpdateAttackCombo = true;
+                Color fixedColor = GetComponent<SpriteRenderer>().material.GetColor("_Color");
 
-                if (attackCombo != 3)               // 콤보 1, 2
-                    Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
+                if (attackCombo != 3)           // 콤보 1, 2
+                    playerAttack(fixedColor);
                 else
                 {
-                    for (int i = 0; i < 5; i++)     // 콤보 3
-                    {
-                        GameObject playerAtk = Instantiate(playerAttackObject, firePoint.position
-                            , firePoint.rotation);
-
-                        playerAtk.transform.Rotate(new Vector3(0, 0, i * 10 - 20));
-                    }
+                    if (GameManager.Instance.angerCharged > 0)           // 콤보 3
+                        for (int i = 0; i < 5; i++)
+                            playerAttack(fixedColor, i * 8 - 16);
+                    else
+                        for (int i = 0; i < 3; i++)
+                            playerAttack(fixedColor, i * 10 - 10);
                 }
             }
 
@@ -86,15 +88,8 @@ public class playerManager : MonoBehaviour
                 {
                     if (isUpdateAttackCombo)
                     {
-                        if (attackCombo < 2)
+                        if (attackCombo < 3)
                             attackCombo += 1;
-                        else if (attackCombo == 2)
-                        {
-                            if (powerCharged > 0)
-                                attackCombo = 3;
-                            else
-                                attackCombo = 1;
-                        }
                         else
                             attackCombo = 1;
 
@@ -108,6 +103,7 @@ public class playerManager : MonoBehaviour
                     isCreateAttack = true;
                     isUpdateAttackCombo = true;
                     attackCombo = 1;
+                    animator.SetInteger("AttackCombo", attackCombo);
                     animator.SetBool("isAttacking", false);
                 }
             }
@@ -228,6 +224,17 @@ public class playerManager : MonoBehaviour
         }
     }
 
+    private void playerAttack(Color fixedColor, int rotate = 0)
+    {
+        GameObject playerAtk = Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
+        playerAttack playerAtkScript = playerAtk.GetComponent<playerAttack>();
+        SpriteRenderer playerAtkRenderer = playerAtk.GetComponent<SpriteRenderer>();
+
+        playerAtkRenderer.material.SetColor("_Color", fixedColor);
+        playerAtk.transform.Rotate(new Vector3(0, 0, rotate));
+        playerAtkScript.damage = GameManager.Instance.fixedPower;
+        playerAtkScript.fixedColor = fixedColor;
+    }
     //void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.red;
