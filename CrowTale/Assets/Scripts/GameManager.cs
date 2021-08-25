@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameObject player;
     private SpriteRenderer playerRenderer;
-    private Color playerMaterialColor;
+    
     private float playerMaterialIntensity;
     private float _playTimeSec;      //플레이 타임
     private int _playTimeMin;
@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     public Slider healthBar;
     public Slider staminaBar;
     public Slider angerBar;
+    public Text iconDescription;
     public Text powerText;
+    public Image angerEffect;
     public int deathCount;
     public int maxHealth = 100;         //HP 최대값
     public int health = 100;            //HP 현재값
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
     public int angerCharged = 0;        //분노 충전값
     public int power = 10;              //파워(데미지)
     public int fixedPower;              //수정된 파워
+    public Color defaultColor = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);
+    public Color rageColor = new Color(1.210474f, 2.656317f, 6.422235f);
 
     private void Awake()
     {
@@ -53,7 +57,6 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
         playerRenderer = player.GetComponent<SpriteRenderer>();
-        playerMaterialColor = new Color(80, 119, 191);
     }
 
     private void Update()
@@ -86,6 +89,7 @@ public class GameManager : MonoBehaviour
             angerLevel = 0;
             fixedPower = power * 2;
             powerText.text = fixedPower.ToString();
+            angerEffect.gameObject.SetActive(true);
             StartCoroutine(RunAngerCountdown());
             StartCoroutine(RunIintensityUpdate(true));
         }
@@ -95,20 +99,25 @@ public class GameManager : MonoBehaviour
             Screen.fullScreen = !Screen.fullScreen;
     }
 
-    void UpdatePlayerMaterialColor()        // 플레이어 메테리얼 HDR Color 업데이트
-    {
-        float factor = 1f / playerMaterialIntensity;
-
-        Color fixedColor = new Color(
-            playerMaterialColor.r * factor, playerMaterialColor.g * factor, playerMaterialColor.b * factor);
-
-        playerRenderer.material.SetColor("_Color", fixedColor);
-    }
-
-    void PlayerDie()
+    void PlayerDie()        // 플레이어 죽음
     {
         deathCount++;
         playTime.text = "Death   " + deathCount.ToString();
+    }
+
+    public void UpdateIconDescription(string str)
+    {
+        iconDescription.text = str;
+    }
+
+    void UpdatePlayerMaterialColor()        // 플레이어 메테리얼 HDR Color 업데이트
+    {
+        Color fixedColor = new Color(
+            rageColor.r * playerMaterialIntensity
+            , rageColor.g * playerMaterialIntensity
+            , rageColor.b * playerMaterialIntensity);
+
+        playerRenderer.material.SetColor("_Color", fixedColor);
     }
 
     IEnumerator RunAngerCountdown()     //분노 게이지 쿨다운 코루틴
@@ -121,6 +130,7 @@ public class GameManager : MonoBehaviour
 
         fixedPower = power;
         powerText.text = fixedPower.ToString();
+        angerEffect.gameObject.SetActive(false);
         StartCoroutine(RunIintensityUpdate(false));
     }
 
@@ -128,20 +138,20 @@ public class GameManager : MonoBehaviour
     {
         if (isUpDown)
         {
-            while (playerMaterialIntensity < 6.0f)
+            while (playerMaterialIntensity < 1f)
             {
                 yield return new WaitForSeconds(0.01f);
 
-                playerMaterialIntensity += 0.1f;
+                playerMaterialIntensity += 0.05f;
                 UpdatePlayerMaterialColor();
             }
         } else
         {
-            while (playerMaterialIntensity > (-10f))
+            while (playerMaterialIntensity > 0)
             {
                 yield return new WaitForSeconds(0.01f);
 
-                playerMaterialIntensity -= 0.1f;
+                playerMaterialIntensity -= 0.05f;
                 UpdatePlayerMaterialColor();
             }
         }

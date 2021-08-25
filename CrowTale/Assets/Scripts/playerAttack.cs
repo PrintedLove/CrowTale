@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class playerAttack : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class playerAttack : MonoBehaviour
     public new Rigidbody2D rigidbody;
     public GameObject destroyEffect;
     public Color fixedColor;
+    public bool lighting;
 
     void Start()
     {
@@ -41,6 +43,8 @@ public class playerAttack : MonoBehaviour
             SpriteRenderer destroyEftRenderer = destroyEft.GetComponent<SpriteRenderer>();
 
             destroyEftRenderer.material.SetColor("_Color", fixedColor);
+            destroyEftRenderer.GetComponent<Light2D>().enabled = lighting;
+            destroyEftRenderer.GetComponent<Effect>().isLtFade = lighting;
             Destroy(gameObject);
         }
     }

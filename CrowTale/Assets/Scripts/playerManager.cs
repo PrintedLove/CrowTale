@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class playerManager : MonoBehaviour
 {
@@ -67,18 +68,17 @@ public class playerManager : MonoBehaviour
             {
                 isCreateAttack = false;
                 isUpdateAttackCombo = true;
-                Color fixedColor = GetComponent<SpriteRenderer>().material.GetColor("_Color");
 
                 if (attackCombo != 3)           // ÄÞº¸ 1, 2
-                    playerAttack(fixedColor);
+                    playerAttack();
                 else
                 {
                     if (GameManager.Instance.angerCharged > 0)           // ÄÞº¸ 3
                         for (int i = 0; i < 5; i++)
-                            playerAttack(fixedColor, i * 8 - 16);
+                            playerAttack(i * 8 - 16);
                     else
                         for (int i = 0; i < 3; i++)
-                            playerAttack(fixedColor, i * 10 - 10);
+                            playerAttack(i * 10 - 10);
                 }
             }
 
@@ -224,14 +224,29 @@ public class playerManager : MonoBehaviour
         }
     }
 
-    private void playerAttack(Color fixedColor, int rotate = 0)
+    private void playerAttack(int rotate = 0)
     {
         GameObject playerAtk = Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
         playerAttack playerAtkScript = playerAtk.GetComponent<playerAttack>();
         SpriteRenderer playerAtkRenderer = playerAtk.GetComponent<SpriteRenderer>();
+        Color fixedColor;
+
+        if (GameManager.Instance.angerCharged > 0)
+        {
+            fixedColor = GameManager.Instance.rageColor;
+            playerAtk.GetComponent<Light2D>().enabled = true;
+            playerAtkScript.lighting = true;
+        }
+        else
+        {
+            fixedColor = GameManager.Instance.defaultColor;
+            playerAtkScript.lighting = false;
+        }
 
         playerAtkRenderer.material.SetColor("_Color", fixedColor);
+
         playerAtk.transform.Rotate(new Vector3(0, 0, rotate));
+
         playerAtkScript.damage = GameManager.Instance.fixedPower;
         playerAtkScript.fixedColor = fixedColor;
     }

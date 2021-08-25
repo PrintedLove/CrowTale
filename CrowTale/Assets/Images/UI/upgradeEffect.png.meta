@@ -1,0 +1,1200 @@
+fileFormatVersion: 2
+guid: 17109ccb5286a8e4d8e8b300ce7bf245
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4227223251781671866
+    second: upgradeEffect_0
+  - first:
+      213: -830102127012158649
+    second: upgradeEffect_1
+  - first:
+      213: 5483182141347261744
+    second: upgradeEffect_2
+  - first:
+      213: -5548553924298790247
+    second: upgradeEffect_3
+  - first:
+      213: 8142245249116947564
+    second: upgradeEffect_4
+  - first:
+      213: -4905660220443248527
+    second: upgradeEffect_5
+  - first:
+      213: -8612175117178112174
+    second: upgradeEffect_6
+  - first:
+      213: -28771398570170464
+    second: upgradeEffect_7
+  - first:
+      213: -1358231068393251322
+    second: upgradeEffect_8
+  - first:
+      213: 2265324916668836759
+    second: upgradeEffect_9
+  - first:
+      213: 2332683067974763291
+    second: upgradeEffect_10
+  - first:
+      213: -2211945626208188779
+    second: upgradeEffect_11
+  - first:
+      213: -1473221469351770521
+    second: upgradeEffect_12
+  - first:
+      213: 2295340578982858953
+    second: upgradeEffect_13
+  - first:
+      213: 7420237823737868213
+    second: upgradeEffect_14
+  - first:
+      213: -8617568600634885653
+    second: upgradeEffect_15
+  - first:
+      213: -4762413808405077258
+    second: upgradeEffect_16
+  - first:
+      213: 8317536036503451772
+    second: upgradeEffect_17
+  - first:
+      213: -7881300434804804522
+    second: upgradeEffect_18
+  - first:
+      213: -4551291690122459813
+    second: upgradeEffect_19
+  - first:
+      213: 28685569567332575
+    second: upgradeEffect_20
+  - first:
+      213: -3779392316954211518
+    second: upgradeEffect_21
+  - first:
+      213: 7352922427282313659
+    second: upgradeEffect_22
+  - first:
+      213: -6133706537992942117
+    second: upgradeEffect_23
+  - first:
+      213: 7903866350016957584
+    second: upgradeEffect_24
+  - first:
+      213: 7537169558988296475
+    second: upgradeEffect_25
+  - first:
+      213: -1037835438701714108
+    second: upgradeEffect_26
+  - first:
+      213: -2335460733071575923
+    second: upgradeEffect_27
+  - first:
+      213: 1491192729005699906
+    second: upgradeEffect_28
+  - first:
+      213: 4904108316937869423
+    second: upgradeEffect_29
+  - first:
+      213: 5272472807773661964
+    second: upgradeEffect_30
+  - first:
+      213: 333920624691971483
+    second: upgradeEffect_31
+  - first:
+      213: -5659606184351931989
+    second: upgradeEffect_32
+  - first:
+      213: 3467721504273555204
+    second: upgradeEffect_33
+  - first:
+      213: -269532498957186896
+    second: upgradeEffect_34
+  - first:
+      213: 6668536420688294576
+    second: upgradeEffect_35
+  - first:
+      213: -3444470746079634822
+    second: upgradeEffect_36
+  - first:
+      213: -2296891954518108966
+    second: upgradeEffect_37
+  - first:
+      213: -4291189487345849395
+    second: upgradeEffect_38
+  - first:
+      213: -8882194969867885060
+    second: upgradeEffect_39
+  - first:
+      213: 6744420081096541004
+    second: upgradeEffect_40
+  - first:
+      213: -280672788610371417
+    second: upgradeEffect_41
+  - first:
+      213: -4855066109969837395
+    second: upgradeEffect_42
+  - first:
+      213: -5099308417094245464
+    second: upgradeEffect_43
+  - first:
+      213: 4510651513039541938
+    second: upgradeEffect_44
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: upgradeEffect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abbd7b4962d1aaa30800000000000000
+      internalID: 4227223251781671866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 252
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743e4287382ea74f0800000000000000
+      internalID: -830102127012158649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 252
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03de4cd3b1d281c40800000000000000
+      internalID: 5483182141347261744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 252
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a22157a939ff2b0800000000000000
+      internalID: -5548553924298790247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 252
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c644ab32ae01ff070800000000000000
+      internalID: 8142245249116947564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 252
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17837b355089bebb0800000000000000
+      internalID: -4905660220443248527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 252
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257f3253c586b7880800000000000000
+      internalID: -8612175117178112174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a7a880c098c99ff0800000000000000
+      internalID: -28771398570170464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_8
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 210
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e558d1a08962de0800000000000000
+      internalID: -1358231068393251322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_9
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 210
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b23ee620d007f10800000000000000
+      internalID: 2265324916668836759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_10
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 210
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b13443824ea5f5020800000000000000
+      internalID: 2332683067974763291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_11
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 210
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 596c16f1c279d41e0800000000000000
+      internalID: -2211945626208188779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_12
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 210
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7660fcb01e01e8be0800000000000000
+      internalID: -1473221469351770521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_13
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 210
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c010d86810badf10800000000000000
+      internalID: 2295340578982858953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bf20d09cfaf9f660800000000000000
+      internalID: 7420237823737868213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_15
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 168
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be9f89bf30f386880800000000000000
+      internalID: -8617568600634885653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_16
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 168
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2a994afd188edb0800000000000000
+      internalID: -4762413808405077258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_17
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 168
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c787c4ef4f2dd6370800000000000000
+      internalID: 8317536036503451772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_18
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 168
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 654f35fe20fff9290800000000000000
+      internalID: -7881300434804804522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_19
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 168
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b554015525096d0c0800000000000000
+      internalID: -4551291690122459813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_20
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 168
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd89d30af59e56000800000000000000
+      internalID: 28685569567332575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b8a1936b6ec8bc0800000000000000
+      internalID: -3779392316954211518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_22
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 126
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb15a2b7df3da0660800000000000000
+      internalID: 7352922427282313659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_23
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 126
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd8076c662b0eaa0800000000000000
+      internalID: -6133706537992942117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_24
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 126
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c8ce0a19c20bd60800000000000000
+      internalID: 7903866350016957584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_25
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 126
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b11926fb7c7699860800000000000000
+      internalID: 7537169558988296475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_26
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 126
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4456fdcca2ed891f0800000000000000
+      internalID: -1037835438701714108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_27
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 126
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d84356a46d6c69fd0800000000000000
+      internalID: -2335460733071575923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 84
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 243b708e2e7c1b410800000000000000
+      internalID: 1491192729005699906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_29
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 84
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f68de1bf784ee0440800000000000000
+      internalID: 4904108316937869423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_30
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 84
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0b614b75169b2940800000000000000
+      internalID: 5272472807773661964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_31
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 84
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9501f9f90352a400800000000000000
+      internalID: 333920624691971483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_32
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 84
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba16915492a0571b0800000000000000
+      internalID: -5659606184351931989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_33
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 84
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40f553ad552df1030800000000000000
+      internalID: 3467721504273555204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_34
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 84
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b8cb38ce9d624cf0800000000000000
+      internalID: -269532498957186896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 42
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b271ee0b866b8c50800000000000000
+      internalID: 6668536420688294576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_36
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 42
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7ad2b42b18c230d0800000000000000
+      internalID: -3444470746079634822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_37
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 42
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4de73dfeccf10e0800000000000000
+      internalID: -2296891954518108966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_38
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 42
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb2cde95e1a274c0800000000000000
+      internalID: -4291189487345849395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_39
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 42
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5634b1cba1cb480800000000000000
+      internalID: -8882194969867885060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_40
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 42
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4345cd845ef89d50800000000000000
+      internalID: 6744420081096541004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_41
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 42
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a0b2c8f599da1cf0800000000000000
+      internalID: -280672788610371417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da2d532a8175f9cb0800000000000000
+      internalID: -4855066109969837395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_43
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a320fe030e9b39b0800000000000000
+      internalID: -5099308417094245464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeEffect_44
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b6dc4417ad099e30800000000000000
+      internalID: 4510651513039541938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
