@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class cannonBullet : MonoBehaviour
 {
-    public float speed = 20f;
     public int damage = 10;
     public new Rigidbody2D rigidbody;
     public GameObject destroyEffect;
@@ -25,9 +24,17 @@ public class cannonBullet : MonoBehaviour
             isDestroy = true;
         else if (collision.gameObject.tag == "Player")
         {
-            GameManager.Instance.health -= 25;
-            isDestroy = true;
-            isCreateEffect = true;
+            if (!GameManager.Instance.isPlayerDie)
+            {
+                if (!GameManager.Instance.isGodMode)
+                {
+                    GameManager.Instance.health -= damage;
+                    isDestroy = true;
+                    isCreateEffect = true;
+                }
+                else
+                    GameManager.Instance.increaseAngerLevel(15);
+            }
         }
 
         if (isDestroy)

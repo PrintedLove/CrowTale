@@ -1,21 +1,24 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Cannon
     - Effect
     - Enemy
     - GameManager
     - cameraManager
+    - cannonBullet
+    - iconController
     - playerAttack
     - playerManager
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -80,11 +83,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnimatorStateTransitionInspector
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -92,6 +92,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -142,9 +143,7 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 766}
-    - Class: 114
-      Script: {instanceID: 1604}
+      Script: {instanceID: 768}
     - Class: 114
       Script: {instanceID: 1606}
     - Class: 114
@@ -152,107 +151,117 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1610}
     - Class: 114
+      Script: {instanceID: 1612}
+    - Class: 114
       Script: {instanceID: 1620}
     - Class: 114
       Script: {instanceID: 1752}
     - Class: 114
-      Script: {instanceID: 2330}
+      Script: {instanceID: 1836}
     - Class: 114
-      Script: {instanceID: 2418}
+      Script: {instanceID: 2332}
     - Class: 114
-      Script: {instanceID: 2634}
+      Script: {instanceID: 2420}
     - Class: 114
-      Script: {instanceID: 3088}
+      Script: {instanceID: 2636}
     - Class: 114
-      Script: {instanceID: 3156}
+      Script: {instanceID: 3090}
     - Class: 114
-      Script: {instanceID: 3218}
+      Script: {instanceID: 3158}
     - Class: 114
-      Script: {instanceID: 3242}
+      Script: {instanceID: 3220}
     - Class: 114
-      Script: {instanceID: 3300}
+      Script: {instanceID: 3244}
     - Class: 114
-      Script: {instanceID: 3418}
+      Script: {instanceID: 3302}
     - Class: 114
-      Script: {instanceID: 3476}
+      Script: {instanceID: 3420}
     - Class: 114
-      Script: {instanceID: 3532}
+      Script: {instanceID: 3478}
     - Class: 114
-      Script: {instanceID: 3834}
+      Script: {instanceID: 3534}
     - Class: 114
-      Script: {instanceID: 3938}
+      Script: {instanceID: 3836}
     - Class: 114
-      Script: {instanceID: 4104}
+      Script: {instanceID: 3940}
     - Class: 114
-      Script: {instanceID: 4242}
+      Script: {instanceID: 4106}
     - Class: 114
-      Script: {instanceID: 4846}
+      Script: {instanceID: 4244}
     - Class: 114
-      Script: {instanceID: 4986}
+      Script: {instanceID: 4564}
     - Class: 114
-      Script: {instanceID: 5022}
+      Script: {instanceID: 4850}
     - Class: 114
-      Script: {instanceID: 5032}
+      Script: {instanceID: 4990}
     - Class: 114
-      Script: {instanceID: 5046}
+      Script: {instanceID: 5026}
     - Class: 114
-      Script: {instanceID: 5108}
+      Script: {instanceID: 5036}
     - Class: 114
-      Script: {instanceID: 5302}
+      Script: {instanceID: 5050}
     - Class: 114
-      Script: {instanceID: 5304}
+      Script: {instanceID: 5112}
     - Class: 114
-      Script: {instanceID: 5326}
+      Script: {instanceID: 5306}
     - Class: 114
-      Script: {instanceID: 5496}
+      Script: {instanceID: 5308}
     - Class: 114
-      Script: {instanceID: 5548}
+      Script: {instanceID: 5330}
     - Class: 114
-      Script: {instanceID: 5584}
+      Script: {instanceID: 5500}
     - Class: 114
-      Script: {instanceID: 5700}
+      Script: {instanceID: 5552}
     - Class: 114
-      Script: {instanceID: 5842}
+      Script: {instanceID: 5588}
     - Class: 114
-      Script: {instanceID: 5912}
+      Script: {instanceID: 5674}
+    - Class: 114
+      Script: {instanceID: 5706}
+    - Class: 114
+      Script: {instanceID: 5848}
     - Class: 114
       Script: {instanceID: 5918}
     - Class: 114
-      Script: {instanceID: 6020}
+      Script: {instanceID: 5924}
     - Class: 114
-      Script: {instanceID: 6054}
+      Script: {instanceID: 6026}
     - Class: 114
-      Script: {instanceID: 6098}
+      Script: {instanceID: 6060}
     - Class: 114
-      Script: {instanceID: 6166}
+      Script: {instanceID: 6104}
+    - Class: 114
+      Script: {instanceID: 6128}
     - Class: 114
       Script: {instanceID: 6174}
     - Class: 114
-      Script: {instanceID: 6270}
+      Script: {instanceID: 6182}
     - Class: 114
-      Script: {instanceID: 6408}
+      Script: {instanceID: 6278}
     - Class: 114
-      Script: {instanceID: 6522}
+      Script: {instanceID: 6416}
     - Class: 114
-      Script: {instanceID: 6576}
+      Script: {instanceID: 6530}
     - Class: 114
-      Script: {instanceID: 6634}
+      Script: {instanceID: 6584}
     - Class: 114
-      Script: {instanceID: 6958}
+      Script: {instanceID: 6642}
     - Class: 114
-      Script: {instanceID: 7172}
+      Script: {instanceID: 6862}
     - Class: 114
-      Script: {instanceID: 7214}
+      Script: {instanceID: 6966}
     - Class: 114
-      Script: {instanceID: 7484}
+      Script: {instanceID: 7180}
     - Class: 114
-      Script: {instanceID: 7620}
+      Script: {instanceID: 7222}
     - Class: 114
-      Script: {instanceID: 7708}
+      Script: {instanceID: 7492}
     - Class: 114
-      Script: {instanceID: 7720}
+      Script: {instanceID: 7628}
     - Class: 114
-      Script: {instanceID: 20534}
+      Script: {instanceID: 7716}
+    - Class: 114
+      Script: {instanceID: 7728}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -358,6 +367,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Shadow
+  - hash:
+      serializedVersion: 2
+      Hash: aadc2afce12a5acba42f5541b97a6c82
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: c5bfd0f6f4664318b8b9f50d88408421
@@ -768,6 +783,12 @@ ScriptsOnlyBuild:
     className: BufferManager
   - hash:
       serializedVersion: 2
+      Hash: 8d549743a7930be81adb39ec613fc0b5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Cannon
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -918,7 +939,7 @@ ScriptsOnlyBuild:
     className: VolumeComponent
   - hash:
       serializedVersion: 2
-      Hash: c2a6b2338ab047540c50537a7a9565cb
+      Hash: 5bfe100ced2c34cd69e38c18f846379a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Effect
@@ -928,6 +949,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: UIFoldout
+  - hash:
+      serializedVersion: 2
+      Hash: 4f54a9a3b04fd9f379a9dd2a63a48d28
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: iconController
   - hash:
       serializedVersion: 2
       Hash: a1aa98c78061c6f03a8c124cda576e67
@@ -994,6 +1021,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerBitField
+  - hash:
+      serializedVersion: 2
+      Hash: f33be034c6abea905f2c7d179762bdb5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: cannonBullet
   - hash:
       serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
@@ -1158,7 +1191,7 @@ ScriptsOnlyBuild:
     className: SpriteShape
   - hash:
       serializedVersion: 2
-      Hash: e4c992c6fae80cc3ca9809314a5ea565
+      Hash: 346f35d4d54c85ddee64edf6bae86c6a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: playerAttack
@@ -1272,7 +1305,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerFoldout
   - hash:
       serializedVersion: 2
-      Hash: 48f20fdf2d44271c981a03a281d89cfb
+      Hash: 781e089025c2abc8fdacb38ba31e557c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: playerManager
@@ -1294,13 +1327,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
-  - hash:
-      serializedVersion: 2
-      Hash: dcadedb2a49ea0a2ba8514bb4f46789e
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameManager
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainScene.unity
-  playerPath: C:/Users/dnjsw/Desktop/CrowTale.exe
+  playerPath: "C:/Users/dnjsw/\uC0C8 \uD3F4\uB354/CrowTale.exe"

@@ -48,11 +48,10 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        if (GameManager.Instance.angerCharged == 0)
-            GameManager.Instance.angerLevel += 2;
+        GameManager.Instance.increaseAngerLevel(2);
 
         // Á×À½ Ã³¸®
-        if (health <= 0)
+            if (health <= 0)
         {
             Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);

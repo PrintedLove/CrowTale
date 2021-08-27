@@ -31,7 +31,6 @@ public class playerAttack : MonoBehaviour
 
             if (enemy != null)
             {
-
                 enemy.TakeDamage(damage, Mathf.Sign(enemy.transform.position.x - transform.position.x));
                 isDestroy = true;
             }
