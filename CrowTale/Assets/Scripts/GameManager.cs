@@ -86,10 +86,10 @@ public class GameManager : MonoBehaviour
                 {
                     staminaRegenTimer += Time.deltaTime;
 
-                    if (staminaRegenTimer > 0.2f)
+                    if (staminaRegenTimer > 0.12f)
                     {
                         staminaRegenTimer = 0;
-                        stamina += 3;
+                        stamina += 4;
 
                         if (stamina > maxStamina)
                             stamina = maxStamina;
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             if (isReduce)
             {
                 stamina -= val;
-                staminaRegenCool = 2f;
+                staminaRegenCool = 1.6f;
                 staminaRegenTimer = 0;
             }
             

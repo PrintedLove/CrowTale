@@ -14,6 +14,7 @@ public class playerManager : MonoBehaviour
     public bool isRolling;
     public Transform firePoint;
     public GameObject playerAttackObject;
+    public int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };     // 스태미나 소비값. 공격1, 공격2, 공격3, 구르기, 비행
 
     private bool isGrounded;    //바닥 접촉 여부
     private bool flip;          //스프라이트 좌우 반전
@@ -24,7 +25,6 @@ public class playerManager : MonoBehaviour
     private bool isCreateAttack;        //공격 투사체 생성 트리거
     private bool isUpdateAttackCombo = false;   //공격 콤보 업데이트 트리거
     private short attackCombo;          //공격 콤보
-    private int[] consumeStamina = new int[6];
     private bool isDead;
 
     Rigidbody2D rigidBody;
@@ -45,12 +45,6 @@ public class playerManager : MonoBehaviour
         attackCombo = 1;
         isRolling = false;
         isDead = false;
-
-        consumeStamina[0] = 10;     // 공격 1
-        consumeStamina[1] = 5;      // 공격 2
-        consumeStamina[2] = 5;      // 공격 3
-        consumeStamina[3] = 20;     // 구르기
-        consumeStamina[4] = 8;      // 비행
     }
 
     private void Update()
@@ -60,7 +54,8 @@ public class playerManager : MonoBehaviour
             // 공격
             if (Input.GetButtonDown("Fire1") && isGrounded && !isAttacking && !isRolling)
             {
-                if (GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
+                if (GameManager.Instance.angerCharged > 0 
+                    || GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
                 {
                     isAttack = true;
                     isAttacking = true;
@@ -86,7 +81,9 @@ public class playerManager : MonoBehaviour
                 {
                     isCreateAttack = false;
                     isUpdateAttackCombo = true;
-                    GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1]);
+
+                    if (GameManager.Instance.angerCharged == 0)
+                        GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1]);
 
                     if (attackCombo != 3)                           // 콤보 1, 2
                         playerAttack();
@@ -112,7 +109,8 @@ public class playerManager : MonoBehaviour
                             else
                                 attackCombo = 1;
 
-                            if (GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
+                            if (GameManager.Instance.angerCharged > 0 
+                                || GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
                             {
                                 animator.SetInteger("AttackCombo", attackCombo);
                                 isCreateAttack = true;
@@ -180,10 +178,10 @@ public class playerManager : MonoBehaviour
                                 {
                                     if (GameManager.Instance.consumeStamina(consumeStamina[4]))
                                     {
-                                        rigidBody.AddForce(Vector2.up * jumpSpeed * 0.8f, ForceMode2D.Impulse);
+                                        rigidBody.AddForce(Vector2.up * jumpSpeed * 0.7f, ForceMode2D.Impulse);
                                         animator.SetBool("isFly", true);
-                                        rigidBody.drag = 8;
-                                        rigidBody.gravityScale = 1;
+                                        rigidBody.drag = 6.5f;
+                                        rigidBody.gravityScale = 1.2f;
                                     }
                                     else
                                         GameManager.Instance.ShowWarnning("Not enough stamina");

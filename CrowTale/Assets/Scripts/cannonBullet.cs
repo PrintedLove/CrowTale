@@ -33,7 +33,7 @@ public class cannonBullet : MonoBehaviour
                     isCreateEffect = true;
                 }
                 else
-                    GameManager.Instance.increaseAngerLevel(15);
+                    GameManager.Instance.increaseAngerLevel(40);
             }
         }
 

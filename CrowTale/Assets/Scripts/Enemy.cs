@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        GameManager.Instance.increaseAngerLevel(2);
+        GameManager.Instance.increaseAngerLevel(3);
 
         // Á×À½ Ã³¸®
             if (health <= 0)
