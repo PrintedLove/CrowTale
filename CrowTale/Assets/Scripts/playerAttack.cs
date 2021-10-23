@@ -40,10 +40,17 @@ public class playerAttack : MonoBehaviour
         {
             GameObject destroyEft = Instantiate(destroyEffect, transform.position, transform.rotation);
             SpriteRenderer destroyEftRenderer = destroyEft.GetComponent<SpriteRenderer>();
+            Effect destroyEftScript = destroyEft.GetComponent<Effect>();
 
             destroyEftRenderer.material.SetColor("_Color", fixedColor);
             destroyEftRenderer.GetComponent<Light2D>().enabled = lighting;
-            destroyEftRenderer.GetComponent<Effect>().isLtFade = lighting;
+            destroyEftScript.isLtFade = lighting;
+
+            if (GameManager.Instance.angerCharged > 0)
+                destroyEftScript.ptColor = Color.white;
+            else
+                destroyEftScript.ptColor = Color.black;
+
             Destroy(gameObject);
         }
     }

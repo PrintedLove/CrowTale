@@ -12,10 +12,11 @@ public class playerManager : MonoBehaviour
     public bool updateAttackCombo = false;
     public bool createAttack = false;
     public bool isRolling;
+    public int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };     // 스태미나 소비값. 공격1, 공격2, 공격3, 구르기, 비행
     public Transform firePoint;
     public GameObject playerAttackObject;
-    public int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };     // 스태미나 소비값. 공격1, 공격2, 공격3, 구르기, 비행
-
+    public ParticleSystem dustParticleSystem;
+    
     private bool isGrounded;    //바닥 접촉 여부
     private bool flip;          //스프라이트 좌우 반전
     private bool flip_before;
@@ -181,7 +182,7 @@ public class playerManager : MonoBehaviour
                                         rigidBody.AddForce(Vector2.up * jumpSpeed * 0.7f, ForceMode2D.Impulse);
                                         animator.SetBool("isFly", true);
                                         rigidBody.drag = 6.5f;
-                                        rigidBody.gravityScale = 1.2f;
+                                        rigidBody.gravityScale = 1f;
                                     }
                                     else
                                         GameManager.Instance.ShowWarnning("Not enough stamina");
@@ -257,6 +258,9 @@ public class playerManager : MonoBehaviour
                     {
                         transform.Rotate(0f, 180f, 0f);
                         flip_before = flip;
+
+                        if (isGrounded)
+                            CreateDust();
                     }
                 }
             }
@@ -358,5 +362,10 @@ public class playerManager : MonoBehaviour
         isUpdateAttackCombo = true;
         attackCombo = 1;
         isRolling = false;
+    }
+
+    void CreateDust()       // 먼지 생성
+    {
+        dustParticleSystem.Play();
     }
 }
