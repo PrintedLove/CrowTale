@@ -289,6 +289,15 @@ public class playerManager : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Spike") {
+            if(!GameManager.Instance.damageImmune) {
+                GameManager.Instance.GetDamage(75, 1f);
+            }
+            Debug.Log("takeDamge");
+        }
+    }
+
     private void playerAttack(int rotate = 0)       //플레이어 공격 오브젝트 생성 함수
     {
         GameObject playerAtk = Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
@@ -345,9 +354,9 @@ public class playerManager : MonoBehaviour
         animator.SetBool(boolName, !animator.GetBool(boolName));
     }
 
-    public void ToggleGodMode()       //무적 토글
+    public void ToggleDamageImmuneMode()       //무적 토글
     {
-        GameManager.Instance.isGodMode = !GameManager.Instance.isGodMode;
+        GameManager.Instance.damageImmune = !GameManager.Instance.damageImmune;
     }
 
     public void Die()       //죽음

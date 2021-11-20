@@ -26,9 +26,9 @@ public class cannonBullet : MonoBehaviour
         {
             if (!GameManager.Instance.isPlayerDie)
             {
-                if (!GameManager.Instance.isGodMode)
+                if (!GameManager.Instance.damageImmune)
                 {
-                    GameManager.Instance.health -= damage;
+                    GameManager.Instance.GetDamage(damage, 0.1f);
                     isDestroy = true;
                     isCreateEffect = true;
                 }

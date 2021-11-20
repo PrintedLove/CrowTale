@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public int angerCharged = 0;        //분노 충전값
     public int power = 10;              //파워(데미지)
     public int fixedPower;              //수정된 파워
-    public bool isGodMode;              //무적 모드
+    public bool damageImmune;              //무적 모드
     public bool isPlayerDie;
     public Vector3 respawnPosition = new Vector3(0f, 0f);
     public Color defaultColor = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         playerMaterialIntensity = 0;
         fixedPower = power;
         deathCount = 0;
-        isGodMode = false;
+        damageImmune = false;
         isPlayerDie = false;
 
         player = GameObject.FindWithTag("Player");
@@ -137,6 +137,15 @@ public class GameManager : MonoBehaviour
         playTime.text = "Play Time   " + _playTimeMin.ToString("00") + " : " + timeStr;
     }
 
+    public void GetDamage(int damage, float immuneTime) {           // 플레이어 데미지
+        if (!damageImmune) {
+            health -= damage;
+            damageImmune = true;
+            StartCoroutine(RunDamageImmuneTime(immuneTime));
+            Debug.Log("takeDamge");
+        }
+    }
+
     void PlayerDie()        // 플레이어 죽음
     {
         isPlayerDie = true;
@@ -150,7 +159,7 @@ public class GameManager : MonoBehaviour
         angerCharged = 0;        
         fixedPower = power;
         playerMaterialIntensity = 0f;
-        isGodMode = false;
+        damageImmune = false;
         UpdatePlayerMaterialColor();
     }
 
@@ -167,7 +176,7 @@ public class GameManager : MonoBehaviour
         warnningText.text = str;
     }
 
-    public void UpdateIconDescription(string str)       //아이콘 설명글 업데이트
+    public void UpdateIconDescription(string str)               //아이콘 설명글 업데이트
     {
         iconDescription.text = str;
     }
@@ -217,6 +226,12 @@ public class GameManager : MonoBehaviour
         playerRenderer.material.SetColor("_Color", fixedColor);
     }
 
+    IEnumerator RunDamageImmuneTime(float immuneTime)     //무적 시간 코루틴
+    {
+        yield return new WaitForSeconds(immuneTime);
+
+        damageImmune = false;
+    }
 
     IEnumerator RunAngerCountdown()     //분노 게이지 쿨다운 코루틴
     {
