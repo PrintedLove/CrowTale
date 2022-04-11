@@ -95,6 +95,9 @@ TextureImporter:
   - first:
       213: 4837004051937695833
     second: struct_19
+  - first:
+      213: 2760996392290893603
+    second: struct_20
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1025,6 +1028,27 @@ TextureImporter:
       bones: []
       spriteID: 9581fd4ce8d702340800000000000000
       internalID: 4837004051937695833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: struct_20
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f32a42797015620800000000000000
+      internalID: 2760996392290893603
       vertices: []
       indices: 
       edges: []

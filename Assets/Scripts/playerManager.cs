@@ -17,7 +17,10 @@ public class playerManager : MonoBehaviour
     public GameObject playerAttackObject;
     public ParticleSystem dustParticleSystem;
     
+    private float horizontalInput;
     private bool isGrounded;    //바닥 접촉 여부
+    private bool isTouchPlatform = false;   //이동 플랫폼 접촉 여부
+    private GameObject contactPlatform;     //접촉한 이동 플랫폼
     private bool flip;          //스프라이트 좌우 반전
     private bool flip_before;
     private bool verticalInputToggle;   //점프<->비행 토글
@@ -232,6 +235,12 @@ public class playerManager : MonoBehaviour
         else
             animator.SetBool("isRun", true);
         }
+
+        // 낙사
+        if (transform.position.y < -64)
+        {
+            GameManager.Instance.health = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -241,11 +250,13 @@ public class playerManager : MonoBehaviour
             if (!isAttacking && !isRolling)
             {
                 // 좌우 이동
-                float horizontalInput = Input.GetAxisRaw("Horizontal");
-
+                horizontalInput = Input.GetAxisRaw("Horizontal");
                 rigidBody.AddForce(Vector2.right * horizontalInput * 2, ForceMode2D.Impulse);
 
-
+                //이동 플랫폼과 접촉중일 경우
+                if(isTouchPlatform && horizontalInput == 0 && transform.position.y - contactPlatform.transform.position.y > 0.874f)
+                    rigidBody.velocity = contactPlatform.GetComponent<Rigidbody2D>().velocity;
+                
                 // 스프라이트 방향 조정
                 if (horizontalInput != 0)
                 {
@@ -298,10 +309,44 @@ public class playerManager : MonoBehaviour
             {
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-                if (enemy.enemyType == EnemyType.Spike)     //가시 함정
+                //가시 함정
+                if (enemy.enemyType == EnemyType.Spike)
                 {
                     Knockback(0.5f, enemy.transform.position, 0.25f);
                     GameManager.Instance.GetDamage(75, 1f);
+                }
+                //나무 상자
+                else if (enemy.enemyType == EnemyType.WoodenBox)
+                {
+                    if(!isTouchPlatform && transform.position.y - collision.gameObject.transform.position.y > 0.874f)
+                    {
+                        transform.SetParent(collision.transform);
+                        rigidBody.velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+                        contactPlatform = collision.gameObject;
+                        isTouchPlatform = true;
+                    }
+                }
+            }
+        }
+    }
+
+    //충돌 해제 검사
+    private void OnCollisionExit2D(Collision2D collision) {
+        if (!GameManager.Instance.isPlayerDie)
+        {
+            //적과 충돌 해제시
+            if (collision.gameObject.tag == "Enemy")
+            {
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+
+                //나무 상자
+                if (enemy.enemyType == EnemyType.WoodenBox)
+                {
+                    if(isTouchPlatform)
+                    {
+                        transform.SetParent(null);
+                        isTouchPlatform = false;
+                    }
                 }
             }
         }
@@ -400,7 +445,6 @@ public class playerManager : MonoBehaviour
         {
             timer += Time.deltaTime;
             rigidBody.AddForce(dir * power, ForceMode2D.Impulse);
-            Debug.Log(dir * power);
         }
         
         yield return 0;

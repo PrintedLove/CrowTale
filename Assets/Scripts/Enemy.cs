@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Dummy, Snake, Spike
+    Dummy, Snake, Spike, WoodenBox
 }
 
 public class Enemy : MonoBehaviour

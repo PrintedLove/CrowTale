@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         if (!isPlayerDie)
         {
             //죽음 감시
-            if (health <= 0)
+            if (health <= 0 || player.GetComponent<Transform>().position.y < -64)
             {
                 player.GetComponent<playerManager>().Die();
                 PlayerDie();
@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
         } else
             return false;
     }
-
+    
     // 분노 게이지 증가
     public void increaseAngerLevel(int val)
     {
