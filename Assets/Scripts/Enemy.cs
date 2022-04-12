@@ -9,29 +9,36 @@ public enum EnemyType
 
 public class Enemy : MonoBehaviour
 {
-    public bool isHit = true;
-    public int maxHealth = 100;
-    public int health = 100;
+    public bool isHit = true;       //플레이어 공격 피격 여부
+    public int angerAmount = 3;     //플레이어 공격 피격시 분노 충전량
+    public int maxHealth = 100;     //최대 체력
+    public int health = 100;        //현재 체력
+
+    public Sprite[] sprite;
     public EnemyType enemyType;
     public GameObject deathEffect;
     
     private short hitAction;
     private bool hitDirection;
+
+    private int[] val = new int[5] {0, 0, 0, 0, 0};
     
     Animator animator;
+    SpriteRenderer spriteRenderer;
 
     void Awake()
     {
-        try{
+        if (GetComponent<Animator>() != null)
             animator = GetComponent<Animator>();
-        } catch {
-        }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         
         hitAction = -1;
     }
 
     void Update()
     {
+        //더미
         if (enemyType == EnemyType.Dummy)
         {
             if (hitAction == 1)
@@ -48,17 +55,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //데미지 처리
     public void TakeDamage(int damage, float hitDir)
     {
         health -= damage;
 
-        GameManager.Instance.increaseAngerLevel(3);
+        if(angerAmount > 0)
+            GameManager.Instance.increaseAngerLevel(angerAmount);
 
-        // 죽음 처리
-            if (health <= 0)
+        if (health <= 0)
         {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Die();
         } else
         {
             hitAction = 1;
@@ -68,5 +75,27 @@ public class Enemy : MonoBehaviour
             else
                 hitDirection = false;
         }
+
+        CheckHP();
+    }
+
+    //HP변동 시마다 호출되는 함수
+    private void CheckHP()
+    {
+        //나무 상자
+        if (enemyType == EnemyType.WoodenBox)
+        {
+            if (health <= maxHealth * 30 / 100) 
+                spriteRenderer.sprite = sprite[1];
+            else if (health <= maxHealth * 60 / 100)
+                spriteRenderer.sprite = sprite[0];
+        }
+    }
+    
+    //죽음
+    private void Die()
+    {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

@@ -18,6 +18,7 @@ public class playerManager : MonoBehaviour
     public ParticleSystem dustParticleSystem;
     
     private float horizontalInput;
+    private float verticalInput;
     private bool isGrounded;    //바닥 접촉 여부
     private bool isTouchPlatform = false;   //이동 플랫폼 접촉 여부
     private GameObject contactPlatform;     //접촉한 이동 플랫폼
@@ -32,11 +33,13 @@ public class playerManager : MonoBehaviour
     private bool isDead;
 
     Rigidbody2D rigidBody;
+    BoxCollider2D boxCollider2D;
     Animator animator;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
 
         flip = false;
@@ -166,8 +169,9 @@ public class playerManager : MonoBehaviour
 
                 if (!isRolling)
                 {
+                    verticalInput = Input.GetAxisRaw("Vertical");
                     // 점프 and 비행
-                    if (Input.GetAxisRaw("Vertical") == 1)
+                    if (verticalInput == 1)
                     {
                         if (!verticalInputToggle)
                         {
@@ -199,7 +203,7 @@ public class playerManager : MonoBehaviour
                             animator.SetBool("isFly", false);
                         }
                     }
-                    else if (Input.GetAxisRaw("Vertical") == (-1))  // 하강
+                    else if (verticalInput == (-1))  // 하강
                     {
                         if (!verticalInputToggle)
                         {
@@ -254,7 +258,8 @@ public class playerManager : MonoBehaviour
                 rigidBody.AddForce(Vector2.right * horizontalInput * 2, ForceMode2D.Impulse);
 
                 //이동 플랫폼과 접촉중일 경우
-                if(isTouchPlatform && horizontalInput == 0 && transform.position.y - contactPlatform.transform.position.y > 0.874f)
+                if(isTouchPlatform && horizontalInput == 0 && verticalInput == 0 && contactPlatform != null
+                && CheckPlatform(contactPlatform.transform.position, contactPlatform.GetComponent<BoxCollider2D>().size))
                     rigidBody.velocity = contactPlatform.GetComponent<Rigidbody2D>().velocity;
                 
                 // 스프라이트 방향 조정
@@ -302,7 +307,7 @@ public class playerManager : MonoBehaviour
 
     //충돌 검사
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (!GameManager.Instance.isPlayerDie)
+        if (collision != null && !GameManager.Instance.isPlayerDie)
         {
             //적과 충돌시
             if (collision.gameObject.tag == "Enemy")
@@ -318,13 +323,8 @@ public class playerManager : MonoBehaviour
                 //나무 상자
                 else if (enemy.enemyType == EnemyType.WoodenBox)
                 {
-                    if(!isTouchPlatform && transform.position.y - collision.gameObject.transform.position.y > 0.874f)
-                    {
-                        transform.SetParent(collision.transform);
-                        rigidBody.velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity;
-                        contactPlatform = collision.gameObject;
-                        isTouchPlatform = true;
-                    }
+                    if(collision.contacts[0].normal.y > 0.7f)
+                        OnEnterPlatform(collision.gameObject);
                 }
             }
         }
@@ -332,7 +332,7 @@ public class playerManager : MonoBehaviour
 
     //충돌 해제 검사
     private void OnCollisionExit2D(Collision2D collision) {
-        if (!GameManager.Instance.isPlayerDie)
+        if (collision != null && !GameManager.Instance.isPlayerDie)
         {
             //적과 충돌 해제시
             if (collision.gameObject.tag == "Enemy")
@@ -342,11 +342,7 @@ public class playerManager : MonoBehaviour
                 //나무 상자
                 if (enemy.enemyType == EnemyType.WoodenBox)
                 {
-                    if(isTouchPlatform)
-                    {
-                        transform.SetParent(null);
-                        isTouchPlatform = false;
-                    }
+                    OnExitPlatform();
                 }
             }
         }
@@ -380,26 +376,7 @@ public class playerManager : MonoBehaviour
         playerAtkScript.fixedColor = fixedColor;
     }
 
-    //플레이어 넉백
-    public void Knockback(float power, Vector3 position, float duration)
-    {
-        rigidBody.velocity = new Vector2(0f, 0f);
-        StartCoroutine(MovePlayerDirection(power, position, duration));
-    }
-
-    //리스폰
-    public void Respawn()
-    {
-        isDead = false;
-
-        animator.SetBool("isDead", false);
-        animator.ResetTrigger("isDie");
-
-        MovePlayerPoint(GameManager.Instance.respawnPosition);
-        GameManager.Instance.PlayerRespawn();
-    }
-
-    //죽음
+   //죽음
     public void Die()
     {
         isDead = true;
@@ -414,16 +391,49 @@ public class playerManager : MonoBehaviour
         isRolling = false;
     }
 
-    //무적 토글
-    public void ToggleDamageImmuneMode()
+    //리스폰
+    public void Respawn()
     {
-        GameManager.Instance.damageImmune = !GameManager.Instance.damageImmune;
+        isDead = false;
+
+        animator.SetBool("isDead", false);
+        animator.ResetTrigger("isDie");
+
+        MovePlayerPoint(GameManager.Instance.respawnPosition);
+        GameManager.Instance.PlayerRespawn();
     }
 
-    //먼지 생성
-    void CreateDust()
+    //이동 플랫폼과 충돌
+    private void OnEnterPlatform(GameObject gameObject)
     {
-        dustParticleSystem.Play();
+        if(!isTouchPlatform && CheckPlatform(gameObject.transform.position, gameObject.GetComponent<BoxCollider2D>().size))
+        {
+            transform.SetParent(gameObject.transform);
+            rigidBody.velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
+            contactPlatform = gameObject;
+            isTouchPlatform = true;
+        }
+    }
+
+    //이동 플랫폼과 충돌 해제
+    private void OnExitPlatform()
+    {
+        if(isTouchPlatform)
+        {
+            transform.SetParent(null);
+            isTouchPlatform = false;
+        }
+    }
+
+    //이동 플랫폼의 기능 여부 체크 함수
+    private bool CheckPlatform(Vector3 platformPos, Vector2 platformSize)
+    {
+        if(transform.position.y - platformPos.y > (boxCollider2D.size.y + platformSize.y) / 2 - 0.1f
+         && transform.position.x - platformPos.x >= (-platformSize.x / 2)
+          && transform.position.x - platformPos.x <= platformSize.x / 2)
+            return true;
+        else
+            return false;
     }
 
     //플레이어 단순가속 함수(원래 이동하던 방향으로 가속, 오른쪽 or 왼쪽)
@@ -454,6 +464,25 @@ public class playerManager : MonoBehaviour
     public void MovePlayerPoint(Vector3 position)
     {
         transform.position = position;
+    }
+
+    //플레이어 넉백
+    public void Knockback(float power, Vector3 position, float duration)
+    {
+        rigidBody.velocity = new Vector2(0f, 0f);
+        StartCoroutine(MovePlayerDirection(power, position, duration));
+    }
+
+    //무적 토글
+    public void ToggleDamageImmuneMode()
+    {
+        GameManager.Instance.damageImmune = !GameManager.Instance.damageImmune;
+    }
+
+    //먼지 생성
+    void CreateDust()
+    {
+        dustParticleSystem.Play();
     }
 
     //애니메이터 파라미터 토글 함수
