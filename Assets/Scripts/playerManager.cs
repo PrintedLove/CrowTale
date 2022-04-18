@@ -17,8 +17,8 @@ public class playerManager : MonoBehaviour
     public GameObject playerAttackObject;
     public ParticleSystem dustParticleSystem;
     
-    private float horizontalInput;
-    private float verticalInput;
+    private float horizontalInput;      //좌우 이동 입력값
+    private float verticalInput;        //상하 이동 입력값
     private bool isGrounded;    //바닥 접촉 여부
     private bool isTouchPlatform = false;   //이동 플랫폼 접촉 여부
     private GameObject contactPlatform;     //접촉한 이동 플랫폼
@@ -170,6 +170,7 @@ public class playerManager : MonoBehaviour
                 if (!isRolling)
                 {
                     verticalInput = Input.GetAxisRaw("Vertical");
+
                     // 점프 and 비행
                     if (verticalInput == 1)
                     {
@@ -213,7 +214,7 @@ public class playerManager : MonoBehaviour
                             verticalInputToggle = true;
                         }
                     }
-                    else                                            // 점프 버튼 해제
+                    else                             // 점프 버튼 해제
                     {
                         if (verticalInputToggle)
                         {
@@ -309,19 +310,22 @@ public class playerManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision != null && !GameManager.Instance.isPlayerDie)
         {
-            //적과 충돌시
-            if (collision.gameObject.tag == "Enemy")
+            //상호작용 가능한 오브젝트와 충돌시
+            if (collision.gameObject.tag == "Enemy"
+             || collision.gameObject.tag == "Interactive Object"
+             || collision.gameObject.tag == "Damageable Object")
             {
-                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                _Object obj = collision.gameObject.GetComponent<_Object>();
 
                 //가시 함정
-                if (enemy.enemyType == EnemyType.Spike)
+                if (obj.objType == _ObjectType.Spike)
                 {
-                    Knockback(0.5f, enemy.transform.position, 0.25f);
+                    Knockback(0.5f, obj.transform.position, 0.25f);
                     GameManager.Instance.GetDamage(75, 1f);
                 }
-                //나무 상자
-                else if (enemy.enemyType == EnemyType.WoodenBox)
+                //나무 상자, 이동 플랫폼
+                else if (obj.objType == _ObjectType.WoodenBox
+                 || obj.objType == _ObjectType.MovingPlatform)
                 {
                     if(collision.contacts[0].normal.y > 0.7f)
                         OnEnterPlatform(collision.gameObject);
@@ -334,16 +338,20 @@ public class playerManager : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision) {
         if (collision != null && !GameManager.Instance.isPlayerDie)
         {
-            //적과 충돌 해제시
-            if (collision.gameObject.tag == "Enemy")
+            //상호작용 가능한 오브젝트와 충돌 해제시
+            if (collision.gameObject.tag == "Enemy"
+             || collision.gameObject.tag == "Interactive Object"
+             || collision.gameObject.tag == "Damageable Object")
             {
-                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                _Object obj = collision.gameObject.GetComponent<_Object>();
 
-                //나무 상자
-                if (enemy.enemyType == EnemyType.WoodenBox)
+                //나무 상자, 이동 플랫폼
+                if (obj.objType == _ObjectType.WoodenBox
+                 || obj.objType == _ObjectType.MovingPlatform)
                 {
                     OnExitPlatform();
                 }
+                
             }
         }
     }
@@ -389,6 +397,8 @@ public class playerManager : MonoBehaviour
         isUpdateAttackCombo = true;
         attackCombo = 1;
         isRolling = false;
+        isTouchPlatform = false;
+        contactPlatform = null;
     }
 
     //리스폰
@@ -408,7 +418,6 @@ public class playerManager : MonoBehaviour
     {
         if(!isTouchPlatform && CheckPlatform(gameObject.transform.position, gameObject.GetComponent<BoxCollider2D>().size))
         {
-            transform.SetParent(gameObject.transform);
             rigidBody.velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
             contactPlatform = gameObject;
             isTouchPlatform = true;
@@ -419,10 +428,7 @@ public class playerManager : MonoBehaviour
     private void OnExitPlatform()
     {
         if(isTouchPlatform)
-        {
-            transform.SetParent(null);
             isTouchPlatform = false;
-        }
     }
 
     //이동 플랫폼의 기능 여부 체크 함수

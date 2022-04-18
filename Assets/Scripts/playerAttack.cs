@@ -25,14 +25,14 @@ public class playerAttack : MonoBehaviour
 
         if (collision.gameObject.tag == "Struct")
             isDestroy = true;
-        else if  (collision.gameObject.tag == "Enemy")
+        else if  (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Damageable Object")
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            _Object obj = collision.GetComponent<_Object>();
             
-            if (enemy != null)
+            if (obj != null)
             {
-                if (enemy.isHit)
-                    enemy.TakeDamage(damage, Mathf.Sign(enemy.transform.position.x - transform.position.x));
+                if (obj.isHit)
+                    obj.TakeDamage(damage, Mathf.Sign(obj.transform.position.x - transform.position.x));
                     
                 isDestroy = true;
             }

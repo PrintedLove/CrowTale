@@ -130,5 +130,5 @@ MonoBehaviour:
   shotEffectObject: {fileID: 8933356492930698314, guid: 628d64cf491550a448d906884f331e08, type: 3}
   cannonBulletObject: {fileID: 4866700267814750983, guid: d4e29261348c77348a113b77443aa7a5, type: 3}
   isAttack: 1
-  attackCooltime: 2.5
-  bulletSpeed: 7.5
+  attackCooltime: 3.5
+  bulletSpeed: 8

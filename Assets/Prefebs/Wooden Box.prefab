@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3534814563293998826}
   - component: {fileID: 5803342826827366864}
   - component: {fileID: 4621857519457861658}
-  - component: {fileID: 3002732838925345670}
+  - component: {fileID: -9140650605216544753}
   m_Layer: 6
   m_Name: Wooden Box
-  m_TagString: Enemy
+  m_TagString: Damageable Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
-  m_LinearDrag: 1
+  m_Mass: 8
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.1
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 36aa6c2d85074534b88b93a4305fd817, type: 2}
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3002732838925345670
+--- !u!114 &-9140650605216544753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5803342826827366879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69458373bc308ee488887f080eda10ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f86972a194d6784ebc32fdbe5e4c846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isHit: 1
@@ -151,5 +151,5 @@ MonoBehaviour:
   sprite:
   - {fileID: 8163651988067283732, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
   - {fileID: 2760996392290893603, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
-  enemyType: 3
+  objType: 3
   deathEffect: {fileID: 5349409036581919416, guid: da7541577cac66a4b841bdb44696d820, type: 3}

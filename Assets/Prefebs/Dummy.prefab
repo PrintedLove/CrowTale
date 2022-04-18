@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4049727011915187480}
   - component: {fileID: 4049727011915187481}
   - component: {fileID: 4049727011915187462}
-  - component: {fileID: 4049727011915187463}
+  - component: {fileID: 5530099359208126431}
   - component: {fileID: 4049727011915187461}
   - component: {fileID: -5606933559888415633}
   m_Layer: 8
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2916666, y: 1.375}
   m_EdgeRadius: 0
---- !u!114 &4049727011915187463
+--- !u!114 &5530099359208126431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,14 +121,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4049727011915187482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69458373bc308ee488887f080eda10ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c84f91c6b4941b44bf4762b8ed1300f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isHit: 1
   angerAmount: 5
-  maxHealth: 100000
-  health: 100000
-  enemyType: 0
+  maxHealth: 10000
+  health: 10000
+  sprite: []
+  objType: 0
   deathEffect: {fileID: 3601301094092697991, guid: 85c93718b80b6cf47a96e0461a0a7f0f, type: 3}
 --- !u!95 &4049727011915187461
 Animator:

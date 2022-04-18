@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Struct
+  - Enemy
+  - Damageable Object
+  - Interactive Object
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - Water
   - UI
   - Platform
-  - Enemy
-  - NonTouchEnemy
+  - Object
+  - NonTouchObject
   - Player
   - PlayerAttack
   - 

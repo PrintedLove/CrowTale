@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 1438083113}
   m_Layer: 0
   m_Name: Cannon Bullet
-  m_TagString: KnockbackObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7420d960da70f4e4abd182a28e5ec03d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 60
   rigidbody: {fileID: 7843648174808500280}
   destroyEffect: {fileID: 8240386143999759619, guid: 1c744e9c3a610bb4aa9700eea2f7b9d2, type: 3}

@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1895657094111587892}
   - component: {fileID: 4129872890561663961}
   - component: {fileID: 4467594951484818890}
-  - component: {fileID: -6776308831350808907}
   - component: {fileID: -4000801259866768087}
+  - component: {fileID: -6776308831350808907}
   m_Layer: 7
   m_Name: Spike
-  m_TagString: Enemy
+  m_TagString: Interactive Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,29 +110,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.4422811, y: -0.4916222}
-      - {x: -0.3133151, y: 0.06439559}
-      - {x: 0.020004272, y: 0.11417365}
-      - {x: 0.3560613, y: 0.068724796}
-      - {x: 0.45080695, y: -0.49202228}
---- !u!114 &-6776308831350808907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6401852658791939308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69458373bc308ee488887f080eda10ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHit: 0
-  angerAmount: 0
-  maxHealth: 100
-  health: 100
-  enemyType: 2
-  deathEffect: {fileID: 0}
+    - - {x: -0.45, y: -0.494833}
+      - {x: -0.3133151, y: 0.044934437}
+      - {x: 0.02, y: 0.09330392}
+      - {x: 0.35435614, y: 0.043137476}
+      - {x: 0.45, y: -0.4984436}
 --- !u!50 &-4000801259866768087
 Rigidbody2D:
   serializedVersion: 4
@@ -154,3 +136,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6776308831350808907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401852658791939308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69458373bc308ee488887f080eda10ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHit: 0
+  angerAmount: 0
+  maxHealth: 100
+  health: 100
+  sprite: []
+  objType: 2
+  deathEffect: {fileID: 0}
