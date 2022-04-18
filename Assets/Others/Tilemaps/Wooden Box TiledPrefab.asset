@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08275f61ca9e45b47b6046d3952b414b, type: 3}
+  m_Name: Wooden Box TiledPrefab
+  m_EditorClassIdentifier: 
+  Unparent: 0
+  PreviewSprite: {fileID: -5281802195122008762, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
+  Prefab: {fileID: 5803342826827366879, guid: 622af612b05cf5c4fb91a33c869d089e, type: 3}
+  PrefabOffset: {x: 0.5, y: 0.5, z: 0}

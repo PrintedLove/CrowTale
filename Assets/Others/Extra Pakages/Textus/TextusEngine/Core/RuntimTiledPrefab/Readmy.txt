@@ -1,0 +1,6 @@
+In order to use.
+1. Create TilePrefab in project folder and assign prefab and preview Sprite
+2. Create TilePallete and drag that tile to pallete
+3. Create GameObject with tilemap component there you will draw you tiles. Then add PrefabTilemap component to this gameObjwct
+4. Select your tile from pallete and draw your tiles
+5. Launch the game. And you will see that preview sprites will be destroyed but prefabs instantiated

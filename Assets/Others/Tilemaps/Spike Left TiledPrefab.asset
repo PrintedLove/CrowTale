@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08275f61ca9e45b47b6046d3952b414b, type: 3}
+  m_Name: Spike Left TiledPrefab
+  m_EditorClassIdentifier: 
+  Unparent: 0
+  PreviewSprite: {fileID: -7420525808869238866, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
+  Prefab: {fileID: 6872109524619752103, guid: e1ed5c5af7a18c040a2f7abdc2984d8c, type: 3}
+  PrefabOffset: {x: 0.5, y: 0.5, z: 0}

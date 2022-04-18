@@ -99,10 +99,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02083333, y: -0.3125}
+  m_Offset: {x: -0.02083333, y: 0.1875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.25}
     oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -128,7 +128,6 @@ MonoBehaviour:
   angerAmount: 5
   maxHealth: 10000
   health: 10000
-  sprite: []
   objType: 0
   deathEffect: {fileID: 3601301094092697991, guid: 85c93718b80b6cf47a96e0461a0a7f0f, type: 3}
 --- !u!95 &4049727011915187461
@@ -175,4 +174,4 @@ MonoBehaviour:
   - {x: -0.14, y: 0.35, z: 0}
   m_ShapePathHash: 1331572145
   m_Mesh: {fileID: 0}
-  m_InstanceId: -67562
+  m_InstanceId: -3236

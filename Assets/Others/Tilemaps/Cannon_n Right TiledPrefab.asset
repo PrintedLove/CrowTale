@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08275f61ca9e45b47b6046d3952b414b, type: 3}
+  m_Name: Cannon_n Right TiledPrefab
+  m_EditorClassIdentifier: 
+  Unparent: 0
+  PreviewSprite: {fileID: 1351730919576307098, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
+  Prefab: {fileID: 9022778086273253061, guid: 22c4e277f44277d45a2c0552d717d91c, type: 3}
+  PrefabOffset: {x: 0.5, y: 0.5, z: 0}
