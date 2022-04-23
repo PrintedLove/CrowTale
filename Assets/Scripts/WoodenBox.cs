@@ -8,7 +8,7 @@ public class WoodenBox : _Object
 
     protected override void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        base.Awake();
         
         objType = _ObjectType.WoodenBox;
     }

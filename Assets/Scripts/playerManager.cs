@@ -22,6 +22,7 @@ public class playerManager : MonoBehaviour
     private bool isGrounded;    //바닥 접촉 여부
     private bool isTouchPlatform = false;   //이동 플랫폼 접촉 여부
     private GameObject contactPlatform;     //접촉한 이동 플랫폼
+    private Vector3 contactPlatformDistance;    //접촉한 이동 플랫폼과의 거리
     private bool flip;          //스프라이트 좌우 반전
     private bool flip_before;
     private bool verticalInputToggle;   //점프<->비행 토글
@@ -203,6 +204,9 @@ public class playerManager : MonoBehaviour
                         {
                             animator.SetBool("isFly", false);
                         }
+
+                        if(isTouchPlatform)
+                            isTouchPlatform = false;
                     }
                     else if (verticalInput == (-1))  // 하강
                     {
@@ -213,6 +217,9 @@ public class playerManager : MonoBehaviour
                             rigidBody.gravityScale = 2;
                             verticalInputToggle = true;
                         }
+
+                        if(isTouchPlatform)
+                            isTouchPlatform = false;
                     }
                     else                             // 점프 버튼 해제
                     {
@@ -260,8 +267,10 @@ public class playerManager : MonoBehaviour
 
                 //이동 플랫폼과 접촉중일 경우
                 if(isTouchPlatform && horizontalInput == 0 && verticalInput == 0 && contactPlatform != null
-                && CheckPlatform(contactPlatform.transform.position, contactPlatform.GetComponent<BoxCollider2D>().size))
-                    rigidBody.velocity = contactPlatform.GetComponent<Rigidbody2D>().velocity;
+                && CheckPlatform(contactPlatform.transform.position, contactPlatform.GetComponent<BoxCollider2D>().size)) {
+                    //rigidBody.velocity = contactPlatform.GetComponent<Rigidbody2D>().velocity;
+                    transform.position = contactPlatform.transform.position - contactPlatformDistance;
+                }
                 
                 // 스프라이트 방향 조정
                 if (horizontalInput != 0)
@@ -279,6 +288,9 @@ public class playerManager : MonoBehaviour
                         if (isGrounded)
                             CreateDust();
                     }
+
+                    if(isTouchPlatform)
+                        isTouchPlatform = false;
                 }
             }
 
@@ -420,6 +432,7 @@ public class playerManager : MonoBehaviour
         {
             rigidBody.velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
             contactPlatform = gameObject;
+            contactPlatformDistance = gameObject.transform.position - transform.position;
             isTouchPlatform = true;
         }
     }
