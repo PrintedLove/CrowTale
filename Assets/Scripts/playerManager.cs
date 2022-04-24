@@ -335,6 +335,12 @@ public class playerManager : MonoBehaviour
                     Knockback(0.5f, obj.transform.position, 0.25f);
                     GameManager.Instance.GetDamage(75, 1f);
                 }
+                // Åé³¯ ÇÔÁ¤
+                else if (obj.objType == _ObjectType.CircleBlade)
+                {
+                    Knockback(0.75f, obj.transform.position, 0.3f);
+                    GameManager.Instance.GetDamage(60, 1f);
+                }
                 //³ª¹« »óÀÚ, ÀÌµ¿ ÇÃ·§Æû
                 else if (obj.objType == _ObjectType.WoodenBox
                  || obj.objType == _ObjectType.MovingPlatform)

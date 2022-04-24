@@ -9,15 +9,11 @@ public class MovingPlatform : _Object
 
     Vector3 destination;
     bool cycle;
-    Rigidbody2D rb;
 
     protected override void Awake()
     {
         base.Awake();
         
-        objType = _ObjectType.MovingPlatform;
-        rb = GetComponent<Rigidbody2D>();
-
         destination = cyclePoint1;
         cycle = true;
     }
@@ -30,8 +26,6 @@ public class MovingPlatform : _Object
         }
 
         transform.position = Vector3.MoveTowards(gameObject.transform.position, destination, Time.deltaTime * speed);
-        //Quaternion.LookRotation((destination - transform.position).normalized)
-        //transform.position = Vector3.Slerp(transform.position, destination, Time.deltaTime * speed);
     }
 
     void ChangeCycle()

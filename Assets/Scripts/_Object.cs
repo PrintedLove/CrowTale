@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum _ObjectType
 {
-    Dummy, Snake, Spike, WoodenBox, MovingPlatform
+    Dummy, Snake, Spike, WoodenBox, MovingPlatform, CircleBlade
 }
 
 public class _Object : MonoBehaviour
