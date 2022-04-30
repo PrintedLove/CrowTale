@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Damageable Object
   - Interactive Object
+  - Decoration Tile Generator
   layers:
   - Default
   - TransparentFX
