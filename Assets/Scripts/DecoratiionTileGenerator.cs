@@ -30,7 +30,7 @@ public class DecoratiionTileGenerator : MonoBehaviour
         }
     }
 
-    public GameObject tilemap_Stones, tilemap_Bushs, tilemap_Trees;
+    public GameObject tilemap_Ground, tilemap_Stones, tilemap_Bushs, tilemap_Trees, tilemap_Objects;
     public Tile[] tiles;
     List<DecoratiionTile> Tileset = new List<DecoratiionTile>();
 
@@ -69,33 +69,54 @@ public class DecoratiionTileGenerator : MonoBehaviour
         for (int i = 0; i < objList.Length; i++)
         {
             Vector3 objPosRaw = objList[i].GetComponent<Transform>().position;
-            Vector3Int objPos = new Vector3Int((int)objPosRaw.x - 1, (int)objPosRaw.y + 1, -1);
+            Vector3Int objPos = new Vector3Int((int)objPosRaw.x, (int)objPosRaw.y, 0);
+            Vector3Int setPos = new Vector3Int(objPos.x, objPos.y + 1, objPos.z);
 
             if (calProbability(35))
             {
                  int tiletype;
 
-                if(calProbability(20))
-                {
-                    tiletype = Random.Range((int)Tiletype.Tree_1, (int)Tiletype.Tree_6 + 1);
+                if (tilemap_Ground.GetComponent<Tilemap>().GetTile(objPos) != null
+                 && tilemap_Ground.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x, objPos.y + 1, objPos.z)) == null
+                 && tilemap_Objects.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x, objPos.y + 1, -1)) == null) {
+                    if(calProbability(19))
+                    {
+                        if(tilemap_Ground.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y, objPos.z)) != null
+                         && tilemap_Objects.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y + 1, objPos.z)) == null
+                         && tilemap_Stones.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y + 1, objPos.z)) == null
+                         && tilemap_Bushs.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y + 1, objPos.z)) == null)
+                        {
+                            tiletype = Random.Range((int)Tiletype.Tree_1, (int)Tiletype.Tree_6 + 1);
+                            bool isGenOk = true;
 
-                    for (int n = 0; n < Tileset[tiletype].tileList.Length; n++)
-                    {
-                        
-                        tilemap_Trees.GetComponent<Tilemap>().SetTile(new Vector3Int((int)objPos.x + (n % 2), objPos.y + n / 2, objPos.z), Tileset[tiletype].tileList[n]);
+                            for (int n = 0; n < Tileset[tiletype].tileList.Length; n++)
+                            {
+                                if(tilemap_Trees.GetComponent<Tilemap>().GetTile(new Vector3Int(setPos.x + (n % 2), setPos.y + n / 2, objPos.z)) != null)
+                                    isGenOk = false;
+                            }
+
+                            if(isGenOk)
+                            {
+                                for (int n = 0; n < Tileset[tiletype].tileList.Length; n++)
+                                {
+                                    tilemap_Trees.GetComponent<Tilemap>().SetTile(
+                                        new Vector3Int(setPos.x + (n % 2), setPos.y + n / 2, objPos.z), Tileset[tiletype].tileList[n]);
+                                }
+                            }
+                        }
                     }
-                }
-                else 
-                {
-                    if(calProbability(40))
+                    else 
                     {
-                        tiletype = Random.Range((int)Tiletype.Stone_1, (int)Tiletype.Stone_4 + 1);
-                        tilemap_Stones.GetComponent<Tilemap>().SetTile(objPos, Tileset[tiletype].tileList[0]);
-                    }
-                    else
-                    {
-                        tiletype = Random.Range((int)Tiletype.Bush_1, (int)Tiletype.Bush_4 + 1);
-                        tilemap_Bushs.GetComponent<Tilemap>().SetTile(objPos, Tileset[tiletype].tileList[0]);
+                        if(calProbability(38))
+                        {
+                            tiletype = Random.Range((int)Tiletype.Stone_1, (int)Tiletype.Stone_4 + 1);
+                            tilemap_Stones.GetComponent<Tilemap>().SetTile(setPos, Tileset[tiletype].tileList[0]);
+                        }
+                        else
+                        {
+                            tiletype = Random.Range((int)Tiletype.Bush_1, (int)Tiletype.Bush_4 + 1);
+                            tilemap_Bushs.GetComponent<Tilemap>().SetTile(setPos, Tileset[tiletype].tileList[0]);
+                        }
                     }
                 }
             }

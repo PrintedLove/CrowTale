@@ -268,7 +268,6 @@ public class playerManager : MonoBehaviour
                 //ÀÌµ¿ ÇÃ·§Æû°ú Á¢ÃËÁßÀÏ °æ¿ì
                 if(isTouchPlatform && horizontalInput == 0 && verticalInput == 0 && contactPlatform != null
                 && CheckPlatform(contactPlatform.transform.position, contactPlatform.GetComponent<BoxCollider2D>().size)) {
-                    //rigidBody.velocity = contactPlatform.GetComponent<Rigidbody2D>().velocity;
                     transform.position = contactPlatform.transform.position - contactPlatformDistance;
                 }
                 
@@ -426,6 +425,11 @@ public class playerManager : MonoBehaviour
 
         animator.SetBool("isDead", false);
         animator.ResetTrigger("isDie");
+        animator.ResetTrigger("isRoll");
+        animator.ResetTrigger("isAttack");
+        animator.SetBool("isRolling", false);
+        animator.SetBool("isFly", false);
+        animator.SetBool("isJump", false);
 
         MovePlayerPoint(GameManager.Instance.respawnPosition);
         GameManager.Instance.PlayerRespawn();

@@ -22,6 +22,8 @@ public class Dummy : _Object
 
     protected override void Update()
     {
+        base.Update();
+        
         if (hitAction == 1)
         {
             animator.SetBool("isHit", true);

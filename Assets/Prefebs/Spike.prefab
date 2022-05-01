@@ -110,11 +110,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.45, y: -0.494833}
+    - - {x: -0.41493148, y: -0.5003705}
       - {x: -0.3133151, y: 0.044934437}
       - {x: 0.02, y: 0.09330392}
       - {x: 0.35435614, y: 0.043137476}
-      - {x: 0.45, y: -0.4984436}
+      - {x: 0.41770095, y: -0.49936652}
 --- !u!50 &-4000801259866768087
 Rigidbody2D:
   serializedVersion: 4
@@ -152,6 +152,5 @@ MonoBehaviour:
   angerAmount: 0
   maxHealth: 100
   health: 100
-  sprite: []
   objType: 2
   deathEffect: {fileID: 0}

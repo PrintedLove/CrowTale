@@ -26,7 +26,10 @@ public class _Object : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+        if (transform.position.y < -64)
+        {
+            Destroy(gameObject);
+        }
     }
 
     //데미지 처리

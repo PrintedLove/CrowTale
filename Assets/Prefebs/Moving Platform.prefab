@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6952964035393690419}
   - component: {fileID: 142515827741717513}
   - component: {fileID: 1249729120157316547}
-  - component: {fileID: 142515827741717504}
   - component: {fileID: 142515827741717505}
+  - component: {fileID: 142515827741717504}
   m_Layer: 6
   m_Name: Moving Platform
   m_TagString: Interactive Object
@@ -133,6 +133,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &142515827741717505
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142515827741717510}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db60ea0a66138774aa84861bfdbb6627, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &142515827741717504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,22 +173,3 @@ MonoBehaviour:
   speed: 3
   cyclePoint1: {x: 0, y: 0, z: 0}
   cyclePoint2: {x: 0, y: 0, z: 0}
---- !u!95 &142515827741717505
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142515827741717510}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: db60ea0a66138774aa84861bfdbb6627, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

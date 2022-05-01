@@ -10,6 +10,15 @@ public class MovingPlatform : _Object
     Vector3 destination;
     bool cycle;
 
+    private void Reset() {
+        isHit = false;
+        angerAmount = 0;
+        objType = _ObjectType.MovingPlatform;
+        speed = 3;
+        cyclePoint1 = transform.position;
+        cyclePoint2 = transform.position;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -20,6 +29,8 @@ public class MovingPlatform : _Object
 
     protected override void Update()
     {
+        base.Update();
+
         if(Vector3.Distance(destination, transform.position) < 0.05f)
         {
             ChangeCycle();
