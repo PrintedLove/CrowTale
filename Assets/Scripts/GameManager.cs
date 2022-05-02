@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public int fixedPower;              //수정된 파워
     public bool damageImmune;              //무적 모드
     public bool isPlayerDie;
-    public Vector3 respawnPosition = new Vector3(0f, 0f);
+    public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);
     public Color defaultColor = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);
     public Color rageColor = new Color(1.210474f, 2.656317f, 6.422235f);
 
