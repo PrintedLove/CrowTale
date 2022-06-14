@@ -1,31 +1,16 @@
 fileFormatVersion: 2
-guid: d9aa05c7cb0d38f49a1f093bae6ad4a7
+guid: 9a7020ef49e84be47b8a75b783c97791
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2108287193192392123
-    second: story_0
+      213: 1399980744171371778
+    second: summoner_idle_0
   - first:
-      213: 8573059910350240599
-    second: story_1
+      213: 7771228212820291795
+    second: summoner_idle_1
   - first:
-      213: 2696792977050154303
-    second: story_2
-  - first:
-      213: 1781146796981568741
-    second: story_3
-  - first:
-      213: 5768824089713594088
-    second: story_4
-  - first:
-      213: 4926946401552112880
-    second: story_5
-  - first:
-      213: 5985396924984988805
-    second: story_6
-  - first:
-      213: 3280955175608745582
-    second: story_7
+      213: 592958308505267246
+    second: summoner_idle_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,169 +112,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: story_0
+      name: summoner_idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 96
+        width: 96
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2395833}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54a134dc7fbddb2e0800000000000000
-      internalID: -2108287193192392123
+      spriteID: 20db8b4c11bbd6310800000000000000
+      internalID: 1399980744171371778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: story_1
+      name: summoner_idle_1
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 96
+        y: 96
+        width: 96
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23958333}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75b71920190a9f670800000000000000
-      internalID: 8573059910350240599
+      spriteID: 3d0b5a5c2e2f8db60800000000000000
+      internalID: 7771228212820291795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: story_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f35b7d5aceeec6520800000000000000
-      internalID: 2696792977050154303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: story_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e449ee2397e7b810800000000000000
-      internalID: 1781146796981568741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: story_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ee481fe1fafe0050800000000000000
-      internalID: 5768824089713594088
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: story_5
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 256
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0fc17ebe5a7006440800000000000000
-      internalID: 4926946401552112880
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: story_6
+      name: summoner_idle_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 96
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.23958333}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58412719ac6601350800000000000000
-      internalID: 5985396924984988805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: story_7
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6e7326595b488d20800000000000000
-      internalID: 3280955175608745582
+      spriteID: e2ca211a07c9a3800800000000000000
+      internalID: 592958308505267246
       vertices: []
       indices: 
       edges: []

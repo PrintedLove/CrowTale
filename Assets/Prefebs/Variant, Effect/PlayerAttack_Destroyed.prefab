@@ -121,6 +121,7 @@ MonoBehaviour:
   isDestory: 0
   isLtFade: 0
   isParticalSpon: 1
+  ptColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5713547149898696136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,7 +863,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: -0.1, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 120}
+    m_Rotation: {x: -0, y: 0, z: 39.01}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -942,7 +943,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.1
+      value: 0.09242604
       mode: 0
       spread: 0
       speed:
@@ -999,7 +1000,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 120
+      value: 280
       mode: 0
       spread: 0
       speed:
