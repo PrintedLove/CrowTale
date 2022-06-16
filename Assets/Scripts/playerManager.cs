@@ -5,17 +5,17 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class playerManager : MonoBehaviour
 {
-    public float maxSpeed;      //최대 속도
-    public float jumpSpeed;     //점프 가속도
-    public float horizontalFriction;    //가로축 공기저항
-    public float runStopSpeed;          //가로 이동 정지 속도
-    public bool updateAttackCombo = false;
-    public bool createAttack = false;
-    public bool isRolling;
-    public int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };     // 스태미나 소비값. 공격1, 공격2, 공격3, 구르기, 비행
-    public Transform firePoint;
-    public GameObject playerAttackObject;
-    public ParticleSystem dustParticleSystem;
+    [SerializeField] float maxSpeed;      //최대 속도
+    [SerializeField] float jumpSpeed;     //점프 가속도
+    [SerializeField] float horizontalFriction;    //가로축 공기저항
+    [SerializeField] float runStopSpeed;          //가로 이동 정지 속도
+    [SerializeField] bool updateAttackCombo = false;
+    [SerializeField] bool createAttack = false;
+    [SerializeField] bool isRolling;
+    [SerializeField] int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };     // 스태미나 소비값. 공격1, 공격2, 공격3, 구르기, 비행
+    [SerializeField] Transform firePoint;
+    [SerializeField] GameObject playerAttackObject;
+    [SerializeField] ParticleSystem dustParticleSystem;
     
     private float horizontalInput;      //좌우 이동 입력값
     private float verticalInput;        //상하 이동 입력값
@@ -112,10 +112,7 @@ public class playerManager : MonoBehaviour
                     {
                         if (isUpdateAttackCombo)
                         {
-                            if (attackCombo < 3)
-                                attackCombo += 1;
-                            else
-                                attackCombo = 1;
+                            attackCombo = (attackCombo < 3) ? (short)(attackCombo + 1) : (short)(1);
 
                             if (GameManager.Instance.angerCharged > 0 
                                 || GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
@@ -164,9 +161,7 @@ public class playerManager : MonoBehaviour
                 }
 
                 if (Input.GetButtonUp("Fire2"))
-                {
                     animator.ResetTrigger("isRoll");
-                }
 
                 if (!isRolling)
                 {
@@ -201,12 +196,9 @@ public class playerManager : MonoBehaviour
                             verticalInputToggle = true;
                         }
                         else
-                        {
                             animator.SetBool("isFly", false);
-                        }
 
-                        if(isTouchPlatform)
-                            isTouchPlatform = false;
+                        if(isTouchPlatform) isTouchPlatform = false;
                     }
                     else if (verticalInput == (-1))  // 하강
                     {
@@ -218,8 +210,7 @@ public class playerManager : MonoBehaviour
                             verticalInputToggle = true;
                         }
 
-                        if(isTouchPlatform)
-                            isTouchPlatform = false;
+                        if(isTouchPlatform) isTouchPlatform = false;
                     }
                     else                             // 점프 버튼 해제
                     {
@@ -234,25 +225,18 @@ public class playerManager : MonoBehaviour
                 }
             }
 
-        // 좌우 이동 정지시 마찰
-        if (Input.GetButtonUp("Horizontal"))
-        {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.normalized.x * horizontalFriction
-                , rigidBody.velocity.y);
-        }
+            // 좌우 이동 정지시 마찰
+            if (Input.GetButtonUp("Horizontal"))
+            {
+                rigidBody.velocity = new Vector2(rigidBody.velocity.normalized.x * horizontalFriction, rigidBody.velocity.y);
+            }
 
-        // 좌우 이동 애니메이션
-        if (Mathf.Abs(rigidBody.velocity.x) < runStopSpeed)
-            animator.SetBool("isRun", false);
-        else
-            animator.SetBool("isRun", true);
+            // 좌우 이동 애니메이션
+            animator.SetBool("isRun", Mathf.Abs(rigidBody.velocity.x) < runStopSpeed ? false : true);
         }
 
         // 낙사
-        if (transform.position.y < -64)
-        {
-            GameManager.Instance.health = 0;
-        }
+        if (transform.position.y < -64) GameManager.Instance.health = 0;
     }
 
     private void FixedUpdate()
@@ -288,8 +272,7 @@ public class playerManager : MonoBehaviour
                             CreateDust();
                     }
 
-                    if(isTouchPlatform)
-                        isTouchPlatform = false;
+                    if(isTouchPlatform) isTouchPlatform = false;
                 }
             }
 
@@ -368,7 +351,6 @@ public class playerManager : MonoBehaviour
                 {
                     OnExitPlatform();
                 }
-                
             }
         }
     }
@@ -450,8 +432,7 @@ public class playerManager : MonoBehaviour
     //이동 플랫폼과 충돌 해제
     private void OnExitPlatform()
     {
-        if(isTouchPlatform)
-            isTouchPlatform = false;
+        isTouchPlatform = isTouchPlatform ? false : true;
     }
 
     //이동 플랫폼의 기능 여부 체크 함수
@@ -468,10 +449,7 @@ public class playerManager : MonoBehaviour
     //플레이어 단순가속 함수(원래 이동하던 방향으로 가속, 오른쪽 or 왼쪽)
     public void MovePlayerToward(float speed)
     {
-        if(flip)
-            rigidBody.AddForce(-Vector2.right * speed, ForceMode2D.Impulse);
-        else
-            rigidBody.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
+        rigidBody.AddForce((flip ? -1 : 1) * Vector2.right * speed, ForceMode2D.Impulse);
     }
 
     //플레이어 가속 함수(특정 좌표 방향으로 가속)

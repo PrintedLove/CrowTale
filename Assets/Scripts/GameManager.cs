@@ -7,17 +7,20 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
-    public bool isPause = false;
-    public Text deatCounter;
-    public Text playTime;
-    public Slider healthBar;
-    public Slider staminaBar;
-    public Slider angerBar;
-    public Text iconDescription;
-    public Text powerText;
-    public Image angerEffect;
-    public Text warnningText;
-    public int deathCount;
+    
+    [Header("UI")]
+    [SerializeField] Text deatCounter;
+    [SerializeField] Text playTime;
+    [SerializeField] Slider healthBar;
+    [SerializeField] Slider staminaBar;
+    [SerializeField] Slider angerBar;
+    [SerializeField] Text iconDescription;
+    [SerializeField] Text powerText;
+    [SerializeField] Image angerEffect;
+    [SerializeField] Text warnningText;
+
+    [Header("플레이어 변수")]
+    public bool isPause = false;        //일시 정지 여부
     public int maxHealth = 100;         //HP 최대값
     public int health = 100;            //HP 현재값
     public int maxStamina = 100;        //스테미나 최대값
@@ -25,17 +28,22 @@ public class GameManager : MonoBehaviour
     public int angerLevel = 0;          //분노 에너지
     public int angerCharged = 0;        //분노 충전값
     public int power = 10;              //파워(데미지)
-    public int fixedPower;              //수정된 파워
-    public bool damageImmune;              //무적 모드
-    public bool isPlayerDie;
-    public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);
-    public Color defaultColor = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);
-    public Color rageColor = new Color(1.210474f, 2.656317f, 6.422235f);
+    [HideInInspector] public int fixedPower;        //수정된 파워
+    public bool damageImmune;           //무적
+    public bool isPlayerDie;            //플레이어 죽음 여부
+    public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);       //리스폰 좌표
+
+
+    [HideInInspector] public Color defaultColor
+     = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);      // 기본색
+    [HideInInspector] public Color rageColor
+     = new Color(1.210474f, 2.656317f, 6.422235f);      // 분노시 변할 색
 
     private static GameManager _instance;
     private GameObject player;
     private SpriteRenderer playerRenderer;
     private float playerMaterialIntensity;
+    private int deathCount;          //플레이어 죽음 횟수
     private float _playTimeSec;      //플레이 타임
     private int _playTimeMin;
     private float staminaRegenCool = 0;
@@ -91,8 +99,7 @@ public class GameManager : MonoBehaviour
                         staminaRegenTimer = 0;
                         stamina += 4;
 
-                        if (stamina > maxStamina)
-                            stamina = maxStamina;
+                        if (stamina > maxStamina) stamina = maxStamina;
                     }
                 }
             }
@@ -101,24 +108,17 @@ public class GameManager : MonoBehaviour
 
             //체력, 스태미나, 분노 게이지
             healthBar.value = (float)health / (float)maxHealth;
-
             staminaBar.value = (float)stamina / (float)maxStamina;
-
-            if (angerCharged == 0)
-                angerBar.value = (float)angerLevel / 100f;
-            else
-                angerBar.value = (float)angerCharged / 100f;
+            angerBar.value = angerCharged == 0 ? (float)angerLevel / 100f : (float)angerCharged / 100f;
         }
 
         //전체화면 토글
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Screen.fullScreen = !Screen.fullScreen;
+        if (Input.GetKeyDown(KeyCode.Escape)) Screen.fullScreen = !Screen.fullScreen;
 
         //경고 메세지
         if(warnningTimer > 0)
-        {
             warnningTimer -= Time.deltaTime;
-        } else if (warnningTimer <= 0 && warnningTimer > -99f)
+        else if (warnningTimer <= 0 && warnningTimer > -99f)
         {
             warnningText.text = "";
             warnningTimer = -100f;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class cameraManager : MonoBehaviour
 {
+    [SerializeField]
     public float smoothTimeX, smoothTimeY;
     public Vector2 velocity;
     public GameObject player;

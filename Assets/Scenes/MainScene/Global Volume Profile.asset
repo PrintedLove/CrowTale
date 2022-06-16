@@ -34,19 +34,19 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.30041844
-          value: 0.32275134
-          inSlope: 2.0265222
-          outSlope: 2.0265222
+          time: 0.3210394
+          value: 0.33510637
+          inSlope: 2.3690767
+          outSlope: 2.3690767
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.641841
-          value: 0.6243386
-          inSlope: 2.187043
-          outSlope: 2.187043
+          time: 0.7082984
+          value: 0.7287234
+          inSlope: 0.4230505
+          outSlope: 0.4230505
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -260,11 +260,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 0.06
+    m_Value: 0.73
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.03
+    m_Value: 1.84
     min: 0
   scatter:
     m_OverrideState: 0

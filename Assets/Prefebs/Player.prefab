@@ -5080,7 +5080,7 @@ MonoBehaviour:
   updateAttackCombo: 0
   createAttack: 0
   isRolling: 0
-  consumeStamina: 0800000006000000040000000f00000007000000
+  consumeStamina: 0800000007000000050000001200000007000000
   firePoint: {fileID: 8076183826137588306}
   playerAttackObject: {fileID: 4383681281250760693, guid: c335e8a518c93a14b9a111fd707b20d0, type: 3}
   dustParticleSystem: {fileID: 1428177519}
