@@ -8,6 +8,8 @@ using System.Linq;
 public class titleMenuController : MonoBehaviour
 {
     [Header("UI")]
+    [SerializeField] GameObject titleOverlaidUI;
+    [SerializeField] GameObject ingameUI;
     [SerializeField] GameObject gameDescription;
     [SerializeField] GameObject BGMDescription;
     [SerializeField] GameObject blackFadeBox;
@@ -18,14 +20,17 @@ public class titleMenuController : MonoBehaviour
     [SerializeField] Text[] storyTexts;
     [SerializeField] float[] pressTime;
 
-    [Header("Audio")]
+    [Header("Others")]
     [SerializeField] AudioClip[] audioClip;
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject player;
 
     private bool isPressAble = false;
     private bool storyAble = false;     
     private List<string> languageFileList = new List<string>();
     private int languageSelectedIndex = 0;
     private int maxLSIndex = -1;
+    private float storyDownSpeed = 0f;
     private Font customFont;
 
     Animator animator;
@@ -61,11 +66,12 @@ public class titleMenuController : MonoBehaviour
 
                     isPressAble = false;
                     storyAble = true;
+                    StartCoroutine(RunMoveStoryUI());
                     StartCoroutine(RunCheckPressTime(pressTime[1]));
                 }
             } else
             {
-                if(maxLSIndex != -1 && Input.GetKeyDown(KeyCode.L))
+                if(Input.GetKeyDown(KeyCode.L))
                 {
                     languageSelectedIndex = languageSelectedIndex == maxLSIndex ? 0 : languageSelectedIndex + 1;
                     GameManager.Instance.LoadLanguageData(languageFileList[languageSelectedIndex]);
@@ -74,6 +80,20 @@ public class titleMenuController : MonoBehaviour
 
                     isPressAble = false;
                     StartCoroutine(RunCheckPressTime(1f));
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    storyUI.GetComponent<Animator>().SetTrigger("End");
+                    animator.SetTrigger("endStory");
+                    StartCoroutine(RunCheckPressTime(5f));
+                }
+                else if(Input.anyKey)
+                {
+                    storyDownSpeed = 3.5f;
+                }
+                else
+                {
+                    if (storyDownSpeed == 3.5f) storyDownSpeed = 0f;
                 }
             }
         }
@@ -128,14 +148,28 @@ public class titleMenuController : MonoBehaviour
         }
     }
 
-    IEnumerator RunMoveStoryUI(float pressTime)
+    public void SetTitleEnd()
     {
-        while(storyUIRectTransform.anchoredPosition.y < 6200f)
+        titleOverlaidUI.SetActive(false);
+        ingameUI.SetActive(true);
+        storyUI.SetActive(false);
+        mainCamera.GetComponent<cameraManager>().enabled = true;
+        player.GetComponent<playerManager>().isDead = false;
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator RunMoveStoryUI()
+    {
+        while(storyUIRectTransform.anchoredPosition.y < 5320f)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.02f);
             storyUIRectTransform.anchoredPosition
-                = new Vector2(storyUIRectTransform.anchoredPosition.x, storyUIRectTransform.anchoredPosition.y + 1f);
+                = new Vector2(storyUIRectTransform.anchoredPosition.x
+                , storyUIRectTransform.anchoredPosition.y + 1f + storyDownSpeed);
         }
+
+        animator.SetTrigger("endStory");
+        storyUI.SetActive(false);
     }
 
     IEnumerator RunCheckPressTime(float pressTime)

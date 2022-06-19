@@ -9,9 +9,9 @@ public class playerManager : MonoBehaviour
     [SerializeField] float jumpSpeed;     //점프 가속도
     [SerializeField] float horizontalFriction;    //가로축 공기저항
     [SerializeField] float runStopSpeed;          //가로 이동 정지 속도
-    [SerializeField] bool updateAttackCombo = false;
-    [SerializeField] bool createAttack = false;
-    [SerializeField] bool isRolling;
+    [HideInInspector] public bool updateAttackCombo = false;
+    [HideInInspector] public bool createAttack = false;
+    [HideInInspector] public bool isRolling;
     [SerializeField] int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };     // 스태미나 소비값. 공격1, 공격2, 공격3, 구르기, 비행
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject playerAttackObject;
@@ -31,7 +31,7 @@ public class playerManager : MonoBehaviour
     private bool isCreateAttack;        //공격 투사체 생성 트리거
     private bool isUpdateAttackCombo = false;   //공격 콤보 업데이트 트리거
     private short attackCombo;          //공격 콤보
-    private bool isDead;
+    [HideInInspector] public bool isDead;
 
     Rigidbody2D rigidBody;
     BoxCollider2D boxCollider2D;
@@ -52,7 +52,7 @@ public class playerManager : MonoBehaviour
         isUpdateAttackCombo = true;
         attackCombo = 1;
         isRolling = false;
-        isDead = false;
+        isDead = true;
     }
 
     private void Update()
