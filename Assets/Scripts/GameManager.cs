@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     
-    [Header("인게임 UI")]
+    [Header("Ingame UI")]
     [SerializeField] Text deatCounter;
     [SerializeField] Text playTime;
     [SerializeField] Slider healthBar;
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image angerEffect;
     [SerializeField] Text warnningText;
 
-    [Header("플레이어 변수")]
+    [Header("Player")]
     public bool isPause = false;        //일시 정지 여부
     public int maxHealth = 100;         //HP 최대값
     public int health = 100;            //HP 현재값
@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
     private float staminaRegenTimer = 0;
     private float warnningTimer;
 
+    [Header("Others")]
+    [SerializeField] Font munro;
+    [SerializeField] Font neodgm;
     [HideInInspector] public List<Dictionary<string, object>> languageData;   //언어 데이터 리스트
     [HideInInspector] public Font customFont;   //언어 데이터에 설정된 폰트
 
@@ -287,8 +290,14 @@ public class GameManager : MonoBehaviour
     //언어 데이터 받아오기
     public void LoadLanguageData(string fileName)
     {
-        languageData = CSVReader.Read("Languages/" + fileName);
-        customFont = Resources.Load<Font>("Fonts/" + languageData[0]["Font"]);
+        languageData = CSVReader.Read(Application.streamingAssetsPath + "/Languages/" + fileName + ".csv");
+
+        if ((string)languageData[0]["Font"] == "neodgm")
+            customFont = neodgm;
+        else if((string)languageData[0]["Font"] == "munro")
+            customFont = munro;
+        else
+            customFont = Font.CreateDynamicFontFromOSFont((string)languageData[0]["Font"], (int)languageData[0]["Font_size"]);
     }
 }
 

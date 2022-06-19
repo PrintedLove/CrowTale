@@ -55,7 +55,7 @@ public class titleMenuController : MonoBehaviour
         {
             if (!storyAble)
             {
-                if(!storyAble && Input.anyKeyDown)
+                if(Input.anyKeyDown)
                 {
                     gameDescription.SetActive(false);
                     BGMDescription.SetActive(false);
@@ -81,7 +81,7 @@ public class titleMenuController : MonoBehaviour
                     isPressAble = false;
                     StartCoroutine(RunCheckPressTime(1f));
                 }
-                else if (Input.GetKeyDown(KeyCode.Escape))
+                else if (Input.GetKeyDown(KeyCode.Return))
                 {
                     storyUI.GetComponent<Animator>().SetTrigger("End");
                     animator.SetTrigger("endStory");
@@ -117,8 +117,9 @@ public class titleMenuController : MonoBehaviour
 
     private void GetLanguageFileList()
     {
-        string FolderName = "Assets/Resources/Languages";
-        System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(FolderName);
+        string filePath = Application.streamingAssetsPath + "/Languages";
+
+        System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(filePath);
 
         foreach (System.IO.FileInfo File in di.GetFiles())
         {

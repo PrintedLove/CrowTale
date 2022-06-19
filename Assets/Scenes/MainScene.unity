@@ -10406,7 +10406,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: Esc to skip
+  m_Text: Enter to skip
 --- !u!222 &679405087
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15627,6 +15627,14 @@ PrefabInstance:
       propertyPath: tilemap_Objects
       value: 
       objectReference: {fileID: 1676583370}
+    - target: {fileID: 7116895072356249612, guid: 30d0c0a1ec1e7344a8f0fd70db4a3a9d, type: 3}
+      propertyPath: munro
+      value: 
+      objectReference: {fileID: 12800000, guid: 1cd451db53e0b0e45b1966b32af3e8b6, type: 3}
+    - target: {fileID: 7116895072356249612, guid: 30d0c0a1ec1e7344a8f0fd70db4a3a9d, type: 3}
+      propertyPath: neodgm
+      value: 
+      objectReference: {fileID: 12800000, guid: 5b9eb74a173388e4f90953989bc2504e, type: 3}
     - target: {fileID: 7116895072356249612, guid: 30d0c0a1ec1e7344a8f0fd70db4a3a9d, type: 3}
       propertyPath: angerBar
       value: 

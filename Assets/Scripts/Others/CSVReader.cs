@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -10,12 +11,27 @@ public class CSVReader
 	static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
 	static char[] TRIM_CHARS = { '\"' };
 
-	public static List<Dictionary<string, object>> Read(string file)
+	public static List<Dictionary<string, object>> Read(string filepath)
 	{
 		var list = new List<Dictionary<string, object>>();
-		TextAsset data = Resources.Load (file) as TextAsset;
 
-		var lines = Regex.Split (data.text, LINE_SPLIT_RE);
+		string str;
+
+		if (Application.platform == RuntimePlatform.Android)
+        {
+#pragma warning disable CS0618 // 형식 또는 멤버는 사용되지 않습니다.
+            WWW reader = new WWW(filepath);
+#pragma warning restore CS0618 // 형식 또는 멤버는 사용되지 않습니다.
+            while (!reader.isDone) { }
+
+			str = reader.text;
+		}
+        else
+        {
+			str = File.ReadAllText(filepath);
+		}
+
+		var lines = Regex.Split (str, LINE_SPLIT_RE);
 
 		if(lines.Length <= 1) return list;
 
