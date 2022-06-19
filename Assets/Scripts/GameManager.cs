@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     
-    [Header("UI")]
+    [Header("ì¸ê²Œì„ UI")]
     [SerializeField] Text deatCounter;
     [SerializeField] Text playTime;
     [SerializeField] Slider healthBar;
@@ -19,36 +20,39 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image angerEffect;
     [SerializeField] Text warnningText;
 
-    [Header("ÇÃ·¹ÀÌ¾î º¯¼ö")]
-    public bool isPause = false;        //ÀÏ½Ã Á¤Áö ¿©ºÎ
-    public int maxHealth = 100;         //HP ÃÖ´ë°ª
-    public int health = 100;            //HP ÇöÀç°ª
-    public int maxStamina = 100;        //½ºÅ×¹Ì³ª ÃÖ´ë°ª
-    public int stamina = 100;           //½ºÅ×¹Ì³ª ÇöÀç°ª
-    public int angerLevel = 0;          //ºĞ³ë ¿¡³ÊÁö
-    public int angerCharged = 0;        //ºĞ³ë ÃæÀü°ª
-    public int power = 10;              //ÆÄ¿ö(µ¥¹ÌÁö)
-    [HideInInspector] public int fixedPower;        //¼öÁ¤µÈ ÆÄ¿ö
-    public bool damageImmune;           //¹«Àû
-    public bool isPlayerDie;            //ÇÃ·¹ÀÌ¾î Á×À½ ¿©ºÎ
-    public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);       //¸®½ºÆù ÁÂÇ¥
+    [Header("í”Œë ˆì´ì–´ ë³€ìˆ˜")]
+    public bool isPause = false;        //ì¼ì‹œ ì •ì§€ ì—¬ë¶€
+    public int maxHealth = 100;         //HP ìµœëŒ€ê°’
+    public int health = 100;            //HP í˜„ì¬ê°’
+    public int maxStamina = 100;        //ìŠ¤í…Œë¯¸ë‚˜ ìµœëŒ€ê°’
+    public int stamina = 100;           //ìŠ¤í…Œë¯¸ë‚˜ í˜„ì¬ê°’
+    public int angerLevel = 0;          //ë¶„ë…¸ ì—ë„ˆì§€
+    public int angerCharged = 0;        //ë¶„ë…¸ ì¶©ì „ê°’
+    public int power = 10;              //íŒŒì›Œ(ë°ë¯¸ì§€)
+    [HideInInspector] public int fixedPower;        //ìˆ˜ì •ëœ íŒŒì›Œ
+    public bool damageImmune;           //ë¬´ì 
+    public bool isPlayerDie;            //í”Œë ˆì´ì–´ ì£½ìŒ ì—¬ë¶€
+    public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);       //ë¦¬ìŠ¤í° ì¢Œí‘œ
 
 
     [HideInInspector] public Color defaultColor
-     = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);      // ±âº»»ö
+     = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);      // ê¸°ë³¸ìƒ‰
     [HideInInspector] public Color rageColor
-     = new Color(1.210474f, 2.656317f, 6.422235f);      // ºĞ³ë½Ã º¯ÇÒ »ö
+     = new Color(1.210474f, 2.656317f, 6.422235f);      // ë¶„ë…¸ì‹œ ë³€í•  ìƒ‰
 
     private static GameManager _instance;
     private GameObject player;
     private SpriteRenderer playerRenderer;
     private float playerMaterialIntensity;
-    private int deathCount;          //ÇÃ·¹ÀÌ¾î Á×À½ È½¼ö
-    private float _playTimeSec;      //ÇÃ·¹ÀÌ Å¸ÀÓ
+    private int deathCount;          //í”Œë ˆì´ì–´ ì£½ìŒ íšŸìˆ˜
+    private float _playTimeSec;      //í”Œë ˆì´ íƒ€ì„
     private int _playTimeMin;
     private float staminaRegenCool = 0;
     private float staminaRegenTimer = 0;
     private float warnningTimer;
+
+    [HideInInspector] public List<Dictionary<string, object>> languageData;   //ì–¸ì–´ ë°ì´í„° ë¦¬ìŠ¤íŠ¸
+    [HideInInspector] public Font customFont;   //ì–¸ì–´ ë°ì´í„°ì— ì„¤ì •ëœ í°íŠ¸
 
     private void Awake()
     {
@@ -80,14 +84,14 @@ public class GameManager : MonoBehaviour
     {
         if (!isPlayerDie)
         {
-            //Á×À½ °¨½Ã
+            //ì£½ìŒ ê°ì‹œ
             if (health <= 0)
             {
                 player.GetComponent<playerManager>().Die();
                 PlayerDie();
             }
 
-            //½ºÅÂ¹Ì³ª ¸®Á¨ °è»ê
+            //ìŠ¤íƒœë¯¸ë‚˜ ë¦¬ì   ê³„ì‚°
             if (staminaRegenCool <= 0)
             {
                 if (stamina < maxStamina)
@@ -106,16 +110,16 @@ public class GameManager : MonoBehaviour
             else
                 staminaRegenCool -= Time.deltaTime;
 
-            //Ã¼·Â, ½ºÅÂ¹Ì³ª, ºĞ³ë °ÔÀÌÁö
+            //ì²´ë ¥, ìŠ¤íƒœë¯¸ë‚˜, ë¶„ë…¸ ê²Œì´ì§€
             healthBar.value = (float)health / (float)maxHealth;
             staminaBar.value = (float)stamina / (float)maxStamina;
             angerBar.value = angerCharged == 0 ? (float)angerLevel / 100f : (float)angerCharged / 100f;
         }
 
-        //ÀüÃ¼È­¸é Åä±Û
+        //ì „ì²´í™”ë©´ í† ê¸€
         if (Input.GetKeyDown(KeyCode.Escape)) Screen.fullScreen = !Screen.fullScreen;
 
-        //°æ°í ¸Ş¼¼Áö
+        //ê²½ê³  ë©”ì„¸ì§€
         if(warnningTimer > 0)
             warnningTimer -= Time.deltaTime;
         else if (warnningTimer <= 0 && warnningTimer > -99f)
@@ -124,7 +128,7 @@ public class GameManager : MonoBehaviour
             warnningTimer = -100f;
         }
 
-        //ÇÃ·¹ÀÌ Å¸ÀÌ¸Ó
+        //í”Œë ˆì´ íƒ€ì´ë¨¸
         _playTimeSec += Time.deltaTime;
         if (_playTimeSec >= 60)
         {
@@ -137,7 +141,7 @@ public class GameManager : MonoBehaviour
         playTime.text = "Play Time   " + _playTimeMin.ToString("00") + " : " + timeStr;
     }
 
-    // ÇÃ·¹ÀÌ¾î µ¥¹ÌÁö
+    // í”Œë ˆì´ì–´ ë°ë¯¸ì§€
     public void GetDamage(int damage, float immuneTime) {
         if (!damageImmune) {
             health -= damage;
@@ -146,7 +150,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ÇÃ·¹ÀÌ¾î Á×À½
+    // í”Œë ˆì´ì–´ ì£½ìŒ
     void PlayerDie()
     {
         isPlayerDie = true;
@@ -164,7 +168,7 @@ public class GameManager : MonoBehaviour
         UpdatePlayerMaterialColor();
     }
 
-    //ÇÃ·¹ÀÌ¾î ¸®½ºÆù
+    //í”Œë ˆì´ì–´ ë¦¬ìŠ¤í°
     public void PlayerRespawn()
     {
         isPlayerDie = false;
@@ -172,20 +176,20 @@ public class GameManager : MonoBehaviour
         stamina = maxStamina;
     }
 
-    //°æ°í ¸Ş¼¼Áö º¸ÀÌ±â
+    //ê²½ê³  ë©”ì„¸ì§€ ë³´ì´ê¸°
     public void ShowWarnning(string str, float time = 2f)
     {
         warnningTimer = time;
         warnningText.text = str;
     }
 
-    //¾ÆÀÌÄÜ ¼³¸í±Û ¾÷µ¥ÀÌÆ®
+    //ì•„ì´ì½˜ ì„¤ëª…ê¸€ ì—…ë°ì´íŠ¸
     public void UpdateIconDescription(string str)
     {
         iconDescription.text = str;
     }
 
-    //½ºÅÂ¹Ì³ª ¼Ò¸ğ °è»ê
+    //ìŠ¤íƒœë¯¸ë‚˜ ì†Œëª¨ ê³„ì‚°
     public bool consumeStamina(int val, bool isReduce = true)
     {
         if (stamina >= val)
@@ -202,7 +206,7 @@ public class GameManager : MonoBehaviour
             return false;
     }
 
-    // ºĞ³ë °ÔÀÌÁö Áõ°¡
+    // ë¶„ë…¸ ê²Œì´ì§€ ì¦ê°€
     public void increaseAngerLevel(int val)
     {
         if (angerCharged == 0)
@@ -222,7 +226,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ÇÃ·¹ÀÌ¾î ¸ŞÅ×¸®¾ó HDR Color ¾÷µ¥ÀÌÆ®
+    // í”Œë ˆì´ì–´ ë©”í…Œë¦¬ì–¼ HDR Color ì—…ë°ì´íŠ¸
     void UpdatePlayerMaterialColor()
     {
         Color fixedColor = new Color(
@@ -233,7 +237,7 @@ public class GameManager : MonoBehaviour
         playerRenderer.material.SetColor("_Color", fixedColor);
     }
 
-    //¹«Àû ½Ã°£ ÄÚ·çÆ¾
+    //ë¬´ì  ì‹œê°„ ì½”ë£¨í‹´
     IEnumerator RunDamageImmuneTime(float immuneTime)
     {
         yield return new WaitForSeconds(immuneTime);
@@ -241,7 +245,7 @@ public class GameManager : MonoBehaviour
         damageImmune = false;
     }
 
-    //ºĞ³ë °ÔÀÌÁö Äğ´Ù¿î ÄÚ·çÆ¾
+    //ë¶„ë…¸ ê²Œì´ì§€ ì¿¨ë‹¤ìš´ ì½”ë£¨í‹´
     IEnumerator RunAngerCountdown()
     {
         while(angerCharged > 0)
@@ -256,7 +260,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RunIintensityUpdate(false));
     }
 
-    // ÇÃ·¹ÀÌ¾î ¸ŞÅ×¸®¾ó HDR Color °­µµ Á¶Àı ÄÚ·çÆ¾
+    // í”Œë ˆì´ì–´ ë©”í…Œë¦¬ì–¼ HDR Color ê°•ë„ ì¡°ì ˆ ì½”ë£¨í‹´
     IEnumerator RunIintensityUpdate(bool isUpDown)
     {
         if (isUpDown)
@@ -278,6 +282,13 @@ public class GameManager : MonoBehaviour
                 UpdatePlayerMaterialColor();
             }
         }
+    }
+
+    //ì–¸ì–´ ë°ì´í„° ë°›ì•„ì˜¤ê¸°
+    public void LoadLanguageData(string fileName)
+    {
+        languageData = CSVReader.Read("Languages/" + fileName);
+        customFont = Resources.Load<Font>("Fonts/" + languageData[0]["Font"]);
     }
 }
 

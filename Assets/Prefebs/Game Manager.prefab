@@ -58,7 +58,7 @@ MonoBehaviour:
   health: 100
   maxStamina: 100
   stamina: 100
-  angerLevel: 0
+  angerLevel: 100
   angerCharged: 0
   power: 10
   fixedPower: 0
