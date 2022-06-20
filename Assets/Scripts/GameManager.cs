@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
     
-    [Header("Ingame UI")]
+    [Header("UI")]
     [SerializeField] Text deatCounter;
     [SerializeField] Text playTime;
     [SerializeField] Slider healthBar;
@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text powerText;
     [SerializeField] Image angerEffect;
     [SerializeField] Text warnningText;
+    [SerializeField] GameObject BGMDescription;
+    [SerializeField] GameObject titleMenu;
+    [SerializeField] GameObject storyUI;
+    [SerializeField] GameObject blackFadeBox;
 
     [Header("Player")]
     public bool isPause = false;        //일시 정지 여부
@@ -52,10 +56,13 @@ public class GameManager : MonoBehaviour
     private float warnningTimer;
 
     [Header("Others")]
+    [SerializeField] bool fastStart;
+    [SerializeField] Camera mainCamera;
     [SerializeField] Font munro;
     [SerializeField] Font neodgm;
     [HideInInspector] public List<Dictionary<string, object>> languageData;   //언어 데이터 리스트
     [HideInInspector] public Font customFont;   //언어 데이터에 설정된 폰트
+    [HideInInspector] public bool isGameStart = false;   //게임 시작 여부
 
     private void Awake()
     {
@@ -81,10 +88,20 @@ public class GameManager : MonoBehaviour
         playerRenderer = player.GetComponent<SpriteRenderer>();
 
         Screen.fullScreen = true;
+
+        titleMenu.SetActive(true);
+        storyUI.SetActive(true);
+        blackFadeBox.SetActive(true);
     }
 
     private void Update()
     {
+        if (fastStart)
+        {
+            titleMenu.GetComponent<titleMenuController>().SetTitleEnd();
+            fastStart = false;
+        }
+
         if (!isPlayerDie)
         {
             //죽음 감시
@@ -131,17 +148,20 @@ public class GameManager : MonoBehaviour
             warnningTimer = -100f;
         }
 
-        //플레이 타이머
-        _playTimeSec += Time.deltaTime;
-        if (_playTimeSec >= 60)
+        if(isGameStart)
         {
-            _playTimeSec = 0;
-            _playTimeMin++;
+            //플레이 타이머
+            _playTimeSec += Time.deltaTime;
+            if (_playTimeSec >= 60)
+            {
+                _playTimeSec = 0;
+                _playTimeMin++;
+            }
+            string timeStr;
+            timeStr = _playTimeSec.ToString("00");
+            timeStr = timeStr.Replace(".", " : ");
+            playTime.text = "Play Time   " + _playTimeMin.ToString("00") + " : " + timeStr;
         }
-        string timeStr;
-        timeStr = _playTimeSec.ToString("00");
-        timeStr = timeStr.Replace(".", " : ");
-        playTime.text = "Play Time   " + _playTimeMin.ToString("00") + " : " + timeStr;
     }
 
     // 플레이어 데미지
@@ -240,6 +260,29 @@ public class GameManager : MonoBehaviour
         playerRenderer.material.SetColor("_Color", fixedColor);
     }
 
+    //언어 데이터 받아오기
+    public void LoadLanguageData(string fileName)
+    {
+        languageData = CSVReader.Read(Application.streamingAssetsPath + "/Languages/" + fileName + ".csv");
+
+        if ((string)languageData[0]["Font"] == "neodgm")
+            customFont = neodgm;
+        else if ((string)languageData[0]["Font"] == "munro")
+            customFont = munro;
+        else
+            customFont = Font.CreateDynamicFontFromOSFont((string)languageData[0]["Font"], (int)languageData[0]["Font_size"]);
+    }
+
+    //배경음악 변경
+    public void changeBGM(string description, AudioClip audioClip)
+    {
+        BGMDescription.SetActive(true);
+        BGMDescription.GetComponent<Text>().text = "BGM - " + description;
+        BGMDescription.GetComponent<Animator>().SetTrigger("show");
+
+        StartCoroutine(RunBGMFade(audioClip));
+    }
+
     //무적 시간 코루틴
     IEnumerator RunDamageImmuneTime(float immuneTime)
     {
@@ -287,17 +330,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //언어 데이터 받아오기
-    public void LoadLanguageData(string fileName)
+    //BGM 페이드 코루틴
+    public IEnumerator RunBGMFade(AudioClip audioClip)
     {
-        languageData = CSVReader.Read(Application.streamingAssetsPath + "/Languages/" + fileName + ".csv");
+        int channeling = 1;
+        AudioSource adudioSource = mainCamera.GetComponent<AudioSource>();
 
-        if ((string)languageData[0]["Font"] == "neodgm")
-            customFont = neodgm;
-        else if((string)languageData[0]["Font"] == "munro")
-            customFont = munro;
-        else
-            customFont = Font.CreateDynamicFontFromOSFont((string)languageData[0]["Font"], (int)languageData[0]["Font_size"]);
+        while (channeling < 750)
+        {
+            channeling += 1;
+
+            if(channeling < 175)
+                adudioSource.volume -= 0.01f;
+            else if (channeling == 175)
+            {
+                adudioSource.clip = audioClip;
+                adudioSource.Play();
+            }
+            else
+                if (adudioSource.volume < 1) adudioSource.volume += 0.01f;
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        BGMDescription.GetComponent<Animator>().ResetTrigger("show");
+        BGMDescription.SetActive(false);
     }
 }
 

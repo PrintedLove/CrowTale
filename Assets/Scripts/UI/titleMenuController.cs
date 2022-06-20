@@ -31,7 +31,6 @@ public class titleMenuController : MonoBehaviour
     private int languageSelectedIndex = 0;
     private int maxLSIndex = -1;
     private float storyDownSpeed = 0f;
-    private Font customFont;
 
     Animator animator;
     AudioSource audioSource;
@@ -89,11 +88,11 @@ public class titleMenuController : MonoBehaviour
                 }
                 else if(Input.anyKey)
                 {
-                    storyDownSpeed = 3.5f;
+                    storyDownSpeed = 4f;
                 }
                 else
                 {
-                    if (storyDownSpeed == 3.5f) storyDownSpeed = 0f;
+                    if (storyDownSpeed == 4f) storyDownSpeed = 0f;
                 }
             }
         }
@@ -145,7 +144,9 @@ public class titleMenuController : MonoBehaviour
             storyTexts[i].font = GameManager.Instance.customFont;
             storyTexts[i].fontSize = (int)GameManager.Instance.languageData[0]["Font_size"];
             string text = (string)GameManager.Instance.languageData[i]["Story"];
-            storyTexts[i].text = text.Replace("$", "\n");;
+            text = text.Replace("$", "\n");
+            text = text.Replace('=', '"');
+            storyTexts[i].text = text;
         }
     }
 
@@ -156,12 +157,15 @@ public class titleMenuController : MonoBehaviour
         storyUI.SetActive(false);
         mainCamera.GetComponent<cameraManager>().enabled = true;
         player.GetComponent<playerManager>().isDead = false;
+        GameManager.Instance.isGameStart = true;
+        GameManager.Instance.changeBGM("Bittersweet (SYBS)", audioClip[1]);
+
         gameObject.SetActive(false);
     }
 
     IEnumerator RunMoveStoryUI()
     {
-        while(storyUIRectTransform.anchoredPosition.y < 5320f)
+        while(storyUIRectTransform.anchoredPosition.y < 5110f)
         {
             yield return new WaitForSeconds(0.02f);
             storyUIRectTransform.anchoredPosition
