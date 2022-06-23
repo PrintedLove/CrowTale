@@ -16,7 +16,7 @@ public class Cannon : MonoBehaviour
         StartCoroutine(RunCannonAttack());
     }
 
-    IEnumerator RunCannonAttack()     //공격 주기
+    IEnumerator RunCannonAttack()     //attack cycle
     {
         while (isAttack)
         {

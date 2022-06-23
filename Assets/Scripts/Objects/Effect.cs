@@ -49,7 +49,7 @@ public class Effect : MonoBehaviour
         }
     }
 
-    void CreatePaartical()       //  파티클 이펙트 생성
+    void CreatePaartical()       //  Create particle effect
     {
         ps.Play();
     }

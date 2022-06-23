@@ -37,7 +37,7 @@ public class Dummy : _Object
         }
     }
 
-    //데미지 처리
+    //Damage handle
     public override void TakeDamage(int damage, float hitDir)
     {
         health -= damage;

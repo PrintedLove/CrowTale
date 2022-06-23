@@ -19,10 +19,11 @@ public class CSVReader
 
 		if (Application.platform == RuntimePlatform.Android)
         {
-#pragma warning disable CS0618 // 형식 또는 멤버는 사용되지 않습니다.
-            WWW reader = new WWW(filepath);
-#pragma warning restore CS0618 // 형식 또는 멤버는 사용되지 않습니다.
-            while (!reader.isDone) { }
+			#pragma warning disable CS0618
+			WWW reader = new WWW(filepath);
+			#pragma warning restore CS0618
+
+			while (!reader.isDone) { }
 
 			str = reader.text;
 		}

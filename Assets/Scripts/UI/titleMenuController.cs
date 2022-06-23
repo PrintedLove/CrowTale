@@ -18,19 +18,19 @@ public class titleMenuController : MonoBehaviour
     [SerializeField] GameObject languageChangeText;
     [SerializeField] GameObject storyUI;
     [SerializeField] Text[] storyTexts;
-    [SerializeField] float[] pressTime;
+    [SerializeField] float[] pressTime;     // input latency
 
     [Header("Others")]
     [SerializeField] AudioClip[] audioClip;
     [SerializeField] GameObject mainCamera;
     [SerializeField] GameObject player;
 
-    private bool isPressAble = false;
-    private bool storyAble = false;     
-    private List<string> languageFileList = new List<string>();
-    private int languageSelectedIndex = 0;
-    private int maxLSIndex = -1;
-    private float storyDownSpeed = 0f;
+    private bool isPressAble = false;   // Interact availability
+    private bool storyAble = false;     // story UI availability
+    private List<string> languageFileList = new List<string>();     // List of fetchable language data names
+    private int languageSelectedIndex = 0;  // Current language data index
+    private int maxLSIndex = -1;    // Max Language Data Index
+    private float storyDownSpeed = 0f;  // story scrolls down speed.
 
     Animator animator;
     AudioSource audioSource;
@@ -54,7 +54,8 @@ public class titleMenuController : MonoBehaviour
         {
             if (!storyAble)
             {
-                if(Input.anyKeyDown)
+                // When any key is pressed on the title screen
+                if (Input.anyKeyDown)
                 {
                     gameDescription.SetActive(false);
                     BGMDescription.SetActive(false);
@@ -70,7 +71,8 @@ public class titleMenuController : MonoBehaviour
                 }
             } else
             {
-                if(Input.GetKeyDown(KeyCode.L))
+                // Change language key
+                if (Input.GetKeyDown(KeyCode.L))
                 {
                     languageSelectedIndex = languageSelectedIndex == maxLSIndex ? 0 : languageSelectedIndex + 1;
                     GameManager.Instance.LoadLanguageData(languageFileList[languageSelectedIndex]);
@@ -80,12 +82,14 @@ public class titleMenuController : MonoBehaviour
                     isPressAble = false;
                     StartCoroutine(RunCheckPressTime(1f));
                 }
+                // Enter key
                 else if (Input.GetKeyDown(KeyCode.Return))
                 {
                     storyUI.GetComponent<Animator>().SetTrigger("End");
                     animator.SetTrigger("endStory");
                     StartCoroutine(RunCheckPressTime(5f));
                 }
+                // Any key
                 else if(Input.anyKey)
                 {
                     storyDownSpeed = 4f;

@@ -9,14 +9,14 @@ public enum _ObjectType
 
 public class _Object : MonoBehaviour
 {
-    public bool isHit = true;       //플레이어 공격 피격 여부
-    public int angerAmount = 3;     //플레이어 공격 피격시 분노 충전량
-    public int maxHealth = 100;     //최대 체력
-    public int health = 100;        //현재 체력
+    public bool isHit = true;       //Whether the player is attacked
+    public int angerAmount = 3;     //Anger Charges When Hit by Player Attacks
+    public int maxHealth = 100;     //maximum HP
+    public int health = 100;        //current HP
 
-    public _ObjectType objType;         //오브젝트 종류
-    public GameObject deathEffect;      //파괴시 생성 오브젝트
-    
+    public _ObjectType objType;         //object type
+    public GameObject deathEffect;      //object created upon destruction
+
     protected SpriteRenderer spriteRenderer;
 
     protected virtual void Awake()
@@ -32,7 +32,7 @@ public class _Object : MonoBehaviour
         }
     }
 
-    //데미지 처리
+    //damage handling
     public virtual void TakeDamage(int damage, float hitDir)
     {
         health -= damage;
@@ -48,13 +48,13 @@ public class _Object : MonoBehaviour
         CheckHP();
     }
 
-    //HP변동 시마다 호출되는 함수
+    //Function called whenever HP changes
     public virtual void CheckHP()
     {
 
     }
     
-    //죽음
+    //Death
     protected virtual void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);

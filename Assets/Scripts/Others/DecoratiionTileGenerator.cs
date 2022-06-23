@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-// 타일 그룹 종류
-enum Tiletype:int
+// tile group type
+enum Tiletype :int
 {
     Stone_1, Stone_2, Stone_3, Stone_4, Bush_1, Bush_2, Bush_3, Bush_4
     ,Tree_1, Tree_2, Tree_3, Tree_4, Tree_5, Tree_6
@@ -12,7 +12,7 @@ enum Tiletype:int
 
 public class DecoratiionTileGenerator : MonoBehaviour
 {
-    //타일 그룹 종류에 따른 타일 리스트 저장용 구조체
+    //Structure for storing tile list according to tile group type
     struct DecoratiionTile
     {
         public Tiletype name;
@@ -37,7 +37,7 @@ public class DecoratiionTileGenerator : MonoBehaviour
     List<DecoratiionTile> Tileset = new List<DecoratiionTile>();
 
     private void Awake() {
-        //타일 그룹 리스트에에 타일리스트 저장
+        //Save tile list to tile group list
         Tileset.Add(new DecoratiionTile(Tiletype.Stone_1, tiles[0]));
         Tileset.Add(new DecoratiionTile(Tiletype.Stone_2, tiles[1]));
         Tileset.Add(new DecoratiionTile(Tiletype.Stone_3, tiles[2]));
@@ -61,40 +61,41 @@ public class DecoratiionTileGenerator : MonoBehaviour
     }
 
     private void LateUpdate() {
-        //다른 타일들의 위치정보를 받아오기 위해서 후순위 업데이트문에서 타일 생성
+        //Create a tile in a subordinate update statement to receive the location information of other tiles
         GenerateTile();
         Destroy(this);
     }
 
     void GenerateTile()
     {
-        //Ground Rule Tile(Assets - Others - Tilemaps)에 의해 상단이 빈공간인 플랫폼 타일위에 생성된 오브젝트 리스트를 받아옴.
+        /*Gets a list of objects created on the platform tile with an empty space at the top by
+        Ground Rule Tile(Assets - Others - Tilemaps).*/
         GameObject[] objList = GameObject.FindGameObjectsWithTag("Decoration Tile Generator");
 
         for (int i = 0; i < objList.Length; i++)
         {
-            Vector3 objPosRaw = objList[i].GetComponent<Transform>().position;      //실제 오브젝트 위치
-            Vector3Int objPos = new Vector3Int((int)objPosRaw.x, (int)objPosRaw.y, 0);      //float -> Int 처리한 오브젝트 위치
-            Vector3Int setPos = new Vector3Int(objPos.x, objPos.y + 1, objPos.z);           //타일 생성 시작 위치
+            Vector3 objPosRaw = objList[i].GetComponent<Transform>().position;      //actual object position
+            Vector3Int objPos = new Vector3Int((int)objPosRaw.x, (int)objPosRaw.y, 0);      //float -> Int object position
+            Vector3Int setPos = new Vector3Int(objPos.x, objPos.y + 1, objPos.z);           //start creating tiles position
 
             if (calProbability(35))
             {
                  int tiletype;
 
-                //하단에 플랫폼 타일이 위치하고, 생성할 위치에 플랫폼 타일이 없을 경우.
+                //When a platform tile is located at the bottom and there is no platform tile in the place to be created.
                 if (tilemap_Ground.GetComponent<Tilemap>().GetTile(objPos) != null
                  && tilemap_Ground.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x, objPos.y + 1, objPos.z)) == null) {
-                    if(calProbability(19))      // 19%확률로 나무 생성
+                    if(calProbability(19))      // 19% chance to create a tree
                     {
-                        //생성 위치에 다른 데코레이션 타일이 없을 경우
-                        if(tilemap_Ground.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y, objPos.z)) != null
+                        //If there are no other decoration tiles in the spawn location
+                        if (tilemap_Ground.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y, objPos.z)) != null
                          && tilemap_Stones.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y + 1, objPos.z)) == null
                          && tilemap_Bushs.GetComponent<Tilemap>().GetTile(new Vector3Int(objPos.x + 1, objPos.y + 1, objPos.z)) == null)
                         {
                             tiletype = Random.Range((int)Tiletype.Tree_1, (int)Tiletype.Tree_6 + 1);
                             bool isGenOk = true;
 
-                            //생성 위치에 같은 타일맵의 타일 그룹이 겹치지 않는지 검사
+                            //Checks that tile groups of the same tilemap do not overlap at the creation location
                             for (int n = 0; n < Tileset[tiletype].tileList.Length; n++)
                             {
                                 if(tilemap_Trees.GetComponent<Tilemap>().GetTile(new Vector3Int(setPos.x + (n % 2), setPos.y + n / 2, objPos.z)) != null)
@@ -113,7 +114,7 @@ public class DecoratiionTileGenerator : MonoBehaviour
                     }
                     else 
                     {
-                        if(calProbability(38))  //나무가 아닐시 38% 확률로 암석 생성
+                        if(calProbability(38))  //38% chance to generate a rock if it is not a tree
                         {
                             tiletype = Random.Range((int)Tiletype.Stone_1, (int)Tiletype.Stone_4 + 1);
                             tilemap_Stones.GetComponent<Tilemap>().SetTile(setPos, Tileset[tiletype].tileList[0]);
@@ -127,17 +128,17 @@ public class DecoratiionTileGenerator : MonoBehaviour
                 }
             }
 
-            Destroy(objList[i].gameObject);     //위치 감지용 오브젝트 제거
+            Destroy(objList[i].gameObject);     //Remove object for position detection
             objList[i] = null;
         }
 
         tilemap_Stones.GetComponent<TilemapCollider2D>().enabled = true;
-        tilemap_Stones.GetComponent<TilemapShadowCaster2DCustom>().MakeShadow();    //쉐도우캐스터 동적 생성
+        tilemap_Stones.GetComponent<TilemapShadowCaster2DCustom>().MakeShadow();    //Shadowcaster Dynamic Creation
         tilemap_Bushs.GetComponent<TilemapCollider2D>().enabled = true;
         tilemap_Bushs.GetComponent<TilemapShadowCaster2DCustom>().MakeShadow();
     }
 
-    bool calProbability(byte chance)    //퍼센트 확률 계산용 함수
+    bool calProbability(byte chance)    //Functions for calculating percent probability
     {
         if (chance >= Random.Range(1, 101))
             return true;
