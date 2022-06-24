@@ -78,7 +78,7 @@ public class DecoratiionTileGenerator : MonoBehaviour
             Vector3Int objPos = new Vector3Int((int)objPosRaw.x, (int)objPosRaw.y, 0);      //float -> Int object position
             Vector3Int setPos = new Vector3Int(objPos.x, objPos.y + 1, objPos.z);           //start creating tiles position
 
-            if (calProbability(35))
+            if (calProbability(32))
             {
                  int tiletype;
 
@@ -114,7 +114,7 @@ public class DecoratiionTileGenerator : MonoBehaviour
                     }
                     else 
                     {
-                        if(calProbability(38))  //38% chance to generate a rock if it is not a tree
+                        if(calProbability(30))  //30% chance to generate a rock if it is not a tree
                         {
                             tiletype = Random.Range((int)Tiletype.Stone_1, (int)Tiletype.Stone_4 + 1);
                             tilemap_Stones.GetComponent<Tilemap>().SetTile(setPos, Tileset[tiletype].tileList[0]);

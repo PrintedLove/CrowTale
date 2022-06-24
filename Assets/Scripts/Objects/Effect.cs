@@ -35,7 +35,7 @@ public class Effect : MonoBehaviour
     {
         if(isParticalSpon) {
             isParticalSpon = false;
-            CreatePaartical();
+            CreatePartical();
         }
 
         if (isDestory)
@@ -49,7 +49,7 @@ public class Effect : MonoBehaviour
         }
     }
 
-    void CreatePaartical()       //  Create particle effect
+    void CreatePartical()       //  Create particle effect
     {
         ps.Play();
     }

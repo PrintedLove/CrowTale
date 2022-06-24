@@ -42,6 +42,17 @@ public class titleMenuController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         storyUIRectTransform = storyUI.GetComponent<RectTransform>();
 
+        string description
+            = "App Ver - " + Application.version
+            + "$$printed.tistory.com$github.com/PrintedLove$$¨Ï 2022. Printed Love All rights reserved.";
+
+        description = description.Replace("$", "\n");
+
+        titleOverlaidUI.transform.Find("Game Description").GetComponent<Text>().text = description;
+
+        if(!GameManager.Instance.fastStart)
+            mainCamera.transform.position = new Vector3(-70f, 24f, -10f);
+
         GetLanguageFileList();
         GameManager.Instance.LoadLanguageData(languageFileList[languageSelectedIndex]);
         SetStoryText();

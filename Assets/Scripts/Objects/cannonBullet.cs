@@ -5,14 +5,23 @@ using UnityEngine;
 public class cannonBullet : MonoBehaviour
 {
     public int damage = 10;
-    public new Rigidbody2D rigidbody;
     public GameObject destroyEffect;
+    public GameObject particalSystem;
+
+    Rigidbody2D rigidBody;
 
     private bool isCreateEffect = false;
 
     void Start()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
+
         Destroy(gameObject, 5.0f);
+    }
+
+    private void Update()
+    {
+        transform.Rotate(new Vector3(0, 0, transform.rotation.z + 2f));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,7 +30,10 @@ public class cannonBullet : MonoBehaviour
         isDestroy = false;
 
         if (collision.gameObject.tag == "Struct")
+        {
+            Instantiate(particalSystem, transform.position, transform.rotation);
             isDestroy = true;
+        }
         else if (collision.gameObject.tag == "Player")
         {
             if (!GameManager.Instance.isPlayerDie)

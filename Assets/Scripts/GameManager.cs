@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public int power = 10;              //Power (Attack Damage)
     [HideInInspector] public int fixedPower;        //modified power
     public bool damageImmune;           //invincibility
-    public bool isPlayerDie;            //Whether the player dies
+    public bool isPlayerDie;            //Whether the player dies.
     public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);       //respawn coordinates
 
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     private float warnningTimer;
 
     [Header("Others")]
-    [SerializeField] bool fastStart;
+    public bool fastStart;
     [SerializeField] Camera mainCamera;
     [SerializeField] Font munro;
     [SerializeField] Font neodgm;
@@ -92,16 +92,15 @@ public class GameManager : MonoBehaviour
         titleMenu.SetActive(true);
         storyUI.SetActive(true);
         blackFadeBox.SetActive(true);
+
+        if (fastStart)
+        {
+            titleMenu.GetComponent<titleMenuController>().SetTitleEnd();
+        }
     }
 
     private void Update()
     {
-        if (fastStart)
-        {
-            titleMenu.GetComponent<titleMenuController>().SetTitleEnd();
-            fastStart = false;
-        }
-
         if (!isPlayerDie)
         {
             //watch for death

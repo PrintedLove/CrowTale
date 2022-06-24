@@ -208,5 +208,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 60
-  rigidbody: {fileID: 7843648174808500280}
   destroyEffect: {fileID: 8240386143999759619, guid: 1c744e9c3a610bb4aa9700eea2f7b9d2, type: 3}
+  particalSystem: {fileID: 8962962405279627935, guid: 790651a5672b1e54e977df038b422422, type: 3}
