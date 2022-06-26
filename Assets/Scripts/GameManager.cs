@@ -8,21 +8,6 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
-    
-    [Header("UI")]
-    [SerializeField] Text deatCounter;
-    [SerializeField] Text playTime;
-    [SerializeField] Slider healthBar;
-    [SerializeField] Slider staminaBar;
-    [SerializeField] Slider angerBar;
-    [SerializeField] Text iconDescription;
-    [SerializeField] Text powerText;
-    [SerializeField] Image angerEffect;
-    [SerializeField] Text warnningText;
-    [SerializeField] GameObject BGMDescription;
-    [SerializeField] GameObject titleMenu;
-    [SerializeField] GameObject storyUI;
-    [SerializeField] GameObject blackFadeBox;
 
     [Header("Player")]
     public bool isPause = false;        //whether to pause
@@ -47,22 +32,48 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     private GameObject player;
     private SpriteRenderer playerRenderer;
+    private Camera mainCamera;
     private float playerMaterialIntensity;
     private int deathCount;          //number of player deaths
     private float _playTimeSec;      //play time
     private int _playTimeMin;
     private float staminaRegenCool = 0;
     private float staminaRegenTimer = 0;
-    private float warnningTimer;
 
     [Header("Others")]
-    public bool fastStart;
-    [SerializeField] Camera mainCamera;
+    [SerializeField] bool fastStart;
     [SerializeField] Font munro;
     [SerializeField] Font neodgm;
+
     [HideInInspector] public List<Dictionary<string, object>> languageData;   //language data list
     [HideInInspector] public Font customFont;   //Font set in language data
     [HideInInspector] public bool isGameStart = false;   //Whether the game starts
+
+    private List<string> languageFileList = new List<string>();     // List of fetchable language data names
+    private int languageSelectedIndex = 0;  // Current language data index
+    private int maxLSIndex = -1;    // Max Language Data Index
+    private float warnningTimer;
+    private string[] UITexts = new string[4];
+    //0: warnning die, 1: warnning stamina, 2: death count, 3: play time
+
+    [Header("UI")]
+    [SerializeField] Text deatCounter;
+    [SerializeField] Text playTime;
+    [SerializeField] Slider healthBar;
+    [SerializeField] Slider staminaBar;
+    [SerializeField] Slider angerBar;
+    [SerializeField] Text iconDescription;
+    [SerializeField] Text powerText;
+    [SerializeField] Image angerEffect;
+    [SerializeField] Text warnningText;
+    [SerializeField] GameObject BGMDescription;
+    [SerializeField] GameObject titleMenu;
+    [SerializeField] GameObject storyUI;
+    [SerializeField] GameObject blackFadeBox;
+    [SerializeField] GameObject[] manualTexts;
+    [SerializeField] GameObject[] statBarIcons;
+    [SerializeField] Text[] settingTexts;
+    [SerializeField] GameObject settingMenu;
 
     private void Awake()
     {
@@ -71,9 +82,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-
         _instance = this;
-
         DontDestroyOnLoad(this.gameObject);
 
         _playTimeSec = 0;
@@ -85,17 +94,29 @@ public class GameManager : MonoBehaviour
         isPlayerDie = false;
 
         player = GameObject.FindWithTag("Player");
+        mainCamera = Camera.main;
         playerRenderer = player.GetComponent<SpriteRenderer>();
-
-        Screen.fullScreen = true;
 
         titleMenu.SetActive(true);
         storyUI.SetActive(true);
         blackFadeBox.SetActive(true);
 
+        Screen.fullScreen = true;
+        Application.targetFrameRate = 60;
+
+        GetLanguageFileList();
+        LoadLanguageData(false);
+        TranslateManualText();
+        TranslateUI();
+
+        //Quick start mode for testing
         if (fastStart)
         {
             titleMenu.GetComponent<titleMenuController>().SetTitleEnd();
+        } else
+        {
+            mainCamera.transform.position = new Vector3(-70f, 24f, -10f);
+            player.transform.position = new Vector3(-70f, 4f, -0f);
         }
     }
 
@@ -135,9 +156,10 @@ public class GameManager : MonoBehaviour
             angerBar.value = angerCharged == 0 ? (float)angerLevel / 100f : (float)angerCharged / 100f;
         }
 
-        //Toggle full screen
-        if (Input.GetKeyDown(KeyCode.Escape)) Screen.fullScreen = !Screen.fullScreen;
-
+        //Show setting menu
+        if (Input.GetKeyDown(KeyCode.Escape) && isGameStart)
+            settingMenu.SetActive(!settingMenu.activeSelf);
+        
         //warning message
         if (warnningTimer > 0)
             warnningTimer -= Time.deltaTime;
@@ -159,7 +181,7 @@ public class GameManager : MonoBehaviour
             string timeStr;
             timeStr = _playTimeSec.ToString("00");
             timeStr = timeStr.Replace(".", " : ");
-            playTime.text = "Play Time   " + _playTimeMin.ToString("00") + " : " + timeStr;
+            playTime.text = UITexts[3] + "   " + _playTimeMin.ToString("00") + " : " + timeStr;
         }
     }
 
@@ -177,8 +199,8 @@ public class GameManager : MonoBehaviour
     {
         isPlayerDie = true;
         deathCount += 1;
-        deatCounter.text = "Death   " + deathCount.ToString();
-        ShowWarnning("You Die", 3f);
+        deatCounter.text = UITexts[2] + "   " + deathCount.ToString();
+        ShowWarnning(0, 3f);
 
         health = 0;     
         stamina = 0;           
@@ -199,10 +221,10 @@ public class GameManager : MonoBehaviour
     }
 
     //Show warning message
-    public void ShowWarnning(string str, float time = 2f)
+    public void ShowWarnning(int index, float time = 2f)
     {
         warnningTimer = time;
-        warnningText.text = str;
+        warnningText.text = UITexts[index];
     }
 
     //Icon description update
@@ -259,17 +281,90 @@ public class GameManager : MonoBehaviour
         playerRenderer.material.SetColor("_Color", fixedColor);
     }
 
-    //Get language data
-    public void LoadLanguageData(string fileName)
+    //Get the names of the language data list in the streaming folder.
+    private void GetLanguageFileList()
     {
-        languageData = CSVReader.Read(Application.streamingAssetsPath + "/Languages/" + fileName + ".csv");
+        string filePath = Application.streamingAssetsPath + "/Languages";
+
+        System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(filePath);
+
+        foreach (System.IO.FileInfo File in di.GetFiles())
+        {
+            if (File.Extension.ToLower().CompareTo(".csv") == 0)
+            {
+                string FileNameOnly = File.Name.Substring(0, File.Name.Length - 4);
+                languageFileList.Add(FileNameOnly);
+                maxLSIndex += 1;
+            }
+        }
+
+        if (languageFileList.Contains("kor"))
+        {
+            languageFileList.Remove("kor");
+            languageFileList.Insert(0, "kor");
+        }
+    }
+
+    //Get language data(true: increase index, false: keep)
+    public void LoadLanguageData(bool isIncrease)
+    {
+        if(isIncrease)
+            languageSelectedIndex = languageSelectedIndex == maxLSIndex ? 0 : languageSelectedIndex + 1;
+
+        languageData = CSVReader.Read(Application.streamingAssetsPath
+            + "/Languages/" + languageFileList[languageSelectedIndex] + ".csv");
 
         if ((string)languageData[0]["Font"] == "neodgm")
             customFont = neodgm;
         else if ((string)languageData[0]["Font"] == "munro")
             customFont = munro;
         else
-            customFont = Font.CreateDynamicFontFromOSFont((string)languageData[0]["Font"], (int)languageData[0]["Font_size"]);
+            customFont = Font.CreateDynamicFontFromOSFont((string)languageData[0]["Font"], (int)languageData[0]["Meta"]);
+    }
+
+    public string LoadTranslatedText(string key, int index)
+    {
+        string text = (string)languageData[index][key];
+        text = text.Replace('$', '\n');
+        text = text.Replace('#', '"');
+
+        return text;
+    }
+
+    public void TranslateUI()
+    {
+        iconDescription.font = customFont;
+        warnningText.font = customFont;
+        deatCounter.font = customFont;
+        playTime.font = customFont;
+
+        for (int i = 0; i < 4; i++)
+            statBarIcons[i].GetComponent<iconController>().descripton = LoadTranslatedText("Others", 2 + i);
+
+        UITexts[0] = LoadTranslatedText("Others", 6);
+        UITexts[1] = LoadTranslatedText("Others", 7);
+        UITexts[2] = LoadTranslatedText("Others", 8);
+        UITexts[3] = LoadTranslatedText("Others", 9);
+
+        for (int i = 0; i < 5; i++)
+        {
+            settingTexts[i].font = customFont;
+            settingTexts[i].text = LoadTranslatedText("Others", 10 + i);
+        }
+
+        deatCounter.text = UITexts[2] + "   " + deathCount.ToString();
+    }
+
+    public void TranslateManualText()
+    {
+        for(int i = 0; i < manualTexts.Length; i++)
+        {
+            Text mt = manualTexts[i].GetComponent<Text>();
+
+            mt.font = customFont;
+            mt.fontSize = (int)languageData[1]["Meta"];
+            mt.text = LoadTranslatedText("Manual", i);
+        }
     }
 
     //Change background music

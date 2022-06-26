@@ -73,7 +73,7 @@ public class playerManager : MonoBehaviour
                     animator.SetBool("isAttacking", true);
                 }
                 else
-                    GameManager.Instance.ShowWarnning("Not enough stamina");
+                    GameManager.Instance.ShowWarnning(1);
             }
 
             if (Input.GetButtonUp("Fire1"))
@@ -131,7 +131,7 @@ public class playerManager : MonoBehaviour
                                 animator.SetInteger("AttackCombo", attackCombo);
                                 animator.SetBool("isAttacking", false);
 
-                                GameManager.Instance.ShowWarnning("Not enough stamina");
+                                GameManager.Instance.ShowWarnning(1);
                             }
                         }
                     }
@@ -158,7 +158,7 @@ public class playerManager : MonoBehaviour
                         animator.SetBool("isRolling", true);
                     }
                     else
-                        GameManager.Instance.ShowWarnning("Not enough stamina");
+                        GameManager.Instance.ShowWarnning(1);
                 }
 
                 if (Input.GetButtonUp("Fire2"))
@@ -190,7 +190,7 @@ public class playerManager : MonoBehaviour
                                         rigidBody.gravityScale = 1f;
                                     }
                                     else
-                                        GameManager.Instance.ShowWarnning("Not enough stamina");
+                                        GameManager.Instance.ShowWarnning(1);
                                 }
                             }
 
@@ -433,7 +433,7 @@ public class playerManager : MonoBehaviour
     // Collision Exit with moving platform
     private void OnExitPlatform()
     {
-        isTouchPlatform = isTouchPlatform ? false : true;
+        isTouchPlatform ^= true;
     }
 
     // Check whether the mobile platform is functional or not
@@ -484,7 +484,7 @@ public class playerManager : MonoBehaviour
     // Invulnerability toggle
     public void ToggleDamageImmuneMode()
     {
-        GameManager.Instance.damageImmune = !GameManager.Instance.damageImmune;
+        GameManager.Instance.damageImmune ^= true;
     }
 
     // Dust generation

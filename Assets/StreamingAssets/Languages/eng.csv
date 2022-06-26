@@ -1,9 +1,16 @@
-﻿Font,Font_size,Story,Manual,Dialog_player,Dialog_summoner
-munro,12,"Once upon a time, in a harsh era-$$A little crow lived in a little nest.$Although the harsh and difficult life continued, $but the little crow was happy because there was a little nest and a dear daddy crow.",-,-,-
--,-,"Then one day,$little crow went to the Snake Village for his hungry father.$$The little crow prayed hard, $ but the evil vipers did not help her.$$ When she got home, she saw…",-,-,-
--,-,=... Daddy?=,-,-,-
--,-,"It was father, who had already cooled down.$$The little crow fell beside her father and wept bitterly.$The little crow's tears wet her father, wet the earth, and wet the sky.",-,-,-
--,-,The little crow wept and vowed.$$Swore to take revenge on the enemy who killed her father!,-,-,-
--,-,That road will never be easy.$$It must have been a thorny road full of pain and despair.,-,-,-
--,-,"But the little crow won't give up.$$Even though the opponent has millions of vipers,$the fear of the abyss that devours the universe-",-,-,-
--,-,Even a Uzuhama!,-,-,-
+﻿Font,Meta,Story,Manual,Others,Player
+munro,12,"Once upon a time, in a harsh era-$$A little crow lived in a little nest.$Although the harsh and difficult life continued, $but the little crow was happy because there was a little nest and a dear daddy crow.",: Move,#L# to change language,0
+0,24,"Then one day,$little crow went to the Snake Village for his hungry father.$$The little crow prayed hard, $ but the evil vipers did not help her.$$ When she got home, she saw…",: Jump,Enter to skip,0
+0,0,#... Daddy?#,: Fly,HP,0
+0,0,"It was father, who had already cooled down.$$The little crow fell beside her father and wept bitterly.$The little crow's tears wet her father, wet the earth, and wet the sky.",: Attack,Stamina,0
+0,0,The little crow wept and vowed.$$Swore to take revenge on the enemy who killed her father!,: Dodge,Rage,0
+0,0,That road will never be easy.$$It must have been a thorny road full of pain and despair.,Save Point,Attack Power,0
+0,0,"But the little crow won't give up.$$Even though the opponent has millions of vipers,$the fear of the abyss that devours the universe-",0,You Died,0
+0,0,Even a Uzuhama!,0,Not enough stamina,0
+0,0,0,0,Death,0
+0,0,0,0,Play Time,0
+0,0,0,0,Full Screen,0
+0,0,0,0,Upscaling Pixels,0
+0,0,0,0,Sound,0
+0,0,0,0,English,0
+0,0,0,0,Exit,0

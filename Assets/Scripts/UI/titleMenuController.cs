@@ -27,9 +27,6 @@ public class titleMenuController : MonoBehaviour
 
     private bool isPressAble = false;   // Interact availability
     private bool storyAble = false;     // story UI availability
-    private List<string> languageFileList = new List<string>();     // List of fetchable language data names
-    private int languageSelectedIndex = 0;  // Current language data index
-    private int maxLSIndex = -1;    // Max Language Data Index
     private float storyDownSpeed = 0f;  // story scrolls down speed.
 
     Animator animator;
@@ -48,14 +45,10 @@ public class titleMenuController : MonoBehaviour
 
         description = description.Replace("$", "\n");
 
+        titleOverlaidUI.SetActive(true);
         titleOverlaidUI.transform.Find("Game Description").GetComponent<Text>().text = description;
 
-        if(!GameManager.Instance.fastStart)
-            mainCamera.transform.position = new Vector3(-70f, 24f, -10f);
-
-        GetLanguageFileList();
-        GameManager.Instance.LoadLanguageData(languageFileList[languageSelectedIndex]);
-        SetStoryText();
+        SetTitleText();
         StartCoroutine(RunCheckPressTime(pressTime[0]));
     }
 
@@ -85,9 +78,11 @@ public class titleMenuController : MonoBehaviour
                 // Change language key
                 if (Input.GetKeyDown(KeyCode.L))
                 {
-                    languageSelectedIndex = languageSelectedIndex == maxLSIndex ? 0 : languageSelectedIndex + 1;
-                    GameManager.Instance.LoadLanguageData(languageFileList[languageSelectedIndex]);
-                    SetStoryText();
+                    GameManager.Instance.LoadLanguageData(true);
+                    SetTitleText();
+                    GameManager.Instance.TranslateManualText();
+                    GameManager.Instance.TranslateUI();
+
                     PlaySound("Click");
 
                     isPressAble = false;
@@ -129,40 +124,17 @@ public class titleMenuController : MonoBehaviour
         audioSource.Play();
     }
 
-    private void GetLanguageFileList()
+    private void SetTitleText()
     {
-        string filePath = Application.streamingAssetsPath + "/Languages";
-
-        System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(filePath);
-
-        foreach (System.IO.FileInfo File in di.GetFiles())
-        {
-            if (File.Extension.ToLower().CompareTo(".csv") == 0)
-            {
-                string FileNameOnly = File.Name.Substring(0, File.Name.Length - 4);
-                languageFileList.Add(FileNameOnly);
-                maxLSIndex += 1;
-            }
-        }
-
-        if(languageFileList.Contains("kor"))
-        {
-            languageFileList.Remove("kor");
-            languageFileList.Insert(0, "kor");
-        }
-    }
-
-    private void SetStoryText()
-    {
-        for(int i = 0; i < 8; i++)
+        for(int i = 0; i < storyTexts.Length; i++)
         {
             storyTexts[i].font = GameManager.Instance.customFont;
-            storyTexts[i].fontSize = (int)GameManager.Instance.languageData[0]["Font_size"];
-            string text = (string)GameManager.Instance.languageData[i]["Story"];
-            text = text.Replace("$", "\n");
-            text = text.Replace('=', '"');
-            storyTexts[i].text = text;
+            storyTexts[i].fontSize = (int)GameManager.Instance.languageData[0]["Meta"];
+            storyTexts[i].text = GameManager.Instance.LoadTranslatedText("Story", i);
         }
+
+        languageChangeText.GetComponent<Text>().text = GameManager.Instance.LoadTranslatedText("Others", 0);
+        storySkipText.GetComponent<Text>().text = GameManager.Instance.LoadTranslatedText("Others", 1);
     }
 
     public void SetTitleEnd()
