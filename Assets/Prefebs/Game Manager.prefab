@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7116895072356249613}
   - component: {fileID: 7116895072356249612}
+  - component: {fileID: -4437525040319181456}
   - component: {fileID: 7116895072356249611}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: GameController
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,15 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8302a1eab7e5a46bf153077cf41d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deatCounter: {fileID: 0}
-  playTime: {fileID: 0}
-  healthBar: {fileID: 0}
-  staminaBar: {fileID: 0}
-  angerBar: {fileID: 0}
-  iconDescription: {fileID: 0}
-  powerText: {fileID: 0}
-  angerEffect: {fileID: 0}
-  warnningText: {fileID: 0}
   isPause: 0
   maxHealth: 100
   health: 100
@@ -67,6 +59,55 @@ MonoBehaviour:
   respawnPosition: {x: -64, y: 5, z: 0}
   defaultColor: {r: 0.0001378677, g: 0.0003025429, b: 0.0007314645, a: 1}
   rageColor: {r: 1.210474, g: 2.656317, b: 6.422235, a: 1}
+  fastStart: 1
+  munro: {fileID: 12800000, guid: 1cd451db53e0b0e45b1966b32af3e8b6, type: 3}
+  neodgm: {fileID: 12800000, guid: 5b9eb74a173388e4f90953989bc2504e, type: 3}
+  customFont: {fileID: 0}
+  isGameStart: 0
+  deatCounter: {fileID: 0}
+  playTime: {fileID: 0}
+  healthBar: {fileID: 0}
+  staminaBar: {fileID: 0}
+  angerBar: {fileID: 0}
+  iconDescription: {fileID: 0}
+  powerText: {fileID: 0}
+  angerEffect: {fileID: 0}
+  warnningText: {fileID: 0}
+  BGMDescription: {fileID: 0}
+  titleMenu: {fileID: 0}
+  storyUI: {fileID: 0}
+  blackFadeBox: {fileID: 0}
+  manualTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  statBarIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  settingTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  settingMenu: {fileID: 0}
+--- !u!114 &-4437525040319181456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7116895072356249614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a81750a597cb44e969cd4592a1fff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7116895072356249611
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,4 +51,14 @@ public class settingMenuController : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    
+    private void OnEnable()
+    {
+        GameObject.FindWithTag("Player").GetComponent<playerManager>().PlayerStop();
+    }
+
+    private void OnDisable()
+    {
+        GameObject.FindWithTag("Player").GetComponent<playerManager>().PlayerPlay();
+    }
 }

@@ -15,7 +15,7 @@ public class playerAttack : MonoBehaviour
     void Start()
     {
         rigidbody.velocity = transform.right * speed;
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, 1.0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

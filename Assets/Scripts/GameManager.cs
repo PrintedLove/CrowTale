@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     public bool isPlayerDie;            //Whether the player dies.
     public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);       //respawn coordinates
 
-
     [HideInInspector] public Color defaultColor
      = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);      // primary color
     [HideInInspector] public Color rageColor
@@ -31,8 +30,10 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
     private GameObject player;
+    private playerManager PM;
     private SpriteRenderer playerRenderer;
     private Camera mainCamera;
+    public soundManager SM;
     private float playerMaterialIntensity;
     private int deathCount;          //number of player deaths
     private float _playTimeSec;      //play time
@@ -66,7 +67,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text powerText;
     [SerializeField] Image angerEffect;
     [SerializeField] Text warnningText;
-    [SerializeField] GameObject BGMDescription;
     [SerializeField] GameObject titleMenu;
     [SerializeField] GameObject storyUI;
     [SerializeField] GameObject blackFadeBox;
@@ -79,11 +79,11 @@ public class GameManager : MonoBehaviour
     {
         if (_instance != null && _instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
         _playTimeSec = 0;
         _playTimeMin = 0;
@@ -94,8 +94,9 @@ public class GameManager : MonoBehaviour
         isPlayerDie = false;
 
         player = GameObject.FindWithTag("Player");
-        mainCamera = Camera.main;
+        PM = player.GetComponent<playerManager>();
         playerRenderer = player.GetComponent<SpriteRenderer>();
+        mainCamera = Camera.main;
 
         titleMenu.SetActive(true);
         storyUI.SetActive(true);
@@ -127,7 +128,7 @@ public class GameManager : MonoBehaviour
             //watch for death
             if (health <= 0)
             {
-                player.GetComponent<playerManager>().Die();
+                PM.Die();
                 PlayerDie();
             }
 
@@ -367,16 +368,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Change background music
-    public void changeBGM(string description, AudioClip audioClip)
-    {
-        BGMDescription.SetActive(true);
-        BGMDescription.GetComponent<Text>().text = "BGM - " + description;
-        BGMDescription.GetComponent<Animator>().SetTrigger("show");
-
-        StartCoroutine(RunBGMFade(audioClip));
-    }
-
     //Invincible time coroutine
     IEnumerator RunDamageImmuneTime(float immuneTime)
     {
@@ -422,33 +413,6 @@ public class GameManager : MonoBehaviour
                 UpdatePlayerMaterialColor();
             }
         }
-    }
-
-    //BGM fade coroutine
-    public IEnumerator RunBGMFade(AudioClip audioClip)
-    {
-        int channeling = 1;
-        AudioSource adudioSource = mainCamera.GetComponent<AudioSource>();
-
-        while (channeling < 750)
-        {
-            channeling += 1;
-
-            if(channeling < 175)
-                adudioSource.volume -= 0.01f;
-            else if (channeling == 175)
-            {
-                adudioSource.clip = audioClip;
-                adudioSource.Play();
-            }
-            else
-                if (adudioSource.volume < 1) adudioSource.volume += 0.01f;
-
-            yield return new WaitForSeconds(0.01f);
-        }
-
-        BGMDescription.GetComponent<Animator>().ResetTrigger("show");
-        BGMDescription.SetActive(false);
     }
 }
 

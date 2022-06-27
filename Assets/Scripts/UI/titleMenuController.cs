@@ -143,9 +143,9 @@ public class titleMenuController : MonoBehaviour
         ingameUI.SetActive(true);
         storyUI.SetActive(false);
         mainCamera.GetComponent<cameraManager>().enabled = true;
-        player.GetComponent<playerManager>().isDead = false;
+        player.GetComponent<playerManager>().PlayerPlay();
         GameManager.Instance.isGameStart = true;
-        GameManager.Instance.changeBGM("Bittersweet (SYBS)", audioClip[1]);
+        GameManager.Instance.SM.changeBGM(soundManager.BGM.Bittersweet);
 
         gameObject.SetActive(false);
     }

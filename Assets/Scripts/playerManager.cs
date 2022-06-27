@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -17,7 +17,7 @@ public class playerManager : MonoBehaviour
     [SerializeField] Transform firePoint;   //attack point
     [SerializeField] GameObject playerAttackObject;
     [SerializeField] ParticleSystem dustParticleSystem;
-    
+
     private float horizontalInput;      //left-right movement input value
     private float verticalInput;        //up-down movement input value
     private bool isGrounded;    //whether the floor is in contact
@@ -32,6 +32,7 @@ public class playerManager : MonoBehaviour
     private bool isCreateAttack;        //attack projectile spawn trigger
     private bool isUpdateAttackCombo = false;   //attack projectile spawn trigger
     private short attackCombo;          //attack combo
+    private short preIndex_walk = 0;         //Save previous values ​​to avoid duplication of sounds
     [HideInInspector] public bool isDead;
 
     Rigidbody2D rigidBody;
@@ -95,15 +96,15 @@ public class playerManager : MonoBehaviour
                         GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1]);
 
                     if (attackCombo != 3)                           // Combo 1, 2
-                        playerAttack();
+                        PlayerAttack();
                     else
                     {
                         if (GameManager.Instance.angerCharged > 0)  // Combo 3
                             for (int i = 0; i < 5; i++)
-                                playerAttack(i * 8 - 16);
+                                PlayerAttack(i * 8 - 16);
                         else
                             for (int i = 0; i < 3; i++)
-                                playerAttack(i * 10 - 10);
+                                PlayerAttack(i * 10 - 10);
                     }
                 }
 
@@ -357,7 +358,7 @@ public class playerManager : MonoBehaviour
     }
 
     // Player attack object creation
-    private void playerAttack(int rotate = 0)
+    private void PlayerAttack(int rotate = 0)
     {
         GameObject playerAtk = Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
         playerAttack playerAtkScript = playerAtk.GetComponent<playerAttack>();
@@ -384,6 +385,39 @@ public class playerManager : MonoBehaviour
         playerAtkScript.fixedColor = fixedColor;
     }
 
+    public void PlayerStop()
+    {
+        isDead = true;
+        isAttack = false;
+        isAttacking = false;
+        isCreateAttack = false;
+        isUpdateAttackCombo = true;
+        attackCombo = 1;
+        isRolling = false;
+    }
+
+    public void PlayerPlay()
+    {
+        isDead = false;
+        isAttack = false;
+        isAttacking = false;
+        isCreateAttack = false;
+        isUpdateAttackCombo = true;
+        attackCombo = 1;
+        isRolling = false;
+
+        animator.SetBool("isDead", false);
+        animator.ResetTrigger("isDie");
+        animator.ResetTrigger("isRoll");
+        animator.ResetTrigger("isAttack");
+        animator.SetBool("isRolling", false);
+        animator.SetBool("isAttacking", false);
+        animator.SetInteger("AttackCombo", 1);
+        animator.SetBool("isFly", false);
+        animator.SetBool("isDown", false);
+        animator.SetBool("isJump", false);
+    }
+
    // Dead
     public void Die()
     {
@@ -405,17 +439,55 @@ public class playerManager : MonoBehaviour
     public void Respawn()
     {
         isDead = false;
+        isAttack = false;
+        isAttacking = false;
+        isCreateAttack = false;
+        isUpdateAttackCombo = true;
+        attackCombo = 1;
+        isRolling = false;
+        isTouchPlatform = false;
+        contactPlatform = null;
 
         animator.SetBool("isDead", false);
         animator.ResetTrigger("isDie");
         animator.ResetTrigger("isRoll");
         animator.ResetTrigger("isAttack");
+        animator.SetBool("isAttacking", false);
+        animator.SetInteger("AttackCombo", 1);
         animator.SetBool("isRolling", false);
+        animator.SetBool("isDown", false);
         animator.SetBool("isFly", false);
         animator.SetBool("isJump", false);
 
         MovePlayerPoint(GameManager.Instance.respawnPosition);
         GameManager.Instance.PlayerRespawn();
+    }
+
+    public void SoundPlay_Action(string ACname)
+    {
+        GameManager.Instance.SM.Play(soundManager.AS.playerAction, ACname);
+    }
+
+    public void SoundPlay_Action2(string ACname)
+    {
+        GameManager.Instance.SM.Play(soundManager.AS.playerAction2, ACname);
+    }
+
+    public void SoundPlay_Walk()
+    {
+        GameManager.Instance.SM.Play(1, (soundManager.PlayerAction)RandomSoundIndex(preIndex_walk, 6));
+    }
+
+    private int RandomSoundIndex(int pre, int maxIndex)
+    {
+        int index = Random.Range(0, maxIndex);
+
+        if (index == pre) index += 1;
+        if (index > maxIndex - 1) index = 0;
+
+        pre = index;
+
+        return index;
     }
 
     // Collision with moving platform
