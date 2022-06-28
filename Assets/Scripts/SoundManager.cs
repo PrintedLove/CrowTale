@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class soundManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class soundManager : MonoBehaviour
         Bittersweet
     }
 
-    public string[] BGMdescription =
+    public string[] BGM_description =
     {
         "Journey's Reflection (Darren Curtis)",
         "Bittersweet (SYBS)"
@@ -32,68 +33,61 @@ public class soundManager : MonoBehaviour
         roll
     }
 
-    private AudioSource audioSource_BGM;
+    [SerializeField] AudioSource audioSource_BGM;
     [SerializeField] AudioSource[] audioSources;
-    [SerializeField] GameObject BGMDescription;
-
     [SerializeField] AudioClip[] audioClip_BGM;
     [SerializeField] AudioClip[] audioClip_playerAction;
 
-    private void Awake()
-    {
-        audioSource_BGM = Camera.main.GetComponent<AudioSource>();
-    }
+    [Header("Others")]
+    [SerializeField] GameObject BGMDescription;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     public void Play(AS ASname, string ACname)
     {
         AudioSource audioSource = audioSources[(int)ASname];
+
         audioSource.clip = audioClip_playerAction[(int)(PlayerAction)System.Enum.Parse(typeof(PlayerAction), ACname)];
         audioSource.Play();
     }
 
-    public void Play(int PlayerASNum, PlayerAction ACname)
+    public void Play(AS ASname, PlayerAction ACname)
     {
-        AudioSource audioSource;
-
-        if (PlayerASNum == 1)
-            audioSource = audioSources[(int)AS.playerAction];
-        else
-            audioSource = audioSources[(int)AS.playerAction2];
+        AudioSource audioSource = audioSources[(int)ASname];
 
         audioSource.clip = audioClip_playerAction[(int)ACname];
         audioSource.Play();
     }
 
     //Change background music
-    public void changeBGM(BGM name)
+    public void ChangeBGM(BGM name, float maxVolume)
     {
         BGMDescription.SetActive(true);
-        BGMDescription.GetComponent<Text>().text = "BGM - " + BGMdescription[(int)name];
+        BGMDescription.GetComponent<Text>().text = "BGM - " + BGM_description[(int)name];
         BGMDescription.GetComponent<Animator>().SetTrigger("show");
 
-        StartCoroutine(RunBGMFade(audioClip_BGM[(int)name]));
+        StartCoroutine(RunBGMFade(audioClip_BGM[(int)name], maxVolume));
     }
 
     //BGM fade coroutine
-    public IEnumerator RunBGMFade(AudioClip audioClip)
+    public IEnumerator RunBGMFade(AudioClip audioClip, float maxVolume)
     {
         int channeling = 1;
+        float IncreaseVal = maxVolume / 100;
 
         while (channeling < 750)
         {
             channeling += 1;
 
-            if (channeling < 175)
-                audioSource_BGM.volume -= 0.01f;
-            else if (channeling == 175)
+            if (channeling < 200)
+                audioSource_BGM.volume -= IncreaseVal;
+            else if (channeling == 200)
             {
                 audioSource_BGM.clip = audioClip;
                 audioSource_BGM.Play();
             }
             else
-                if (audioSource_BGM.volume < 1) audioSource_BGM.volume += 0.01f;
+                if (audioSource_BGM.volume < maxVolume) audioSource_BGM.volume += IncreaseVal;
 
             yield return new WaitForSeconds(0.01f);
         }

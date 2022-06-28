@@ -1418,15 +1418,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a81750a597cb44e969cd4592a1fff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGMdescription:
+  BGM_description:
   - Journey's Reflection (Darren Curtis)
   - Bittersweet (SYBS)
+  audioSource_BGM: {fileID: 199839097}
   audioSources:
   - {fileID: 1740065300}
   - {fileID: 40361413}
   - {fileID: 1247211761}
   - {fileID: 1067006808}
-  BGMDescription: {fileID: 1254401814}
   audioClip_BGM:
   - {fileID: 8300000, guid: 6ee5ae7407fe3344d9791be3b41990a6, type: 3}
   - {fileID: 8300000, guid: b1246542e0239eb4a8f44f06abf376b5, type: 3}
@@ -1442,6 +1442,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5ee655e3505735048b03595a8788c19d, type: 3}
   - {fileID: 8300000, guid: 4dac610414cfe5c4f86bb80fca1879f9, type: 3}
   - {fileID: 8300000, guid: 1c8922420e0daaf4893958499163c081, type: 3}
+  BGMDescription: {fileID: 1254401814}
 --- !u!4 &226377064
 Transform:
   m_ObjectHideFlags: 0
@@ -3188,6 +3189,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b1246542e0239eb4a8f44f06abf376b5, type: 3}
   mainCamera: {fileID: 199839093}
   player: {fileID: 1142939708}
+  SM: {fileID: 226377063}
 --- !u!95 &435906624
 Animator:
   serializedVersion: 3
@@ -21414,6 +21416,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1499261750}
     - target: {fileID: 7116895072356249612, guid: 30d0c0a1ec1e7344a8f0fd70db4a3a9d, type: 3}
+      propertyPath: fastStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7116895072356249612, guid: 30d0c0a1ec1e7344a8f0fd70db4a3a9d, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 902418517}
@@ -21623,5 +21629,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8076183826667684035, guid: db95b03ad574e1c4ca1a5ad88f1bc291, type: 3}
+      propertyPath: SM
+      value: 
+      objectReference: {fileID: 226377063}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db95b03ad574e1c4ca1a5ad88f1bc291, type: 3}

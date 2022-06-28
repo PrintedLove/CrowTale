@@ -14,6 +14,7 @@ public class playerManager : MonoBehaviour
     [HideInInspector] public bool isRolling;
     [SerializeField] int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };
     // stamina consumption. [Attack 1, Attack 2, Attack 3, Roll, Fly]
+    [SerializeField] soundManager SM;
     [SerializeField] Transform firePoint;   //attack point
     [SerializeField] GameObject playerAttackObject;
     [SerializeField] ParticleSystem dustParticleSystem;
@@ -465,17 +466,17 @@ public class playerManager : MonoBehaviour
 
     public void SoundPlay_Action(string ACname)
     {
-        GameManager.Instance.SM.Play(soundManager.AS.playerAction, ACname);
+        SM.Play(soundManager.AS.playerAction, ACname);
     }
 
     public void SoundPlay_Action2(string ACname)
     {
-        GameManager.Instance.SM.Play(soundManager.AS.playerAction2, ACname);
+        SM.Play(soundManager.AS.playerAction2, ACname);
     }
 
     public void SoundPlay_Walk()
     {
-        GameManager.Instance.SM.Play(1, (soundManager.PlayerAction)RandomSoundIndex(preIndex_walk, 6));
+        SM.Play(soundManager.AS.playerAction, (soundManager.PlayerAction)RandomSoundIndex(preIndex_walk, 6));
     }
 
     private int RandomSoundIndex(int pre, int maxIndex)

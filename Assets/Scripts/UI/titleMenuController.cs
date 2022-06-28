@@ -24,6 +24,7 @@ public class titleMenuController : MonoBehaviour
     [SerializeField] AudioClip[] audioClip;
     [SerializeField] GameObject mainCamera;
     [SerializeField] GameObject player;
+    [SerializeField] soundManager SM;
 
     private bool isPressAble = false;   // Interact availability
     private bool storyAble = false;     // story UI availability
@@ -145,7 +146,7 @@ public class titleMenuController : MonoBehaviour
         mainCamera.GetComponent<cameraManager>().enabled = true;
         player.GetComponent<playerManager>().PlayerPlay();
         GameManager.Instance.isGameStart = true;
-        GameManager.Instance.SM.changeBGM(soundManager.BGM.Bittersweet);
+        SM.ChangeBGM(soundManager.BGM.Bittersweet, 0.75f);
 
         gameObject.SetActive(false);
     }
