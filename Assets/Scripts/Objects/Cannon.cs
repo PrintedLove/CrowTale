@@ -11,8 +11,11 @@ public class Cannon : MonoBehaviour
     public float attackCooltime = 2.5f;
     public float bulletSpeed = 7.5f;
 
+    AudioSource AS;
+
     void Start()
     {
+        AS = GetComponent<AudioSource>();
         StartCoroutine(RunCannonAttack());
     }
 
@@ -24,6 +27,7 @@ public class Cannon : MonoBehaviour
             cannonBullet.GetComponent<Rigidbody2D>().velocity = -transform.right * bulletSpeed;
 
             Instantiate(shotEffectObject, firePoint.position, firePoint.rotation);
+            AS.Play();
 
             yield return new WaitForSeconds(attackCooltime);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class settingMenuController : MonoBehaviour
+public class SettingMenuController : MonoBehaviour
 {
     [SerializeField] Toggle[] toggles ;
     [SerializeField] Slider volumeSlider;
@@ -54,11 +54,11 @@ public class settingMenuController : MonoBehaviour
     
     private void OnEnable()
     {
-        GameObject.FindWithTag("Player").GetComponent<playerManager>().PlayerStop();
+        GameObject.FindWithTag("Player").GetComponent<PlayerManager>().PlayerStop();
     }
 
     private void OnDisable()
     {
-        GameObject.FindWithTag("Player").GetComponent<playerManager>().PlayerPlay();
+        GameObject.FindWithTag("Player").GetComponent<PlayerManager>().PlayerPlay();
     }
 }

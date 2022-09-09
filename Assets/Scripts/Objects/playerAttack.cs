@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class playerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
     public float speed = 20f;
     public int damage = 10;

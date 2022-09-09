@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class iconController : MonoBehaviour
+public class IconController : MonoBehaviour
 {
     public string descripton;
 

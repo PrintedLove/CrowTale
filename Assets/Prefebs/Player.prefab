@@ -5084,3 +5084,4 @@ MonoBehaviour:
   firePoint: {fileID: 8076183826137588306}
   playerAttackObject: {fileID: 4383681281250760693, guid: c335e8a518c93a14b9a111fd707b20d0, type: 3}
   dustParticleSystem: {fileID: 1428177519}
+  isDead: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cannonBullet : MonoBehaviour
+public class CannonBullet : MonoBehaviour
 {
     public int damage = 10;
     public GameObject destroyEffect;
@@ -40,7 +40,7 @@ public class cannonBullet : MonoBehaviour
             {
                 if (!GameManager.Instance.damageImmune)
                 {
-                    collision.GetComponent<playerManager>().Knockback(1.25f, transform.position, 0.75f);
+                    collision.GetComponent<PlayerManager>().Knockback(1.25f, transform.position, 0.75f);
                     GameManager.Instance.GetDamage(damage, 0.1f);
                     isDestroy = true;
                     isCreateEffect = true;

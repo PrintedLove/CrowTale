@@ -8,8 +8,10 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { return _instance; } }
+    private static GameManager _instance;
 
-    [Header("Player")]
+    [Space]
+    [Header("- - - - - Player - - - - -")]
     public bool isPause = false;        //whether to pause
     public int maxHealth = 100;         //maximum HP
     public int health = 100;            //current HP
@@ -23,17 +25,19 @@ public class GameManager : MonoBehaviour
     public bool isPlayerDie;            //Whether the player dies.
     public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);       //respawn coordinates
 
-    [HideInInspector] public Color defaultColor
+    [HideInInspector]
+    [ColorUsage(true)]
+    public Color defaultColor
      = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);      // primary color
-    [HideInInspector] public Color rageColor
+    [HideInInspector]
+    [ColorUsage(true)]
+    public Color rageColor
      = new Color(1.210474f, 2.656317f, 6.422235f);      // color to change in anger
 
-    private static GameManager _instance;
     private GameObject player;
-    private playerManager PM;
+    private PlayerManager PM;
     private SpriteRenderer playerRenderer;
     private Camera mainCamera;
-    public soundManager SM;
     private float playerMaterialIntensity;
     private int deathCount;          //number of player deaths
     private float _playTimeSec;      //play time
@@ -41,7 +45,8 @@ public class GameManager : MonoBehaviour
     private float staminaRegenCool = 0;
     private float staminaRegenTimer = 0;
 
-    [Header("Others")]
+    [Space]
+    [Header("- - - - - Others - - - - -")]
     [SerializeField] bool fastStart;
     [SerializeField] Font munro;
     [SerializeField] Font neodgm;
@@ -57,7 +62,8 @@ public class GameManager : MonoBehaviour
     private string[] UITexts = new string[4];
     //0: warnning die, 1: warnning stamina, 2: death count, 3: play time
 
-    [Header("UI")]
+    [Space]
+    [Header("- - - - - UI - - - - -")]
     [SerializeField] Text deatCounter;
     [SerializeField] Text playTime;
     [SerializeField] Slider healthBar;
@@ -94,7 +100,7 @@ public class GameManager : MonoBehaviour
         isPlayerDie = false;
 
         player = GameObject.FindWithTag("Player");
-        PM = player.GetComponent<playerManager>();
+        PM = player.GetComponent<PlayerManager>();
         playerRenderer = player.GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
 
@@ -113,7 +119,7 @@ public class GameManager : MonoBehaviour
         //Quick start mode for testing
         if (fastStart)
         {
-            titleMenu.GetComponent<titleMenuController>().SetTitleEnd();
+            titleMenu.GetComponent<TitleMenuController>().SetTitleEnd();
         } else
         {
             mainCamera.transform.position = new Vector3(-70f, 24f, -10f);
@@ -340,7 +346,7 @@ public class GameManager : MonoBehaviour
         playTime.font = customFont;
 
         for (int i = 0; i < 4; i++)
-            statBarIcons[i].GetComponent<iconController>().descripton = LoadTranslatedText("Others", 2 + i);
+            statBarIcons[i].GetComponent<IconController>().descripton = LoadTranslatedText("Others", 2 + i);
 
         UITexts[0] = LoadTranslatedText("Others", 6);
         UITexts[1] = LoadTranslatedText("Others", 7);

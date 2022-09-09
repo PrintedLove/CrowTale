@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class playerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     [SerializeField] float maxSpeed;      //max speed
     [SerializeField] float jumpSpeed;     //jump acceleration
@@ -14,7 +14,6 @@ public class playerManager : MonoBehaviour
     [HideInInspector] public bool isRolling;
     [SerializeField] int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };
     // stamina consumption. [Attack 1, Attack 2, Attack 3, Roll, Fly]
-    [SerializeField] soundManager SM;
     [SerializeField] Transform firePoint;   //attack point
     [SerializeField] GameObject playerAttackObject;
     [SerializeField] ParticleSystem dustParticleSystem;
@@ -34,6 +33,7 @@ public class playerManager : MonoBehaviour
     private bool isUpdateAttackCombo = false;   //attack projectile spawn trigger
     private short attackCombo;          //attack combo
     private short preIndex_walk = 0;         //Save previous values ​​to avoid duplication of sounds
+    private short preIndex_getDamage = 0;
     [HideInInspector] public bool isDead;
 
     Rigidbody2D rigidBody;
@@ -319,12 +319,14 @@ public class playerManager : MonoBehaviour
                 {
                     Knockback(0.5f, obj.transform.position, 0.25f);
                     GameManager.Instance.GetDamage(75, 1f);
+                    SoundPlay_GetDamage();
                 }
                 // Saw Blade Trap
                 else if (obj.objType == _ObjectType.CircleBlade)
                 {
                     Knockback(0.75f, obj.transform.position, 0.3f);
                     GameManager.Instance.GetDamage(60, 1f);
+                    SoundPlay_GetDamage();
                 }
                 // Wooden Box, Moving Platform
                 else if (obj.objType == _ObjectType.WoodenBox
@@ -362,7 +364,7 @@ public class playerManager : MonoBehaviour
     private void PlayerAttack(int rotate = 0)
     {
         GameObject playerAtk = Instantiate(playerAttackObject, firePoint.position, firePoint.rotation);
-        playerAttack playerAtkScript = playerAtk.GetComponent<playerAttack>();
+        PlayerAttack playerAtkScript = playerAtk.GetComponent<PlayerAttack>();
         SpriteRenderer playerAtkRenderer = playerAtk.GetComponent<SpriteRenderer>();
         Color fixedColor;
 
@@ -434,6 +436,9 @@ public class playerManager : MonoBehaviour
         isRolling = false;
         isTouchPlatform = false;
         contactPlatform = null;
+        rigidBody.drag = 3;
+        rigidBody.gravityScale = 2;
+        verticalInputToggle = true;
     }
 
     // Respawn
@@ -466,20 +471,33 @@ public class playerManager : MonoBehaviour
 
     public void SoundPlay_Action(string ACname)
     {
-        SM.Play(soundManager.AS.playerAction, ACname);
+        SoundManager.Instance.Play(SoundManager.AS.playerAction1, ACname);
     }
 
     public void SoundPlay_Action2(string ACname)
     {
-        SM.Play(soundManager.AS.playerAction2, ACname);
+        SoundManager.Instance.Play(SoundManager.AS.playerAction2, ACname);
     }
 
     public void SoundPlay_Walk()
     {
-        SM.Play(soundManager.AS.playerAction, (soundManager.PlayerAction)RandomSoundIndex(preIndex_walk, 6));
+        SoundManager.Instance.Play(SoundManager.AS.playerAction1, (SoundManager.PlayerAction)RandomSoundIndex(preIndex_walk
+            , (int)SoundManager.PlayerAction.walk1, 6));
     }
 
-    private int RandomSoundIndex(int pre, int maxIndex)
+    public void SoundPlay_Walk2()
+    {
+        SoundManager.Instance.Play(SoundManager.AS.playerAction2, (SoundManager.PlayerAction)RandomSoundIndex(preIndex_walk
+            , (int)SoundManager.PlayerAction.walk1, 6));
+    }
+
+    public void SoundPlay_GetDamage()
+    {
+        SoundManager.Instance.Play(SoundManager.AS.playerAction3, (SoundManager.PlayerAction)RandomSoundIndex(preIndex_getDamage
+            , (int)SoundManager.PlayerAction.damage1,  3));
+    }
+
+    private int RandomSoundIndex(int pre, int startIndex, int maxIndex)
     {
         int index = Random.Range(0, maxIndex);
 
@@ -488,7 +506,7 @@ public class playerManager : MonoBehaviour
 
         pre = index;
 
-        return index;
+        return startIndex + index;
     }
 
     // Collision with moving platform
@@ -555,9 +573,9 @@ public class playerManager : MonoBehaviour
     }
 
     // Invulnerability toggle
-    public void ToggleDamageImmuneMode()
+    public void SetDamageImmuneMode(int val)
     {
-        GameManager.Instance.damageImmune ^= true;
+        GameManager.Instance.damageImmune = val == 1;
     }
 
     // Dust generation

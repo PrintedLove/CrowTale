@@ -5,26 +5,25 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 
-public class titleMenuController : MonoBehaviour
+public class TitleMenuController : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] GameObject titleOverlaidUI;
-    [SerializeField] GameObject ingameUI;
-    [SerializeField] GameObject gameDescription;
-    [SerializeField] GameObject BGMDescription;
-    [SerializeField] GameObject blackFadeBox;
-    [SerializeField] GameObject pressButtonText;
-    [SerializeField] GameObject storySkipText;
-    [SerializeField] GameObject languageChangeText;
-    [SerializeField] GameObject storyUI;
-    [SerializeField] Text[] storyTexts;
-    [SerializeField] float[] pressTime;     // input latency
+    [SerializeField] private GameObject titleOverlaidUI;
+    [SerializeField] private GameObject ingameUI;
+    [SerializeField] private GameObject gameDescription;
+    [SerializeField] private GameObject BGMDescription;
+    [SerializeField] private GameObject blackFadeBox;
+    [SerializeField] private GameObject pressButtonText;
+    [SerializeField] private GameObject storySkipText;
+    [SerializeField] private GameObject languageChangeText;
+    [SerializeField] private GameObject storyUI;
+    [SerializeField] private Text[] storyTexts;
+    [SerializeField] private float[] pressTime;     // input latency
 
     [Header("Others")]
-    [SerializeField] AudioClip[] audioClip;
-    [SerializeField] GameObject mainCamera;
-    [SerializeField] GameObject player;
-    [SerializeField] soundManager SM;
+    [SerializeField] private AudioClip[] audioClip;
+    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private GameObject player;
 
     private bool isPressAble = false;   // Interact availability
     private bool storyAble = false;     // story UI availability
@@ -144,9 +143,9 @@ public class titleMenuController : MonoBehaviour
         ingameUI.SetActive(true);
         storyUI.SetActive(false);
         mainCamera.GetComponent<cameraManager>().enabled = true;
-        player.GetComponent<playerManager>().PlayerPlay();
+        player.GetComponent<PlayerManager>().PlayerPlay();
         GameManager.Instance.isGameStart = true;
-        SM.ChangeBGM(soundManager.BGM.Bittersweet, 0.75f);
+        SoundManager.Instance.ChangeBGM(SoundManager.BGM.Bittersweet, 0.6f);
 
         gameObject.SetActive(false);
     }

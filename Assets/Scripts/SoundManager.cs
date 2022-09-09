@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
-public class soundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance { get { return _instance; } }
+    private static SoundManager _instance;
+
     public enum AS
     {
         UI,
-        playerAction,
-        playerAction2,
+        playerAction1, playerAction2, playerAction3,
         playerInteract
     }
 
@@ -30,18 +33,37 @@ public class soundManager : MonoBehaviour
     {
         walk1, walk2, walk3, walk4, walk5, walk6, flyStart,
         attack1, attack2, attack3,
-        roll
+        roll,
+        damage1, damage2, damage3
+    }
+
+    public enum UISound
+    {
+        click1, click2,
+        die, itemGet, savePoint
     }
 
     [SerializeField] AudioSource audioSource_BGM;
     [SerializeField] AudioSource[] audioSources;
     [SerializeField] AudioClip[] audioClip_BGM;
     [SerializeField] AudioClip[] audioClip_playerAction;
+    [SerializeField] AudioClip[] audioClip_UI;
 
     [Header("Others")]
     [SerializeField] GameObject BGMDescription;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void Play(AS ASname, string ACname)
     {
@@ -56,6 +78,14 @@ public class soundManager : MonoBehaviour
         AudioSource audioSource = audioSources[(int)ASname];
 
         audioSource.clip = audioClip_playerAction[(int)ACname];
+        audioSource.Play();
+    }
+
+    public void Play(AS ASname, UISound ACname)
+    {
+        AudioSource audioSource = audioSources[(int)ASname];
+
+        audioSource.clip = audioClip_UI[(int)ACname];
         audioSource.Play();
     }
 
