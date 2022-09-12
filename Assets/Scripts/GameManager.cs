@@ -26,17 +26,15 @@ public class GameManager : MonoBehaviour
     public Vector3 respawnPosition = new Vector3(0f, 0f, 0f);       //respawn coordinates
 
     [HideInInspector]
-    [ColorUsage(true)]
     public Color defaultColor
      = new Color(0.0001378677f, 0.0003025429f, 0.0007314645f);      // primary color
     [HideInInspector]
-    [ColorUsage(true)]
     public Color rageColor
      = new Color(1.210474f, 2.656317f, 6.422235f);      // color to change in anger
 
     private GameObject player;
     private PlayerManager PM;
-    private SpriteRenderer playerRenderer;
+    private SpriteRenderer playerRenderer, playerAttackDirectionRenderer;
     private Camera mainCamera;
     private float playerMaterialIntensity;
     private int deathCount;          //number of player deaths
@@ -102,6 +100,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         PM = player.GetComponent<PlayerManager>();
         playerRenderer = player.GetComponent<SpriteRenderer>();
+        playerAttackDirectionRenderer = player.transform.Find("Attack Direction").GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
 
         titleMenu.SetActive(true);
@@ -165,7 +164,10 @@ public class GameManager : MonoBehaviour
 
         //Show setting menu
         if (Input.GetKeyDown(KeyCode.Escape) && isGameStart)
+        {
             settingMenu.SetActive(!settingMenu.activeSelf);
+            SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
+        }
         
         //warning message
         if (warnningTimer > 0)
@@ -217,6 +219,8 @@ public class GameManager : MonoBehaviour
         playerMaterialIntensity = 0f;
         damageImmune = false;
         UpdatePlayerMaterialColor();
+
+        SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.die);
     }
 
     //Player Respawn
@@ -286,6 +290,7 @@ public class GameManager : MonoBehaviour
             , rageColor.b * playerMaterialIntensity);
 
         playerRenderer.material.SetColor("_Color", fixedColor);
+        playerAttackDirectionRenderer.material.SetColor("_Color", fixedColor);
     }
 
     //Get the names of the language data list in the streaming folder.

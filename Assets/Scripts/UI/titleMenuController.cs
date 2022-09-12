@@ -145,7 +145,7 @@ public class TitleMenuController : MonoBehaviour
         mainCamera.GetComponent<cameraManager>().enabled = true;
         player.GetComponent<PlayerManager>().PlayerPlay();
         GameManager.Instance.isGameStart = true;
-        SoundManager.Instance.ChangeBGM(SoundManager.BGM.Bittersweet, 0.6f);
+        SoundManager.Instance.ChangeBGM(SoundManager.BGM.Bittersweet, 0.5f);
 
         gameObject.SetActive(false);
     }

@@ -1,22 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SettingMenuController : MonoBehaviour
 {
-    [SerializeField] Toggle[] toggles ;
+    [SerializeField] Toggle[] toggles;      // 0: fullscreen, 1: upscale, 2: sound
     [SerializeField] Slider volumeSlider;
 
     public void OnClickFullScreenToggle()
     {
         Screen.fullScreen = toggles[0].isOn;
+        SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
     }
 
     public void OnClickUpscaleToggle()
     {
         Camera.main.GetComponent<UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera>().upscaleRT 
             = toggles[1].isOn;
+        SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
     }
 
     public void OnClickSoundToggle()
@@ -27,11 +30,12 @@ public class SettingMenuController : MonoBehaviour
             AudioListener.volume = volumeSlider.value;
         else
             AudioListener.volume = 0f;
+
+        SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
     }
 
     public void OnClickSoundSlider()
     {
-
         AudioListener.volume = volumeSlider.value;
     }
 
@@ -40,6 +44,8 @@ public class SettingMenuController : MonoBehaviour
         GameManager.Instance.LoadLanguageData(true);
         GameManager.Instance.TranslateManualText();
         GameManager.Instance.TranslateUI();
+
+        SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
     }
 
     public void OnClickExitButton()
@@ -50,6 +56,7 @@ public class SettingMenuController : MonoBehaviour
     public void OnClickSettingExitButton()
     {
         gameObject.SetActive(false);
+        SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
     }
     
     private void OnEnable()

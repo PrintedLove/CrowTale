@@ -7,14 +7,13 @@ public class PlayerAttack : MonoBehaviour
 {
     public float speed = 20f;
     public int damage = 10;
-    public new Rigidbody2D rigidbody;
     public GameObject destroyEffect;
     public Color fixedColor;
     public bool lighting;
 
     void Start()
     {
-        rigidbody.velocity = transform.right * speed;
+        GetComponent<Rigidbody2D>().velocity = transform.right * speed;
         Destroy(gameObject, 1.0f);
     }
 

@@ -20,6 +20,8 @@ public class SavePoint : MonoBehaviour
             isTouch = true;
             animator.SetTrigger("isTouch");
             GameManager.Instance.respawnPosition = new Vector3(transform.position.x, transform.position.y + 2f, 0f);
+
+            SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.savePoint);
         }
     }
 }

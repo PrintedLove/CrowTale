@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public bool isRolling;
     [SerializeField] int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };
     // stamina consumption. [Attack 1, Attack 2, Attack 3, Roll, Fly]
+    [SerializeField] GameObject fireDirection;   //attack direction
     [SerializeField] Transform firePoint;   //attack point
     [SerializeField] GameObject playerAttackObject;
     [SerializeField] ParticleSystem dustParticleSystem;
@@ -32,9 +36,14 @@ public class PlayerManager : MonoBehaviour
     private bool isCreateAttack;        //attack projectile spawn trigger
     private bool isUpdateAttackCombo = false;   //attack projectile spawn trigger
     private short attackCombo;          //attack combo
+    private float attackAngle;
+    private float showfireDir = 0f;
+    private bool isRunShowAttackDirecion;
     private short preIndex_walk = 0;         //Save previous values ​​to avoid duplication of sounds
     private short preIndex_getDamage = 0;
+    private bool isStop;
     [HideInInspector] public bool isDead;
+    [HideInInspector] public Vector2 mousePosition;     //mouse position
 
     Rigidbody2D rigidBody;
     BoxCollider2D boxCollider2D;
@@ -55,16 +64,32 @@ public class PlayerManager : MonoBehaviour
         isUpdateAttackCombo = true;
         attackCombo = 1;
         isRolling = false;
-        isDead = true;
+        isStop = true;
+        isDead = false;
+        isRunShowAttackDirecion = false;
     }
 
     private void Update()
     {
-        if (!isDead)
+        //global use mouse position
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (!isStop && !isDead)
         {
+            // Attack Direction
+            if (showfireDir > 0)
+            {
+                attackAngle = Mathf.Atan2(mousePosition.y - fireDirection.transform.position.y
+                    , mousePosition.x - fireDirection.transform.position.x) * Mathf.Rad2Deg;
+                fireDirection.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
+            }
+            
             // Attack
             if (Input.GetButtonDown("Fire1") && isGrounded && !isAttacking && !isRolling)
             {
+                showfireDir = 5f;
+                StartCoroutine(RunShowAttackDirecion());
+
                 if (GameManager.Instance.angerCharged > 0 
                     || GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
                 {
@@ -92,6 +117,25 @@ public class PlayerManager : MonoBehaviour
                 {
                     isCreateAttack = false;
                     isUpdateAttackCombo = true;
+                    
+                    if(!isRunShowAttackDirecion)
+                        StartCoroutine(RunShowAttackDirecion());
+                    showfireDir = 5f;
+
+                    if (mousePosition.x < transform.position.x)
+                        flip = true;
+                    else
+                        flip = false;
+
+                    if (flip != flip_before)
+                    {
+                        transform.Rotate(0f, 180f, 0f);
+                        flip_before = flip;
+                    }
+
+                    attackAngle = Mathf.Atan2(mousePosition.y - fireDirection.transform.position.y
+                    , mousePosition.x - fireDirection.transform.position.x) * Mathf.Rad2Deg;
+                    fireDirection.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
 
                     if (GameManager.Instance.angerCharged == 0)
                         GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1]);
@@ -244,7 +288,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isDead)
+        if (!isStop && !isDead)
         {
             if (!isAttacking && !isRolling)
             {
@@ -388,37 +432,64 @@ public class PlayerManager : MonoBehaviour
         playerAtkScript.fixedColor = fixedColor;
     }
 
+    IEnumerator RunShowAttackDirecion()
+    {
+        isRunShowAttackDirecion = true;
+        Color fixedColor = fireDirection.GetComponent<SpriteRenderer>().color;
+        fireDirection.GetComponent<SpriteRenderer>().color = new Color(fixedColor.r, fixedColor.g, fixedColor.b, 1f);
+
+        while (showfireDir > 0)
+        {
+            yield return new WaitForSeconds(0.01f);
+            showfireDir -= 0.05f;
+
+            if (showfireDir < 1)
+                fireDirection.GetComponent<SpriteRenderer>().color
+                    = new Color(fixedColor.r, fixedColor.g, fixedColor.b, showfireDir);
+        }
+
+        isRunShowAttackDirecion = false;
+    }
+
     public void PlayerStop()
     {
-        isDead = true;
-        isAttack = false;
-        isAttacking = false;
-        isCreateAttack = false;
-        isUpdateAttackCombo = true;
-        attackCombo = 1;
-        isRolling = false;
+        isStop = true;
+
+        if(!isDead)
+        {
+            isAttack = false;
+            isAttacking = false;
+            isCreateAttack = false;
+            isUpdateAttackCombo = true;
+            attackCombo = 1;
+            isRolling = false;
+        }
     }
 
     public void PlayerPlay()
     {
-        isDead = false;
-        isAttack = false;
-        isAttacking = false;
-        isCreateAttack = false;
-        isUpdateAttackCombo = true;
-        attackCombo = 1;
-        isRolling = false;
+        isStop = false;
 
-        animator.SetBool("isDead", false);
-        animator.ResetTrigger("isDie");
-        animator.ResetTrigger("isRoll");
-        animator.ResetTrigger("isAttack");
-        animator.SetBool("isRolling", false);
-        animator.SetBool("isAttacking", false);
-        animator.SetInteger("AttackCombo", 1);
-        animator.SetBool("isFly", false);
-        animator.SetBool("isDown", false);
-        animator.SetBool("isJump", false);
+        if (!isDead)
+        {
+            isAttack = false;
+            isAttacking = false;
+            isCreateAttack = false;
+            isUpdateAttackCombo = true;
+            attackCombo = 1;
+            isRolling = false;
+
+            animator.SetBool("isDead", false);
+            animator.ResetTrigger("isDie");
+            animator.ResetTrigger("isRoll");
+            animator.ResetTrigger("isAttack");
+            animator.SetBool("isRolling", false);
+            animator.SetBool("isAttacking", false);
+            animator.SetInteger("AttackCombo", 1);
+            animator.SetBool("isFly", false);
+            animator.SetBool("isDown", false);
+            animator.SetBool("isJump", false);
+        }
     }
 
    // Dead

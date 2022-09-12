@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class SoundManager : MonoBehaviour
 {
@@ -65,27 +64,27 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Play(AS ASname, string ACname)
+    public void Play(AS ASname, string playerACname)
     {
         AudioSource audioSource = audioSources[(int)ASname];
 
-        audioSource.clip = audioClip_playerAction[(int)(PlayerAction)System.Enum.Parse(typeof(PlayerAction), ACname)];
+        audioSource.clip = audioClip_playerAction[(int)(PlayerAction)System.Enum.Parse(typeof(PlayerAction), playerACname)];
         audioSource.Play();
     }
 
-    public void Play(AS ASname, PlayerAction ACname)
+    public void Play(AS ASname, PlayerAction playerACname)
     {
         AudioSource audioSource = audioSources[(int)ASname];
 
-        audioSource.clip = audioClip_playerAction[(int)ACname];
+        audioSource.clip = audioClip_playerAction[(int)playerACname];
         audioSource.Play();
     }
 
-    public void Play(AS ASname, UISound ACname)
+    public void Play(AS ASname, UISound UIACname)
     {
         AudioSource audioSource = audioSources[(int)ASname];
 
-        audioSource.clip = audioClip_UI[(int)ACname];
+        audioSource.clip = audioClip_UI[(int)UIACname];
         audioSource.Play();
     }
 
