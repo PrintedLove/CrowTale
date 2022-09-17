@@ -45,9 +45,9 @@ public class GameManager : MonoBehaviour
 
     [Space]
     [Header("- - - - - Others - - - - -")]
-    [SerializeField] bool fastStart;
-    [SerializeField] Font munro;
-    [SerializeField] Font neodgm;
+    [SerializeField] private bool fastStart;
+    [SerializeField] private Font munro;
+    [SerializeField] private Font neodgm;
 
     [HideInInspector] public List<Dictionary<string, object>> languageData;   //language data list
     [HideInInspector] public Font customFont;   //Font set in language data
