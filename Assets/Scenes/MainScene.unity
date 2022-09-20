@@ -2440,15 +2440,15 @@ RectTransform:
   m_GameObject: {fileID: 369576237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.5, y: 4.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1538211844}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -300, y: 401.99997}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -300, y: 420}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &369576239
 Animator:
@@ -18013,15 +18013,15 @@ RectTransform:
   m_GameObject: {fileID: 1419394593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.5, y: 4.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1538211844}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 300, y: 401.99997}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 300, y: 420}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1419394595
 MonoBehaviour:
@@ -18487,6 +18487,7 @@ MonoBehaviour:
   - {fileID: 772190902}
   - {fileID: 338573404}
   settingMenu: {fileID: 878404103}
+  dialogUI: {fileID: 1538211843}
 --- !u!114 &1479795508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18823,9 +18824,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerTalking: 1
-  ilust_player: {fileID: 1419394597}
-  ilust_opponent: {fileID: 369576239}
+  ilust_player: {fileID: 1419394593}
+  ilust_opponent: {fileID: 369576237}
+  text_name: {fileID: 1785314927}
+  text_talk: {fileID: 526648179}
+  clickIcon: {fileID: 1106162790}
   ingameUI: {fileID: 299803011}
+  settingMenu: {fileID: 878404103}
 --- !u!1 &1547353570
 GameObject:
   m_ObjectHideFlags: 0

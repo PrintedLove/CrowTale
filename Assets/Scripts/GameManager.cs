@@ -62,22 +62,23 @@ public class GameManager : MonoBehaviour
 
     [Space]
     [Header("- - - - - UI - - - - -")]
-    [SerializeField] Text deatCounter;
-    [SerializeField] Text playTime;
-    [SerializeField] Slider healthBar;
-    [SerializeField] Slider staminaBar;
-    [SerializeField] Slider angerBar;
-    [SerializeField] Text iconDescription;
-    [SerializeField] Text powerText;
-    [SerializeField] Image angerEffect;
-    [SerializeField] Text warnningText;
-    [SerializeField] GameObject titleMenu;
-    [SerializeField] GameObject storyUI;
-    [SerializeField] GameObject blackFadeBox;
-    [SerializeField] GameObject[] manualTexts;
-    [SerializeField] GameObject[] statBarIcons;
-    [SerializeField] Text[] settingTexts;
-    [SerializeField] GameObject settingMenu;
+    [SerializeField] private Text deatCounter;
+    [SerializeField] private Text playTime;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider staminaBar;
+    [SerializeField] private Slider angerBar;
+    [SerializeField] private Text iconDescription;
+    [SerializeField] private Text powerText;
+    [SerializeField] private Image angerEffect;
+    [SerializeField] private Text warnningText;
+    [SerializeField] private GameObject titleMenu;
+    [SerializeField] private GameObject storyUI;
+    [SerializeField] private GameObject blackFadeBox;
+    [SerializeField] private GameObject[] manualTexts;
+    [SerializeField] private GameObject[] statBarIcons;
+    [SerializeField] private Text[] settingTexts;
+    [SerializeField] private GameObject settingMenu;
+    [SerializeField] private GameObject dialogUI;
 
     private void Awake()
     {
@@ -163,7 +164,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Show setting menu
-        if (Input.GetKeyDown(KeyCode.Escape) && isGameStart)
+        if (Input.GetKeyDown(KeyCode.Escape) && isGameStart && !dialogUI.activeSelf)
         {
             settingMenu.SetActive(!settingMenu.activeSelf);
             SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
