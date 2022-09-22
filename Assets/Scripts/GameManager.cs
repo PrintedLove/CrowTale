@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text[] settingTexts;
     [SerializeField] private GameObject settingMenu;
     [SerializeField] private GameObject dialogUI;
+    public string dialogConversation = "";
 
     private void Awake()
     {
@@ -169,7 +170,14 @@ public class GameManager : MonoBehaviour
             settingMenu.SetActive(!settingMenu.activeSelf);
             SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.N) && isGameStart && !dialogUI.activeSelf)
+        {
+            dialogConversation = "Talk_summonerMeet";
+            dialogUI.SetActive(true);
+            SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
+        }
+
         //warning message
         if (warnningTimer > 0)
             warnningTimer -= Time.deltaTime;

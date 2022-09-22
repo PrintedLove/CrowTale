@@ -1,20 +1,21 @@
-﻿Font,Meta,Story,Manual,Others,talk_summonerMeet,Talk_summonerCombatAfter
+﻿Font,Meta,Story,Manual,Others,Talk_summonerMeet,Talk_summonerCombatAfter
 munro,12,"Once upon a time, in a harsh era-$$A little crow lived in a little nest.$Although the harsh and difficult life continued, $but the little crow was happy because there was a little nest and a dear daddy crow.",: Move,#L# to change language,Little Crow$Gate Witch,Little Crow$Gate Witch
 0,24,"Then one day,$little crow went to the Snake Village for his hungry father.$$The little crow prayed hard, $ but the evil vipers did not help her.$$ When she got home, she saw…",: Jump,Enter to skip,p$...?,0
 0,0,#... Daddy?#,: Fly,HP,p$The strange person with the.. box?$Is there sleeping?,0
 0,0,"It was father, who had already cooled down.$$The little crow fell beside her father and wept bitterly.$The little crow's tears wet her father, wet the earth, and wet the sky.",: Attack,Stamina,"p$What are the strange stems around?$...$Oh, it stings!",0
-0,0,The little crow wept and vowed.$$Swore to take revenge on the enemy who killed her father!,: Dodge,Rage,p$…$..I think this guy knows where the Uzuhama is.,0
+0,0,The little crow wept and vowed.$$Swore to take revenge on the enemy who killed her father!,: Dodge,Rage,p$...$..I think this guy knows where the Uzuhama is.,0
 0,0,That road will never be easy.$$It must have been a thorny road full of pain and despair.,Save Point,Attack Power,p$Over there.$Wake up.,0
 0,0,"But the little crow won't give up.$$Even though the opponent has millions of vipers,$the fear of the abyss that devours the universe-",0,You Died,"p$Hey.$Wake up for a second,$..OMG!",0
 0,0,Even a Uzuhama!,0,Not enough stamina,o$...$...$...?,0
 0,0,0,0,Death,p$You scared me..$Sorry for waking you up over there.$I have a question for you.,0
-0,0,0,0,Play Time,o$…,0
+0,0,0,0,Play Time,o$...,0
 0,0,0,0,Full Screen,p$Over there?$Do you know Uzuhama?,0
 0,0,0,0,Upscaling Pixels,p$If you know...$Can you tell me where he lives?,0
-0,0,0,0,Sound,o$… $...$here…,0
-0,0,0,0,English,p$…?$here?,0
+0,0,0,0,Sound,o$... $...$here…,0
+0,0,0,0,English,p$...?$here?,0
 0,0,0,0,Exit,"o$This place, is closed.$Last user: uzuhama",0
 0,0,0,0,0,p$Closed? Ooh.. Zhuhama?$ That's right! I'm looking for a Uzuhama!$ Do you know where it is?,0
-0,0,0,0,0,o$…$...Unknown error detected.$connecting to server…,0
+0,0,0,0,0,o$...$...Unknown error detected.$connecting to server…,0
 0,0,0,0,0,"p$..Error?$what does that mean,",0
 0,0,0,0,0,o$Server connection failed.$Will fix the error byself.,0
+0,0,0,0,0,e,0
