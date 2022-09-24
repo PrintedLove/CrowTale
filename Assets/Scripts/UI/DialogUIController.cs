@@ -3,19 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialogUIController : MonoBehaviour
 {
-    public bool isPlayerTalking = true;    //true = player, false = opponent
-
     [SerializeField] private GameObject ilust_player, ilust_opponent;
     [SerializeField] private Text text_name, text_talk;
     [SerializeField] private GameObject clickIcon;
     [SerializeField] private GameObject ingameUI;
     [SerializeField] private GameObject settingMenu;
+    public int talkCounter = 1;    //A number indicating the current conversation
 
     private Animator animator_player, animator_opponent;
-    private int talkCounter = 1;    //A number indicating the current conversation
     private string conversation;
     private string[] nameTexts = new string[] { null, null };
     private string[] dialogTexts = new string[] { null, null, null };
@@ -41,7 +40,10 @@ public class DialogUIController : MonoBehaviour
         else if (Input.anyKeyDown)
         {
             if(!isTyping)
+            {
                 UpdateDialogTexts();
+                SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
+            }
         }
     }
 
@@ -56,6 +58,9 @@ public class DialogUIController : MonoBehaviour
 
         text_name.font = GameManager.Instance.customFont;
         text_talk.font = GameManager.Instance.customFont;
+
+        ilust_player.GetComponent<Animator>().enabled = true;
+        ilust_opponent.GetComponent<Animator>().enabled = true;
 
         UpdateDialogTexts();
     }
@@ -88,10 +93,9 @@ public class DialogUIController : MonoBehaviour
 
     private void ChangeTalker(bool talker)  //true = player, false = opponent
     {
-        isPlayerTalking = talker;
-        animator_player.SetBool("talk", isPlayerTalking);
-        animator_opponent.SetBool("talk", !isPlayerTalking);
-        text_name.text = isPlayerTalking ? nameTexts[0] : nameTexts[1];
+        animator_player.SetBool("talk", talker);
+        animator_opponent.SetBool("talk", !talker);
+        text_name.text = talker ? nameTexts[0] : nameTexts[1];
     }
 
     IEnumerator RunTyping()
@@ -129,11 +133,11 @@ public class DialogUIController : MonoBehaviour
 
             if (rowfinish)
             {
-                wattingTime = 0.75f;
+                wattingTime = 0.5f;
                 rowfinish = false;
             }
             else
-                wattingTime = 0.04f;
+                wattingTime = 0.03f;
         }
 
         isTyping = false;

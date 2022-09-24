@@ -171,13 +171,6 @@ public class GameManager : MonoBehaviour
             SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
         }
 
-        if (Input.GetKeyDown(KeyCode.N) && isGameStart && !dialogUI.activeSelf)
-        {
-            dialogConversation = "Talk_summonerMeet";
-            dialogUI.SetActive(true);
-            SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
-        }
-
         //warning message
         if (warnningTimer > 0)
             warnningTimer -= Time.deltaTime;
@@ -203,7 +196,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Player Damage
+    //Player Damage
     public void GetDamage(int damage, float immuneTime) {
         if (!damageImmune) {
             health -= damage;
@@ -212,7 +205,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // player Death
+    //Player Death
     void PlayerDie()
     {
         isPlayerDie = true;
@@ -238,6 +231,17 @@ public class GameManager : MonoBehaviour
         isPlayerDie = false;
         health = maxHealth;
         stamina = maxStamina;
+    }
+
+    //Show Dialog UI
+    public void ShowDialogUI(string con)
+    {
+        if (!dialogUI.activeSelf)
+        {
+            dialogConversation = con;
+            dialogUI.SetActive(true);
+            SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
+        }
     }
 
     //Show warning message
@@ -360,7 +364,7 @@ public class GameManager : MonoBehaviour
         playTime.font = customFont;
 
         for (int i = 0; i < 4; i++)
-            statBarIcons[i].GetComponent<IconController>().descripton = LoadTranslatedText("Others", 2 + i);
+            statBarIcons[i].GetComponent<StatIconController>().descripton = LoadTranslatedText("Others", 2 + i);
 
         UITexts[0] = LoadTranslatedText("Others", 6);
         UITexts[1] = LoadTranslatedText("Others", 7);

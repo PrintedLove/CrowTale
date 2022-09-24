@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3534814563293998826}
   - component: {fileID: 5803342826827366864}
   - component: {fileID: 4621857519457861658}
-  - component: {fileID: -9140650605216544753}
   - component: {fileID: 1970287832753935081}
+  - component: {fileID: -9140650605216544753}
   m_Layer: 6
   m_Name: Wooden Box
   m_TagString: Damageable Object
@@ -133,27 +133,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-9140650605216544753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5803342826827366879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f86972a194d6784ebc32fdbe5e4c846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHit: 1
-  angerAmount: 0
-  maxHealth: 120
-  health: 120
-  objType: 3
-  deathEffect: {fileID: 5349409036581919416, guid: da7541577cac66a4b841bdb44696d820, type: 3}
-  sprite:
-  - {fileID: 8163651988067283732, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
-  - {fileID: 2760996392290893603, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
 --- !u!114 &1970287832753935081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +159,24 @@ MonoBehaviour:
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
   m_InstanceId: -83402
+--- !u!114 &-9140650605216544753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803342826827366879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f86972a194d6784ebc32fdbe5e4c846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHit: 1
+  angerAmount: 0
+  maxHealth: 120
+  health: 120
+  objType: 3
+  deathEffect: {fileID: 5349409036581919416, guid: da7541577cac66a4b841bdb44696d820, type: 3}
+  sprite:
+  - {fileID: 8163651988067283732, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
+  - {fileID: 2760996392290893603, guid: 7adc54be4729be54789cf917f2380edb, type: 3}
