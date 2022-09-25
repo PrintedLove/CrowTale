@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] manualTexts;
     [SerializeField] private GameObject[] statBarIcons;
     [SerializeField] private Text[] settingTexts;
+    [SerializeField] private GameObject ingameUI;
     [SerializeField] private GameObject settingMenu;
     [SerializeField] private GameObject dialogUI;
     public string dialogConversation = "";
@@ -125,6 +126,7 @@ public class GameManager : MonoBehaviour
         {
             mainCamera.transform.position = new Vector3(-70f, 24f, -10f);
             player.transform.position = new Vector3(-70f, 4f, -0f);
+            ingameUI.SetActive(false);
         }
     }
 
