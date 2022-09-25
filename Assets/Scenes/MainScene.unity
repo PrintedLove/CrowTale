@@ -1209,7 +1209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199839093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -62.56, y: 44.38, z: -10}
+  m_LocalPosition: {x: 11.77, y: 41.54, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1065087658}
@@ -1462,7 +1462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226377062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.136611, y: 41.980515, z: -1617.0741}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2183,7 +2183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336471298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.409105, y: 40.748135, z: -66.00238}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14770,7 +14770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791838018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.409105, y: 40.748135, z: -66.00238}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16898,7 +16898,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142939708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -62.44, y: 43.69, z: 0}
+  m_LocalPosition: {x: 11.83, y: 41.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1829917015}
@@ -18578,7 +18578,7 @@ MonoBehaviour:
   respawnPosition: {x: -64, y: 5, z: 0}
   defaultColor: {r: 0.0001378677, g: 0.0003025429, b: 0.0007314645, a: 1}
   rageColor: {r: 1.210474, g: 2.656317, b: 6.422235, a: 1}
-  fastStart: 1
+  fastStart: 0
   munro: {fileID: 12800000, guid: 1cd451db53e0b0e45b1966b32af3e8b6, type: 3}
   neodgm: {fileID: 12800000, guid: 5b9eb74a173388e4f90953989bc2504e, type: 3}
   customFont: {fileID: 0}
@@ -22503,7 +22503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TilemapCollider: {fileID: 1990653770274792094}
-  m_SelfShadows: 0
+  m_SelfShadows: 1
 --- !u!1001 &951808354903923623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22984,7 +22984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TilemapCollider: {fileID: 4243691943434078233}
-  m_SelfShadows: 0
+  m_SelfShadows: 1
 --- !u!1839735485 &5983421988379159712
 Tilemap:
   m_ObjectHideFlags: 0
