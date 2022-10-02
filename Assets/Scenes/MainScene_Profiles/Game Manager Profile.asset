@@ -9,7 +9,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d8302a1eab7e5a46bf153077cf41d3d, type: 3}
   m_Name: Game Manager Profile
   m_EditorClassIdentifier: 
-  settings: []
+  isPause: 0
+  maxHealth: 100
+  health: 100
+  maxStamina: 100
+  stamina: 100
+  angerLevel: 0
+  angerCharged: 0
+  power: 10
+  fixedPower: 0
+  damageImmune: 0
+  isPlayerDie: 0
+  respawnPosition: {x: 0, y: 0, z: 0}
+  defaultColor: {r: 0.0001378677, g: 0.0003025429, b: 0.0007314645, a: 1}
+  rageColor: {r: 1.210474, g: 2.656317, b: 6.422235, a: 1}
+  fastStart: 0
+  munro: {fileID: 0}
+  neodgm: {fileID: 0}
+  customFont: {fileID: 0}
+  isGameStart: 0
+  deatCounter: {fileID: 0}
+  playTime: {fileID: 0}
+  healthBar: {fileID: 0}
+  staminaBar: {fileID: 0}
+  angerBar: {fileID: 0}
+  iconDescription: {fileID: 0}
+  powerText: {fileID: 0}
+  angerEffect: {fileID: 0}
+  warnningText: {fileID: 0}
+  titleMenu: {fileID: 0}
+  storyUI: {fileID: 0}
+  blackFadeBox: {fileID: 0}
+  manualTexts: []
+  statBarIcons: []
+  settingTexts: []
+  ingameUI: {fileID: 0}
+  settingMenu: {fileID: 0}
+  dialogUI: {fileID: 0}
+  dialogConversation: 

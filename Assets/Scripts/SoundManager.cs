@@ -19,13 +19,13 @@ public class SoundManager : MonoBehaviour
     public enum BGM
     {
         JourneysReflection, 
-        Bittersweet
-    }
+        Bittersweet,
+        TheFutureAncientNow,
+        TheWitch
+}
 
     public string[] BGM_description =
     {
-        "Journey's Reflection (Darren Curtis)",
-        "Bittersweet (SYBS)"
     };
 
     public enum PlayerAction

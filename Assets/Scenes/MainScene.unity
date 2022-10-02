@@ -545,7 +545,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -462.1, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &62190639
 PrefabInstance:
@@ -605,6 +605,10 @@ PrefabInstance:
     - target: {fileID: 8052583494242721105, guid: 665f30010c2f4864e9296b4b15348cf0, type: 3}
       propertyPath: m_Name
       value: Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052583494242721105, guid: 665f30010c2f4864e9296b4b15348cf0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 665f30010c2f4864e9296b4b15348cf0, type: 3}
@@ -794,6 +798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle Blade
       objectReference: {fileID: 0}
+    - target: {fileID: 3020746073007061239, guid: 179573f16734f33478d82284e172a287, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7742410732367211055, guid: 179573f16734f33478d82284e172a287, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -894,7 +902,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -518.2, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &156366385 stripped
 MonoBehaviour:
@@ -1286,7 +1294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199839093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.77, y: 41.54, z: -10}
+  m_LocalPosition: {x: -57, y: 44.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1065087658}
@@ -1438,6 +1446,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -1499,6 +1508,8 @@ MonoBehaviour:
   BGM_description:
   - Journey's Reflection (Darren Curtis)
   - Bittersweet (SYBS)
+  - The Future Ancient Now (Nathan Moore)
+  - The Witch (White Bat)
   audioSource_BGM: {fileID: 199839097}
   audioSources:
   - {fileID: 1740065300}
@@ -1509,6 +1520,8 @@ MonoBehaviour:
   audioClip_BGM:
   - {fileID: 8300000, guid: 6ee5ae7407fe3344d9791be3b41990a6, type: 3}
   - {fileID: 8300000, guid: b1246542e0239eb4a8f44f06abf376b5, type: 3}
+  - {fileID: 8300000, guid: 1ec12a05ffaa4b840810e40f429bd8ca, type: 3}
+  - {fileID: 8300000, guid: 20b3aec38624c724aa560226bdc17580, type: 3}
   audioClip_playerAction:
   - {fileID: 8300000, guid: f6ded9f654a62604da99fbc24302aefc, type: 3}
   - {fileID: 8300000, guid: 77c738c634fefc24f90f95c0f7d0337b, type: 3}
@@ -2916,6 +2929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle Blade
       objectReference: {fileID: 0}
+    - target: {fileID: 3020746073007061239, guid: 179573f16734f33478d82284e172a287, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7742410732367211055, guid: 179573f16734f33478d82284e172a287, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2992,6 +3009,10 @@ PrefabInstance:
     - target: {fileID: 3020746073007061239, guid: 179573f16734f33478d82284e172a287, type: 3}
       propertyPath: m_Name
       value: Circle Blade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020746073007061239, guid: 179573f16734f33478d82284e172a287, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7742410732367211055, guid: 179573f16734f33478d82284e172a287, type: 3}
       propertyPath: m_RootOrder
@@ -3408,6 +3429,10 @@ PrefabInstance:
     - target: {fileID: 8052583494242721105, guid: 665f30010c2f4864e9296b4b15348cf0, type: 3}
       propertyPath: m_Name
       value: Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052583494242721105, guid: 665f30010c2f4864e9296b4b15348cf0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 665f30010c2f4864e9296b4b15348cf0, type: 3}
@@ -14234,7 +14259,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -456.7, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &679405084
 GameObject:
@@ -17062,7 +17087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142939708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.83, y: 41.12, z: 0}
+  m_LocalPosition: {x: -57.6, y: 44.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1829917015}
@@ -17451,6 +17476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 142515827741717510, guid: 0cfd89982b6f40048b854ad76046363a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4855751648103687902, guid: 0cfd89982b6f40048b854ad76046363a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -17744,7 +17773,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -456, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1254401814
 GameObject:
@@ -17880,6 +17909,10 @@ PrefabInstance:
     - target: {fileID: 3020746073007061239, guid: 179573f16734f33478d82284e172a287, type: 3}
       propertyPath: m_Name
       value: Circle Blade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3020746073007061239, guid: 179573f16734f33478d82284e172a287, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7742410732367211055, guid: 179573f16734f33478d82284e172a287, type: 3}
       propertyPath: m_RootOrder
@@ -18742,7 +18775,7 @@ MonoBehaviour:
   respawnPosition: {x: -64, y: 5, z: 0}
   defaultColor: {r: 0.0001378677, g: 0.0003025429, b: 0.0007314645, a: 1}
   rageColor: {r: 1.210474, g: 2.656317, b: 6.422235, a: 1}
-  fastStart: 0
+  fastStart: 1
   munro: {fileID: 12800000, guid: 1cd451db53e0b0e45b1966b32af3e8b6, type: 3}
   neodgm: {fileID: 12800000, guid: 5b9eb74a173388e4f90953989bc2504e, type: 3}
   customFont: {fileID: 0}
@@ -19341,7 +19374,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -467.2, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1555962380
 GameObject:
@@ -19659,6 +19692,10 @@ PrefabInstance:
     - target: {fileID: 142515827741717510, guid: 0cfd89982b6f40048b854ad76046363a, type: 3}
       propertyPath: m_Name
       value: Moving Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 142515827741717510, guid: 0cfd89982b6f40048b854ad76046363a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4855751648103687902, guid: 0cfd89982b6f40048b854ad76046363a, type: 3}
       propertyPath: m_RootOrder
@@ -21249,7 +21286,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -462.1, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1785314925
 GameObject:
@@ -23328,8 +23365,8 @@ MonoBehaviour:
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.9607844, g: 0.83921576, b: 0.7372549, a: 1}
   m_Intensity: 0.75
-  m_LightVolumeOpacity: 0.5
-  m_ApplyToSortingLayers: 00000000b365a1ace167fb8a43046dc49f5e4811
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: b365a1ace167fb8a43046dc49f5e481100000000
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -23338,8 +23375,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensity: 0.5
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 1.1983699
-  m_PointLightOuterRadius: 5.9612722
+  m_PointLightInnerRadius: 1.5
+  m_PointLightOuterRadius: 7.5
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5

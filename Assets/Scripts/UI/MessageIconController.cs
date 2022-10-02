@@ -6,7 +6,6 @@ public class MessageIconController : MonoBehaviour
 {
     public bool show = true;
     public float alpha, alpha_min = 0f, alpha_max = 1f, alpha_rise = 0.05f;
-    private int timer_t;
     private SpriteRenderer spriteRenderer;
 
     private bool fadeDone;

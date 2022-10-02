@@ -50,6 +50,7 @@ public class Summoner : _Object
             {
                 animator.SetTrigger("wakeUp");
                 action = act.Standing;
+                SoundManager.Instance.ChangeBGM(SoundManager.BGM.TheWitch, 0.8f);
             }
         }
         else if (action == act.Standing)

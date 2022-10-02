@@ -11,13 +11,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2366803841501045640}
-    m_Position: {x: 280, y: 120, z: 0}
+    m_Position: {x: 330, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1241598654755620893}
-    m_Position: {x: 50, y: 120, z: 0}
+    m_Position: {x: 30, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7707842855876804137}
-    m_Position: {x: 520, y: 120, z: 0}
+    m_Position: {x: 620, y: 130, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -164,7 +164,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: summoner_groundIdle
+  m_Name: Ground Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
