@@ -7,7 +7,7 @@ public class Summoner : _Object
     [SerializeField] private GameObject dialogUI;
     public enum act
     {
-        Sleeping, talking, Standing
+        Sleeping, Talking, Standing
     }
     private GameObject player, summonStone, messageIcon;
 
@@ -40,10 +40,10 @@ public class Summoner : _Object
             {
                 GameManager.Instance.ShowDialogUI("Talk_summonerMeet");
                 messageIcon.SetActive(false);
-                action = act.talking;
+                action = act.Talking;
             }
         }
-        else if (action == act.talking)
+        else if (action == act.Talking)
         {
             //standing
             if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 7)

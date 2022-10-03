@@ -296,6 +296,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void increasePower(int val)
+    {
+        power += val;
+
+        if(angerCharged > 0)
+            fixedPower = power * 2;
+        else
+            fixedPower = power;
+
+        powerText.text = fixedPower.ToString();
+    }
+
     //Update Player Material HDR Color
     void UpdatePlayerMaterialColor()
     {

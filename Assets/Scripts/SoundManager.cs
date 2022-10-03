@@ -39,7 +39,8 @@ public class SoundManager : MonoBehaviour
     public enum UISound
     {
         click1, click2,
-        die, itemGet, savePoint
+        die, savePoint,
+        itemGet1, itemGet2
     }
 
     [SerializeField] AudioSource audioSource_BGM;
