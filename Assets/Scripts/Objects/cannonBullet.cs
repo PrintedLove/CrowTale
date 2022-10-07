@@ -41,7 +41,7 @@ public class CannonBullet : MonoBehaviour
                 if (!GameManager.Instance.damageImmune)
                 {
                     collision.GetComponent<PlayerManager>().Knockback(1.25f, transform.position, 0.75f);
-                    GameManager.Instance.GetDamage(damage, 0.1f);
+                    GameManager.Instance.GetDamage(damage, 1f);
                     isDestroy = true;
                     isCreateEffect = true;
                 }

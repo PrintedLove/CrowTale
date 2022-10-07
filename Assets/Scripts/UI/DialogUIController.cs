@@ -31,12 +31,7 @@ public class DialogUIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ilust_player.GetComponent<Animator>().enabled = false;
-            ilust_opponent.GetComponent<Animator>().enabled = false;
-            animator.SetBool("exit", true);
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) ExitDialog();
         else if (Input.anyKeyDown)
         {
             if(!isTyping)
@@ -71,9 +66,7 @@ public class DialogUIController : MonoBehaviour
 
         if(rawTexts[0].Equals("e"))
         {
-            ilust_player.GetComponent<Animator>().enabled = false;
-            ilust_opponent.GetComponent<Animator>().enabled = false;
-            animator.SetBool("exit", true);
+            ExitDialog();
             return;
         }
 
@@ -144,16 +137,26 @@ public class DialogUIController : MonoBehaviour
         clickIcon.SetActive(!isTyping);
     }
 
-    public void Disable()
+    public void ResetDialog()
     {
-        gameObject.SetActive(false);
+        talkCounter = 1;
+        text_talk.text = "";
+        isTyping = false;
+        animator.SetBool("exit", false);
+    }
+
+    private void ExitDialog()
+    {
+        ilust_player.GetComponent<Animator>().enabled = false;
+        ilust_opponent.GetComponent<Animator>().enabled = false;
+        animator.SetBool("exit", true);
     }
 
     private void OnEnable()
     {
         ingameUI.SetActive(false);
         GameObject.FindWithTag("Player").GetComponent<PlayerManager>().PlayerStop();
-        Resetting();
+        ResetDialog();
         ShowDialog();
     }
 
@@ -163,11 +166,8 @@ public class DialogUIController : MonoBehaviour
         GameObject.FindWithTag("Player").GetComponent<PlayerManager>().PlayerPlay();
     }
 
-    public void Resetting()
+    public void Disable()
     {
-        talkCounter = 1;
-        text_talk.text = "";
-        isTyping = false;
-        animator.SetBool("exit", false);
+        gameObject.SetActive(false);
     }
 }

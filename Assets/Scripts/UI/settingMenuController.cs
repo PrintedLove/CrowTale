@@ -11,6 +11,11 @@ public class SettingMenuController : MonoBehaviour
 
     public void OnClickFullScreenToggle()
     {
+        if(toggles[0].isOn)
+            Screen.SetResolution(Screen.width, Screen.height, true);
+        else
+            Screen.SetResolution(1920, 1080, false);
+
         Screen.fullScreen = toggles[0].isOn;
         SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
     }

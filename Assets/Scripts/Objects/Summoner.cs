@@ -7,7 +7,9 @@ public class Summoner : _Object
     [SerializeField] private GameObject dialogUI;
     public enum act
     {
-        Sleeping, Talking, Standing
+        Sleep, Talk, Stand,
+        battle_start,
+        battle_phase1_, battle_phase2, battle_phase3
     }
     private GameObject player, summonStone, messageIcon;
 
@@ -28,34 +30,37 @@ public class Summoner : _Object
 
         objType = _ObjectType.Summoner;
         isHit = false;
-        action = act.Sleeping;
+        action = act.Sleep;
     }
 
     protected override void Update()
     {
-        if (action == act.Sleeping)
+        if (action == act.Sleep)
         {
             //talk button
             if (Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
             {
                 GameManager.Instance.ShowDialogUI("Talk_summonerMeet");
                 messageIcon.SetActive(false);
-                action = act.Talking;
+                action = act.Talk;
             }
         }
-        else if (action == act.Talking)
+        else if (action == act.Talk)
         {
             //standing
             if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 7)
             {
                 animator.SetTrigger("wakeUp");
-                action = act.Standing;
-                SoundManager.Instance.ChangeBGM(SoundManager.BGM.TheWitch, 0.8f);
+                action = act.Stand;
             }
         }
-        else if (action == act.Standing)
+        else if (action == act.Stand)
         {
-
+            if(!dialogUI.activeSelf)
+            {
+                action = act.battle_start;
+                SoundManager.Instance.ChangeBGM(SoundManager.BGM.TheWitch, 0.8f);
+            }
         }
     }
 }

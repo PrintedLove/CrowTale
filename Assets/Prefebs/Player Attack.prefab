@@ -137,9 +137,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   damage: 10
-  rigidbody: {fileID: 530515175156495142}
+  damageText: {fileID: 3791325491102212193, guid: 2d624e463c8b65e4083ec170fd833655, type: 3}
   destroyEffect: {fileID: 8734503366824581632, guid: c781c2acacf238846a556056974f2ad6, type: 3}
   fixedColor: {r: 0, g: 0, b: 0, a: 0}
+  lighting: 0
 --- !u!114 &4806023021854104434
 MonoBehaviour:
   m_ObjectHideFlags: 0

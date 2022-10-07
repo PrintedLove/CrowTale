@@ -70,7 +70,7 @@ public class Items : MonoBehaviour
                 }
                 else if (type == itemType.power)
                 {
-                    GameManager.Instance.increasePower(3);
+                    GameManager.Instance.increasePower(2);
                 }
                 else if (type == itemType.energy)
                 {
@@ -78,7 +78,7 @@ public class Items : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.Instance.increaseAngerLevel(100);
+                    GameManager.Instance.increaseAngerLevel(101);
                 }
 
                 SoundManager.Instance.Play(SoundManager.AS.playerInteract, SoundManager.UISound.itemGet2);

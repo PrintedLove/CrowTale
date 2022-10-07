@@ -134,13 +134,6 @@ public class GameManager : MonoBehaviour
     {
         if (!isPlayerDie)
         {
-            //watch for death
-            if (health <= 0)
-            {
-                PM.Die();
-                PlayerDie();
-            }
-
             //Stamina Regen Calculation
             if (staminaRegenCool <= 0)
             {
@@ -171,6 +164,7 @@ public class GameManager : MonoBehaviour
         {
             settingMenu.SetActive(!settingMenu.activeSelf);
             SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
+            Resources.UnloadUnusedAssets();
         }
 
         //warning message
@@ -202,6 +196,16 @@ public class GameManager : MonoBehaviour
     public void GetDamage(int damage, float immuneTime) {
         if (!damageImmune) {
             health -= damage;
+
+            //watch for death
+            if (health <= 0)
+            {
+                healthBar.value = 0f;
+                PM.Die();
+                PlayerDie();
+                return;
+            }
+
             damageImmune = true;
             StartCoroutine(RunDamageImmuneTime(immuneTime));
         }
@@ -279,12 +283,13 @@ public class GameManager : MonoBehaviour
     //Increased anger gauge
     public void increaseAngerLevel(int val)
     {
-        if (angerCharged == 0)
+        if (angerCharged <= 0)
         {
             angerLevel += val;
 
             if (angerLevel >= 100)
             {
+                SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.anger1);
                 angerCharged = 100;
                 angerLevel = 0;
                 fixedPower = power * 2;
@@ -409,8 +414,10 @@ public class GameManager : MonoBehaviour
     //Invincible time coroutine
     IEnumerator RunDamageImmuneTime(float immuneTime)
     {
+        playerRenderer.color = new Color(1f, 1f, 1f, 0.35f);
         yield return new WaitForSeconds(immuneTime);
 
+        playerRenderer.color = new Color(1f, 1f, 1f, 1f);
         damageImmune = false;
     }
 
@@ -427,6 +434,7 @@ public class GameManager : MonoBehaviour
         powerText.text = fixedPower.ToString();
         angerEffect.gameObject.SetActive(false);
         StartCoroutine(RunIintensityUpdate(false));
+        SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.anger2);
     }
 
     //Player Material HDR Color Intensity Control Coroutine

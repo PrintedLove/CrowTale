@@ -42,7 +42,7 @@ TextureImporter:
       213: 3412303601221872711
     second: snake_idle_12
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -101,6 +101,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -146,11 +147,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 81
+        y: 54
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,11 +168,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 50
-        y: 81
+        y: 54
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -188,11 +189,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 100
-        y: 81
+        y: 54
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,12 +209,12 @@ TextureImporter:
       name: snake_idle_3
       rect:
         serializedVersion: 2
-        x: 150
-        y: 81
+        x: 0
+        y: 27
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,12 +230,12 @@ TextureImporter:
       name: snake_idle_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 54
+        x: 50
+        y: 27
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,12 +251,12 @@ TextureImporter:
       name: snake_idle_5
       rect:
         serializedVersion: 2
-        x: 50
-        y: 54
+        x: 100
+        y: 27
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,12 +272,12 @@ TextureImporter:
       name: snake_idle_6
       rect:
         serializedVersion: 2
-        x: 100
-        y: 54
+        x: 0
+        y: 0
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -292,12 +293,12 @@ TextureImporter:
       name: snake_idle_7
       rect:
         serializedVersion: 2
-        x: 150
-        y: 54
+        x: 50
+        y: 0
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -313,12 +314,12 @@ TextureImporter:
       name: snake_idle_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 27
+        x: 100
+        y: 0
         width: 50
         height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.76, y: 0.4814815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -326,90 +327,6 @@ TextureImporter:
       bones: []
       spriteID: 09332cfc0b2ec5300800000000000000
       internalID: 242317728998896528
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_idle_9
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 27
-        width: 50
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 706344875406b1570800000000000000
-      internalID: 8438444178295502343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_idle_10
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 27
-        width: 50
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d3fdb418f799c310800000000000000
-      internalID: 1425837848795149266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_idle_11
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 27
-        width: 50
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 984bd0fe73a229470800000000000000
-      internalID: 8399822674721617033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_idle_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 50
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74cad90db00fa5f20800000000000000
-      internalID: 3412303601221872711
       vertices: []
       indices: 
       edges: []

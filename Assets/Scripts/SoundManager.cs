@@ -22,7 +22,7 @@ public class SoundManager : MonoBehaviour
         Bittersweet,
         TheFutureAncientNow,
         TheWitch
-}
+    }
 
     public string[] BGM_description =
     {
@@ -40,7 +40,8 @@ public class SoundManager : MonoBehaviour
     {
         click1, click2,
         die, savePoint,
-        itemGet1, itemGet2
+        itemGet1, itemGet2,
+        anger1, anger2
     }
 
     [SerializeField] AudioSource audioSource_BGM;
