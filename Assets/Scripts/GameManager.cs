@@ -200,15 +200,20 @@ public class GameManager : MonoBehaviour
             //watch for death
             if (health <= 0)
             {
-                healthBar.value = 0f;
-                PM.Die();
-                PlayerDie();
+                KillPlayer();
                 return;
             }
 
             damageImmune = true;
             StartCoroutine(RunDamageImmuneTime(immuneTime));
         }
+    }
+
+    public void KillPlayer()
+    {
+        healthBar.value = 0f;
+        PM.Die();
+        PlayerDie();
     }
 
     //Player Death

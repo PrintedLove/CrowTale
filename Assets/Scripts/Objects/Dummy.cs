@@ -45,7 +45,7 @@ public class Dummy : _Object
         if(angerAmount > 0)
             GameManager.Instance.increaseAngerLevel(angerAmount);
 
-        if (health <= 0)
+        if (health <= 0 && !isDie)
         {
             base.Die();
         } else

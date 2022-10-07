@@ -128,7 +128,9 @@ MonoBehaviour:
   angerAmount: 5
   maxHealth: 10000
   health: 10000
+  dropItemType: 1
   objType: 0
+  dropItem: {fileID: 5509360710162825859, guid: dd0f42aefbdb4454a96b88b32c1e367b, type: 3}
   deathEffect: {fileID: 3601301094092697991, guid: 85c93718b80b6cf47a96e0461a0a7f0f, type: 3}
 --- !u!95 &4049727011915187461
 Animator:

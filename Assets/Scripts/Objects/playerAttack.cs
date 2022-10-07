@@ -41,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
 
                     GameObject DT = Instantiate(damageText,
                         objBox.bounds.center + new Vector3(Random.Range(-0.25f, 0.25f),
-                        objBox.bounds.extents.y + Random.Range(0.4f, 0.6f), 0f), obj.transform.rotation);
+                        objBox.bounds.extents.y + Random.Range(0.4f, 0.6f), 0f), new Quaternion(0, 0, 0, 0));
                     DT.GetComponent<TextMeshPro>().text = fixedDamage.ToString();
                 }
 

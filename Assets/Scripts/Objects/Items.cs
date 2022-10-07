@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
+public enum itemType
+{
+    heal, power, energy, anger
+}
+
 public class Items : MonoBehaviour
 {
     public itemType type;
     public float nSpeed = 10f, mSpeed = 5f;
     [HideInInspector] public bool isDestroy;
 
+    [SerializeField] private Sprite[] spr;
     [SerializeField] private GameObject destroyEffect;
 
     private GameObject player;
@@ -18,10 +24,6 @@ public class Items : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidBody;
 
-    public enum itemType
-    {
-        heal, power, energy, anger
-    }
 
     void Awake()
     {
@@ -87,6 +89,12 @@ public class Items : MonoBehaviour
                 isMove = 3;
             }
         }
+    }
+
+    public void SetType(itemType it)
+    {
+        type = it;
+        GetComponent<SpriteRenderer>().sprite = spr[(int)it];
     }
 
     IEnumerator RunGetItem()

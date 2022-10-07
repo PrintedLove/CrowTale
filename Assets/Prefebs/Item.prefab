@@ -5040,4 +5040,9 @@ MonoBehaviour:
   nSpeed: 700
   mSpeed: 45
   isDestroy: 0
+  spr:
+  - {fileID: 6761164967045977113, guid: 1803b8e64bade8d4ab157629a4be4d96, type: 3}
+  - {fileID: 5508725064705088119, guid: 1803b8e64bade8d4ab157629a4be4d96, type: 3}
+  - {fileID: -68751727340038015, guid: 1803b8e64bade8d4ab157629a4be4d96, type: 3}
+  - {fileID: 6099581493293703690, guid: 1803b8e64bade8d4ab157629a4be4d96, type: 3}
   destroyEffect: {fileID: 8045588655947761478, guid: c5cfd2afa9b6e7d48ab06781c323f602, type: 3}

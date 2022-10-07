@@ -283,7 +283,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         // fall dead
-        if (transform.position.y < -64) GameManager.Instance.health = 0;
+        if (transform.position.y < -64 && !GameManager.Instance.isPlayerDie) GameManager.Instance.KillPlayer();
     }
 
     private void FixedUpdate()

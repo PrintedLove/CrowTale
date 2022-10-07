@@ -13,11 +13,14 @@ public class _Object : MonoBehaviour
     public int angerAmount = 3;     //Anger Charges When Hit by Player Attacks
     public int maxHealth = 100;     //maximum HP
     public int health = 100;        //current HP
+    public itemType dropItemType;
 
     public _ObjectType objType;         //object type
-    public GameObject deathEffect;      //object created upon destruction
+    public GameObject dropItem, deathEffect;      //object created upon destruction
 
     protected SpriteRenderer spriteRenderer;
+
+    protected bool isDie = false;
 
     protected virtual void Awake()
     {
@@ -40,7 +43,7 @@ public class _Object : MonoBehaviour
         if(angerAmount > 0)
             GameManager.Instance.increaseAngerLevel(angerAmount);
 
-        if (health <= 0)
+        if (health <= 0 && !isDie)
         {
             Die();
         }
@@ -57,6 +60,15 @@ public class _Object : MonoBehaviour
     //Death
     protected virtual void Die()
     {
+        isDie = true;
+
+        if (dropItem != null)
+        {
+            GameObject DI = Instantiate(dropItem, transform.position, Quaternion.identity);
+            DI.GetComponent<Items>().SetType(dropItemType);
+            DI.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 8f, ForceMode2D.Impulse);
+        }
+
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
