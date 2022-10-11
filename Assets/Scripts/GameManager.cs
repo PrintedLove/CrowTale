@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -62,21 +63,21 @@ public class GameManager : MonoBehaviour
 
     [Space]
     [Header("- - - - - UI - - - - -")]
-    [SerializeField] private Text deatCounter;
-    [SerializeField] private Text playTime;
-    [SerializeField] private Slider healthBar;
-    [SerializeField] private Slider staminaBar;
-    [SerializeField] private Slider angerBar;
-    [SerializeField] private Text iconDescription;
-    [SerializeField] private Text powerText;
-    [SerializeField] private Image angerEffect;
-    [SerializeField] private Text warnningText;
+    [SerializeField] private UnityEngine.UI.Text deatCounter;
+    [SerializeField] private UnityEngine.UI.Text playTime;
+    [SerializeField] private UnityEngine.UI.Slider healthBar;
+    [SerializeField] private UnityEngine.UI.Slider staminaBar;
+    [SerializeField] private UnityEngine.UI.Slider angerBar;
+    [SerializeField] private UnityEngine.UI.Text iconDescription;
+    [SerializeField] private UnityEngine.UI.Text powerText;
+    [SerializeField] private UnityEngine.UI.Image angerEffect;
+    [SerializeField] private UnityEngine.UI.Text warnningText;
     [SerializeField] private GameObject titleMenu;
     [SerializeField] private GameObject storyUI;
     [SerializeField] private GameObject blackFadeBox;
     [SerializeField] private GameObject[] manualTexts;
     [SerializeField] private GameObject[] statBarIcons;
-    [SerializeField] private Text[] settingTexts;
+    [SerializeField] private UnityEngine.UI.Text[] settingTexts;
     [SerializeField] private GameObject ingameUI;
     [SerializeField] private GameObject settingMenu;
     [SerializeField] private GameObject dialogUI;
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
         playerRenderer = player.GetComponent<SpriteRenderer>();
         playerAttackDirectionRenderer = player.transform.Find("Attack Direction").GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
+        mainCamera.transform.Find("Background Sky").gameObject.SetActive(true);
 
         titleMenu.SetActive(true);
         storyUI.SetActive(true);

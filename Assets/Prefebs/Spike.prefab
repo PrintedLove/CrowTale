@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1895657094111587892}
   - component: {fileID: 4129872890561663961}
-  - component: {fileID: 4467594951484818890}
+  - component: {fileID: 8352486978988344085}
   - component: {fileID: -4000801259866768087}
   - component: {fileID: -6776308831350808907}
   m_Layer: 7
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &4467594951484818890
-PolygonCollider2D:
+--- !u!61 &8352486978988344085
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -98,7 +98,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.625}
@@ -108,13 +108,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.41493148, y: -0.5003705}
-      - {x: -0.3133151, y: 0.044934437}
-      - {x: 0.02, y: 0.09330392}
-      - {x: 0.35435614, y: 0.043137476}
-      - {x: 0.41770095, y: -0.49936652}
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!50 &-4000801259866768087
 Rigidbody2D:
   serializedVersion: 4
@@ -152,5 +148,7 @@ MonoBehaviour:
   angerAmount: 0
   maxHealth: 100
   health: 100
+  dropItemType: 0
   objType: 2
+  dropItem: {fileID: 0}
   deathEffect: {fileID: 0}
