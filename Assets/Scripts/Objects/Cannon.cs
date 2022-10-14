@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -13,9 +14,18 @@ public class Cannon : MonoBehaviour
 
     AudioSource AS;
 
-    void Start()
+    private void Awake()
     {
         AS = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(RunCannonAttack());
+    }
+
+    private void OnEnable()
+    {
         StartCoroutine(RunCannonAttack());
     }
 
@@ -27,7 +37,9 @@ public class Cannon : MonoBehaviour
             cannonBullet.GetComponent<Rigidbody2D>().velocity = -transform.right * bulletSpeed;
 
             Instantiate(shotEffectObject, firePoint.position, firePoint.rotation);
-            AS.Play();
+
+            if(AS.enabled)
+                AS.Play();
 
             yield return new WaitForSeconds(attackCooltime);
         }

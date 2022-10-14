@@ -676,7 +676,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 128
+    maxNumParticles: 64
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -736,7 +736,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 62.17
+    angle: 50
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5039,7 +5039,6 @@ MonoBehaviour:
   type: 0
   nSpeed: 700
   mSpeed: 45
-  isDestroy: 0
   spr:
   - {fileID: 6761164967045977113, guid: 1803b8e64bade8d4ab157629a4be4d96, type: 3}
   - {fileID: 5508725064705088119, guid: 1803b8e64bade8d4ab157629a4be4d96, type: 3}

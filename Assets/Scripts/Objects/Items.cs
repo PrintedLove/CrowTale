@@ -12,7 +12,6 @@ public class Items : MonoBehaviour
 {
     public itemType type;
     public float nSpeed = 10f, mSpeed = 5f;
-    [HideInInspector] public bool isDestroy;
 
     [SerializeField] private Sprite[] spr;
     [SerializeField] private GameObject destroyEffect;
@@ -27,7 +26,6 @@ public class Items : MonoBehaviour
 
     void Awake()
     {
-        isDestroy = false;
         isMove = 0;
         player = GameObject.FindWithTag("Player");
 
@@ -41,12 +39,6 @@ public class Items : MonoBehaviour
         {
             playerDir = (player.transform.position - this.transform.position).normalized;
             rigidBody.AddForce(new Vector2(playerDir.x * mSpeed, playerDir.y * mSpeed));
-        }
-
-        if (isDestroy)
-        {
-            Instantiate(destroyEffect, transform.position, transform.rotation);
-            Destroy(gameObject);
         }
     }
 
@@ -95,6 +87,12 @@ public class Items : MonoBehaviour
     {
         type = it;
         GetComponent<SpriteRenderer>().sprite = spr[(int)it];
+    }
+
+    public void DestroySelf()
+    {
+        Instantiate(destroyEffect, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     IEnumerator RunGetItem()

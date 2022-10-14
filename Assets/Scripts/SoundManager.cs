@@ -86,8 +86,8 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource audioSource = audioSources[(int)ASname];
 
-        audioSource.clip = audioClip_UI[(int)UIACname];
-        audioSource.Play();
+        //audioSource.clip = audioClip_UI[(int)UIACname];
+        audioSource.PlayOneShot(audioClip_UI[(int)UIACname]);
     }
 
     //Change background music

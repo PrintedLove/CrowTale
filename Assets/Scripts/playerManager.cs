@@ -24,6 +24,8 @@ public class PlayerManager : MonoBehaviour
 
     private float horizontalInput;      //left-right movement input value
     private float verticalInput;        //up-down movement input value
+    [SerializeField] private float groundDetectBox_y = 0.72f;
+    [SerializeField] private Vector2 groundDetectBox = new Vector2(0.71f, 0.1f);
     private bool isGrounded;    //whether the floor is in contact
     private bool isTouchPlatform = false;   //whether moving platform contact
     private GameObject contactPlatform;     //contact moving platform
@@ -330,8 +332,8 @@ public class PlayerManager : MonoBehaviour
                 rigidBody.velocity = new Vector2(maxSpeed * (-1), rigidBody.velocity.y);
 
             // cal if contact the floor
-            if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - 0.72f)
-                , new Vector2(0.71f, 0.1f), 0, LayerMask.GetMask("Platform")))
+            if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y - groundDetectBox_y)
+                , groundDetectBox, 0, LayerMask.GetMask("Platform")))
             {
                 isGrounded = true;
                 animator.SetBool("isGrounded", true);
@@ -659,5 +661,13 @@ public class PlayerManager : MonoBehaviour
     public void ToggleAnimatorParameter(string boolName)
     {
         animator.SetBool(boolName, !animator.GetBool(boolName));
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(new Vector2(transform.position.x, transform.position.y - groundDetectBox_y), groundDetectBox);
+        Gizmos.DrawLine(transform.position, firePoint.position);
+        Gizmos.DrawSphere(firePoint.position, 0.05f);
     }
 }

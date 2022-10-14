@@ -8,8 +8,9 @@ public class Dummy : _Object
     private bool hitDirection;
 
     protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
 
-    protected override void Awake()
+    private void Awake()
     {
         if (GetComponent<Animator>() != null)
             animator = GetComponent<Animator>();
@@ -20,10 +21,13 @@ public class Dummy : _Object
         objType = _ObjectType.Dummy;
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
-        
+        if (transform.position.y < -64)
+        {
+            Destroy(gameObject);
+        }
+
         if (hitAction == 1)
         {
             animator.SetBool("isHit", true);

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,6 +62,8 @@ public class GameManager : MonoBehaviour
     private string[] UITexts = new string[4];
     //0: warnning die, 1: warnning stamina, 2: death count, 3: play time
 
+    public List<GameObject>  preSavePoints = new List<GameObject>();
+
     [Space]
     [Header("- - - - - UI - - - - -")]
     [SerializeField] private UnityEngine.UI.Text deatCounter;
@@ -113,7 +116,7 @@ public class GameManager : MonoBehaviour
         blackFadeBox.SetActive(true);
 
         Screen.fullScreen = true;
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
         GetLanguageFileList();
         LoadLanguageData(false);
@@ -318,6 +321,24 @@ public class GameManager : MonoBehaviour
             fixedPower = power;
 
         powerText.text = fixedPower.ToString();
+    }
+
+    public void DisablePreSavePointObject(GameObject obj)
+    {
+        int i = 0;
+
+        while (i < preSavePoints.Count)
+        {
+            if(preSavePoints[i] != obj)
+            {
+                if (preSavePoints[i] != null)
+                    preSavePoints[i].GetComponent<SavePoint>().ActiveObject(false);
+
+                preSavePoints.RemoveAt(i);
+            }
+            else
+                i++;
+        }
     }
 
     //Update Player Material HDR Color

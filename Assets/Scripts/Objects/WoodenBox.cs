@@ -5,10 +5,11 @@ using UnityEngine;
 public class WoodenBox : _Object
 {
     public Sprite[] sprite;
+    protected SpriteRenderer spriteRenderer;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         objType = _ObjectType.WoodenBox;
     }

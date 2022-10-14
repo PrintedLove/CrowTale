@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8527615117091177902}
   m_Layer: 7
   m_Name: Save Point
-  m_TagString: Untagged
+  m_TagString: Save Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,3 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc91c0cdf1cbcd74fb2e314a90b97124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objs: []

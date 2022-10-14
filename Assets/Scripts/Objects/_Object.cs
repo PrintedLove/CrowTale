@@ -9,31 +9,15 @@ public enum _ObjectType
 
 public class _Object : MonoBehaviour
 {
+    public _ObjectType objType;         //object type
     public bool isHit = true;       //Whether the player is attacked
-    public int angerAmount = 3;     //Anger Charges When Hit by Player Attacks
     public int maxHealth = 100;     //maximum HP
     public int health = 100;        //current HP
+    public int angerAmount = 3;     //Anger Charges When Hit by Player Attacks
     public itemType dropItemType;
-
-    public _ObjectType objType;         //object type
     public GameObject dropItem, deathEffect;      //object created upon destruction
 
-    protected SpriteRenderer spriteRenderer;
-
     protected bool isDie = false;
-
-    protected virtual void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    protected virtual void Update()
-    {
-        if (transform.position.y < -64)
-        {
-            Destroy(gameObject);
-        }
-    }
 
     //damage handling
     public virtual void TakeDamage(int damage, float hitDir)

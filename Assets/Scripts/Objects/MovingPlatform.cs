@@ -19,18 +19,14 @@ public class MovingPlatform : _Object
         cyclePoint2 = transform.position;
     }
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-        
         destination = cyclePoint1;
         cycle = true;
     }
 
-    protected override void Update()
+    private void FixedUpdate()
     {
-        base.Update();
-
         if(Vector3.Distance(destination, transform.position) < 0.05f)
         {
             ChangeCycle();

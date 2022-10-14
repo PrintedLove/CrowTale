@@ -14,10 +14,11 @@ public class Summoner : _Object
     private GameObject player, summonStone, messageIcon;
 
     protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
 
     public act action;
 
-    protected override void Awake()
+    private void Awake()
     {
         if (GetComponent<Animator>() != null)
             animator = GetComponent<Animator>();
@@ -33,7 +34,7 @@ public class Summoner : _Object
         action = act.Sleep;
     }
 
-    protected override void Update()
+    private void Update()
     {
         if (action == act.Sleep)
         {
