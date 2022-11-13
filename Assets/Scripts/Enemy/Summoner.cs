@@ -120,7 +120,6 @@ public class Summoner : _Object
         hpBar.SetActive(false);
         messageIcon.SetActive(true);
         messageIcon.GetComponent<MessageIconController>().ResetMessageIcon();
-        combatWall.SetActive(false);
 
         for (int i = 0; i < summonStones.Length; i++)
         {
@@ -154,7 +153,7 @@ public class Summoner : _Object
         else if (action == Act.Talk)
         {
             //standing
-            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 7)
+            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 6)
             {
                 animator.SetTrigger("wakeUp");
                 action = Act.Stand;
@@ -212,16 +211,18 @@ public class Summoner : _Object
             //talk button
             if (!isTalking && Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
             {
-                GameManager.Instance.ShowDialogUI("Talk_summonerCombatAfter");
+                GameManager.Instance.ShowDialogUI("Talk_viperFirstMeet");
                 messageIcon.SetActive(false);
                 isTalking = true;
             }
 
             //talk end or press Esc
-            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 7)
+            if (isTalking && dialogUI.gameObject.activeSelf)
             {
                 isTalking = false;
                 messageIcon.SetActive(true);
+                combatWall.SetActive(false);
+                if (blockString.activeSelf) blockString.GetComponent<SummonerString>().Down();      //stage blocker get down
             }
         }
     }
@@ -328,7 +329,6 @@ public class Summoner : _Object
     {
         isDie = true;
         hpBar.SetActive(false);
-        blockString.GetComponent<SummonerString>().Down();      //stage blocker get down
         GetComponent<BoxCollider2D>().enabled = false;
         action = Act.CombatAfter;
         animator.SetTrigger("CombatAfter");
@@ -532,8 +532,6 @@ public class Summoner : _Object
             yield return new WaitForSeconds(0.01f);
         }
         transform.position = new Vector3(transform.position.x, startPosition.y, transform.position.z);
-
-        Debug.Log("asd");
     }
 
     private void StartCombat()  //summonre combat start
@@ -582,6 +580,7 @@ public class Summoner : _Object
             animator.ResetTrigger("transformAltar");
             animator.ResetTrigger("fly start");
             summonStoneAltar.SetActive(true);
+            combatWall.SetActive(false);
 
             Reset();
         }
