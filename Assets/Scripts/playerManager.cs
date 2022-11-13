@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Com.LuisPedroFonseca.ProCamera2D;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO.Pipes;
 using UnityEngine;
@@ -51,6 +52,13 @@ public class PlayerManager : MonoBehaviour
     BoxCollider2D boxCollider2D;
     Animator animator;
 
+    [ContextMenu("Set Player Respawn Position")]
+    public void SetPlayerRespawnPosition()
+    {
+        GameObject.FindWithTag("GameController").GetComponent<GameManager>().respawnPosition = transform.position;
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+    }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -85,14 +93,14 @@ public class PlayerManager : MonoBehaviour
                     , mousePosition.x - fireDirection.transform.position.x) * Mathf.Rad2Deg;
                 fireDirection.transform.rotation = Quaternion.AngleAxis(attackAngle, Vector3.forward);
             }
-            
+
             // Attack
             if (Input.GetButtonDown("Fire1") && isGrounded && !isAttacking && !isRolling)
             {
                 showfireDir = 5f;
                 StartCoroutine(RunShowAttackDirecion());
 
-                if (GameManager.Instance.angerCharged > 0 
+                if (GameManager.Instance.angerCharged > 0
                     || GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
                 {
                     isAttack = true;
@@ -119,8 +127,8 @@ public class PlayerManager : MonoBehaviour
                 {
                     isCreateAttack = false;
                     isUpdateAttackCombo = true;
-                    
-                    if(!isRunShowAttackDirecion)
+
+                    if (!isRunShowAttackDirecion)
                         StartCoroutine(RunShowAttackDirecion());
                     showfireDir = 5f;
 
@@ -163,7 +171,7 @@ public class PlayerManager : MonoBehaviour
                         {
                             attackCombo = (attackCombo < 3) ? (short)(attackCombo + 1) : (short)(1);
 
-                            if (GameManager.Instance.angerCharged > 0 
+                            if (GameManager.Instance.angerCharged > 0
                                 || GameManager.Instance.consumeStamina(consumeStamina[attackCombo - 1], false))
                             {
                                 animator.SetInteger("AttackCombo", attackCombo);
@@ -247,7 +255,7 @@ public class PlayerManager : MonoBehaviour
                         else
                             animator.SetBool("isFly", false);
 
-                        if(isTouchPlatform) isTouchPlatform = false;
+                        if (isTouchPlatform) isTouchPlatform = false;
                     }
                     else if (verticalInput == (-1))  // Downturn
                     {
@@ -259,7 +267,7 @@ public class PlayerManager : MonoBehaviour
                             verticalInputToggle = true;
                         }
 
-                        if(isTouchPlatform) isTouchPlatform = false;
+                        if (isTouchPlatform) isTouchPlatform = false;
                     }
                     else                             // release jump button
                     {
@@ -300,7 +308,8 @@ public class PlayerManager : MonoBehaviour
 
                 // When in contact with a moving platform
                 if (isTouchPlatform && horizontalInput == 0 && verticalInput == 0 && contactPlatform != null
-                && CheckPlatform(contactPlatform.transform.position, contactPlatform.GetComponent<BoxCollider2D>().size)) {
+                && CheckPlatform(contactPlatform.transform.position, contactPlatform.GetComponent<BoxCollider2D>().size))
+                {
                     transform.position = contactPlatform.transform.position - contactPlatformDistance;
                 }
 
@@ -321,7 +330,7 @@ public class PlayerManager : MonoBehaviour
                             CreateDust();
                     }
 
-                    if(isTouchPlatform) isTouchPlatform = false;
+                    if (isTouchPlatform) isTouchPlatform = false;
                 }
             }
 
@@ -350,7 +359,8 @@ public class PlayerManager : MonoBehaviour
     }
 
     // Collision Check
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision != null && !GameManager.Instance.isPlayerDie)
         {
             // Collision with an interactive object
@@ -365,6 +375,7 @@ public class PlayerManager : MonoBehaviour
                 {
                     Knockback(0.5f, obj.transform.position, 0.25f);
                     GameManager.Instance.GetDamage(75, 1f);
+                    Camera.main.GetComponent<ProCamera2DShake>().Shake("PlayerHit");
                     SoundPlay_GetDamage();
                 }
                 // Saw Blade Trap
@@ -372,25 +383,26 @@ public class PlayerManager : MonoBehaviour
                 {
                     Knockback(0.75f, obj.transform.position, 0.3f);
                     GameManager.Instance.GetDamage(60, 1f);
+                    Camera.main.GetComponent<ProCamera2DShake>().Shake("PlayerHit");
                     SoundPlay_GetDamage();
                 }
                 // Wooden Box, Moving Platform
                 else if (obj.objType == _ObjectType.WoodenBox
                  || obj.objType == _ObjectType.MovingPlatform)
                 {
-                    if(collision.contacts[0].normal.y > 0.7f)
+                    if (collision.contacts[0].normal.y > 0.7f)
                         OnEnterPlatform(collision.gameObject);
                 }
             }
             else if (collision.gameObject.tag == "Obstacle")
             {
-                if(collision.gameObject.name == "String Attack")
+                if (collision.gameObject.name == "String Attack")
                 {
                     if (!GameManager.Instance.damageImmune)
                     {
                         Knockback(0.2f, collision.contacts[0].point, 0.1f);
                         GameManager.Instance.GetDamage(33, 1f);
-                        Camera.main.GetComponent<ProCamera2DShake>().Shake("PlayerHit"); 
+                        Camera.main.GetComponent<ProCamera2DShake>().Shake("PlayerHit");
                         SoundPlay_GetDamage();
                     }
                 }
@@ -399,7 +411,8 @@ public class PlayerManager : MonoBehaviour
     }
 
     // Collision Exit Check
-    private void OnCollisionExit2D(Collision2D collision) {
+    private void OnCollisionExit2D(Collision2D collision)
+    {
         if (collision != null && !GameManager.Instance.isPlayerDie)
         {
             // Collision exit with an interactive object
@@ -505,7 +518,7 @@ public class PlayerManager : MonoBehaviour
     {
         isStop = true;
 
-        if(!isDead)
+        if (!isDead)
         {
             isAttack = false;
             isAttacking = false;
@@ -542,12 +555,17 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-   // Dead
-    public void Die()
+    // Dead
+    public void Die(bool fastRespawn = false)
     {
         isDead = true;
-        animator.SetBool("isDead", true);
-        animator.SetTrigger("isDie");
+
+        if (!fastRespawn)
+        {
+            animator.SetBool("isDead", true);
+            animator.SetTrigger("isDie");
+            Camera.main.GetComponent<ProCamera2DShake>().Shake("SmallExplosion");
+        }
 
         isAttack = false;
         isAttacking = false;
@@ -615,7 +633,7 @@ public class PlayerManager : MonoBehaviour
     public void SoundPlay_GetDamage()
     {
         SoundManager.Instance.Play(SoundManager.AS.playerAction3, (SoundManager.PlayerAction)RandomSoundIndex(preIndex_getDamage
-            , (int)SoundManager.PlayerAction.damage1,  3));
+            , (int)SoundManager.PlayerAction.damage1, 3));
     }
 
     private int RandomSoundIndex(int pre, int startIndex, int maxIndex)
@@ -633,7 +651,7 @@ public class PlayerManager : MonoBehaviour
     // Collision with moving platform
     private void OnEnterPlatform(GameObject gameObject)
     {
-        if(!isTouchPlatform && CheckPlatform(gameObject.transform.position, gameObject.GetComponent<BoxCollider2D>().size))
+        if (!isTouchPlatform && CheckPlatform(gameObject.transform.position, gameObject.GetComponent<BoxCollider2D>().size))
         {
             rigidBody.velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
             contactPlatform = gameObject;
@@ -651,7 +669,7 @@ public class PlayerManager : MonoBehaviour
     // Check whether the mobile platform is functional or not
     private bool CheckPlatform(Vector3 platformPos, Vector2 platformSize)
     {
-        if(transform.position.y - platformPos.y > (boxCollider2D.size.y + platformSize.y) / 2 - 0.1f
+        if (transform.position.y - platformPos.y > (boxCollider2D.size.y + platformSize.y) / 2 - 0.1f
          && transform.position.x - platformPos.x >= (-platformSize.x / 2)
           && transform.position.x - platformPos.x <= platformSize.x / 2)
             return true;
@@ -671,12 +689,12 @@ public class PlayerManager : MonoBehaviour
         float timer = 0f;
         Vector3 dir = new Vector3(transform.position.x - position.x, transform.position.y - position.y, transform.position.z - position.z);
 
-        while(timer <= duration)
+        while (timer <= duration)
         {
             timer += Time.deltaTime;
             rigidBody.AddForce(dir * power, ForceMode2D.Impulse);
         }
-        
+
         yield return 0;
     }
 

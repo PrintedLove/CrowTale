@@ -39,7 +39,7 @@ public class Items : MonoBehaviour
         if (isMove == 2)
         {
             playerDir = (player.transform.position - this.transform.position).normalized;
-            rigidBody.AddForce(new Vector2(playerDir.x * mSpeed, playerDir.y * mSpeed));
+            rigidBody.AddForce(new Vector2(playerDir.x * mSpeed * Time.deltaTime, playerDir.y * mSpeed * Time.deltaTime));
         }
     }
 

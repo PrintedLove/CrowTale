@@ -1,3 +1,4 @@
+using Com.LuisPedroFonseca.ProCamera2D;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -11,18 +12,13 @@ public class SettingMenuController : MonoBehaviour
 
     public void OnClickFullScreenToggle()
     {
-        if(toggles[0].isOn)
-            Screen.SetResolution(Screen.width, Screen.height, true);
-        else
-            Screen.SetResolution(1920, 1080, false);
-
         Screen.fullScreen = toggles[0].isOn;
         SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
     }
 
     public void OnClickUpscaleToggle()
     {
-        Camera.main.GetComponent<UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera>().upscaleRT 
+        Camera.main.GetComponent<ProCamera2DPixelPerfect>().enabled
             = toggles[1].isOn;
         SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
     }
@@ -55,12 +51,17 @@ public class SettingMenuController : MonoBehaviour
 
     public void OnClickExitButton()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void OnClickSettingExitButton()
     {
         gameObject.SetActive(false);
+        GameManager.Instance.showFPS = false;
         SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
     }
     

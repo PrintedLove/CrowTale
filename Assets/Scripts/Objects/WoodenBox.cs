@@ -14,6 +14,12 @@ public class WoodenBox : _Object
         objType = _ObjectType.WoodenBox;
     }
 
+    private void FixedUpdate()
+    {
+        if (transform.position.y < -64)
+            Destroy(gameObject);
+    }
+
     public override void CheckHP()
     {
         if (health <= maxHealth * 30 / 100)

@@ -1,3 +1,4 @@
+using Com.LuisPedroFonseca.ProCamera2D;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,12 @@ public class CannonBullet : MonoBehaviour
 
     Rigidbody2D rigidBody;
 
-    private bool isCreateEffect = false;
+    private bool isCreateEffect = false, isHit;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        isHit = false;
 
         Destroy(gameObject, 5.0f);
     }
@@ -34,14 +36,17 @@ public class CannonBullet : MonoBehaviour
             Instantiate(particalSystem, transform.position, transform.rotation);
             isDestroy = true;
         }
-        else if (collision.gameObject.tag == "Player")
+        else if (collision.gameObject.tag == "Player" && !isHit)
         {
+            isHit = true;
+
             if (!GameManager.Instance.isPlayerDie)
             {
                 if (!GameManager.Instance.damageImmune)
                 {
                     collision.GetComponent<PlayerManager>().Knockback(1.25f, transform.position, 0.75f);
                     GameManager.Instance.GetDamage(damage, 1f);
+                    Camera.main.GetComponent<ProCamera2DShake>().Shake("LargeExplosion");
                     isDestroy = true;
                     isCreateEffect = true;
                 }

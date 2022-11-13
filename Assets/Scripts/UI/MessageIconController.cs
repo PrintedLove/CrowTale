@@ -10,7 +10,7 @@ public class MessageIconController : MonoBehaviour
 
     private bool fadeDone;
 
-    private void Awake()
+    private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         alpha = spriteRenderer.color.a;

@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2183477370314997364
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4000801259866768087, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895657094111587892, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129872890561663961, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129872890561663961, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129872890561663961, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401852658791939308, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_Name
+      value: Moving Spike
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -6776308831350808907, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+--- !u!1 &5087578885669012120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6401852658791939308, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+  m_PrefabInstance: {fileID: 2183477370314997364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6882631299286506371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087578885669012120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1afcb2999d18cd4d98204a79d043bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objType: 2
+  isHit: 1
+  maxHealth: 100
+  health: 100
+  angerAmount: 3
+  dropItemType: 0
+  dropItem: {fileID: 0}
+  deathEffect: {fileID: 0}
+  isAttack: 1
+  delTime: 0
+  upTime: 1
+  downTime: 1

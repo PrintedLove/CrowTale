@@ -220,8 +220,8 @@ public class Summoner : _Object
             //talk end or press Esc
             if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 7)
             {
-                animator.SetTrigger("wakeUp");
-                action = Act.Stand;
+                isTalking = false;
+                messageIcon.SetActive(true);
             }
         }
     }

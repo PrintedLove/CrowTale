@@ -114,7 +114,7 @@ public class DecoratiionTileGenerator : MonoBehaviour
                     }
                     else 
                     {
-                        if(calProbability(30))  //30% chance to generate a rock if it is not a tree
+                        if(calProbability(28))  //28% chance to generate a rock if it is not a tree
                         {
                             tiletype = Random.Range((int)Tiletype.Stone_1, (int)Tiletype.Stone_4 + 1);
                             tilemap_Stones.GetComponent<Tilemap>().SetTile(setPos, Tileset[tiletype].tileList[0]);

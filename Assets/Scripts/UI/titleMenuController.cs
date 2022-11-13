@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class TitleMenuController : MonoBehaviour
 {
@@ -142,7 +143,8 @@ public class TitleMenuController : MonoBehaviour
         titleOverlaidUI.SetActive(false);
         ingameUI.SetActive(true);
         storyUI.SetActive(false);
-        mainCamera.GetComponent<cameraManager>().enabled = true;
+        mainCamera.GetComponent<ProCamera2D>().FollowHorizontal = true;
+        mainCamera.GetComponent<ProCamera2D>().FollowVertical = true;
         player.GetComponent<PlayerManager>().PlayerPlay();
         GameManager.Instance.isGameStart = true;
         SoundManager.Instance.ChangeBGM(SoundManager.BGM.Bittersweet, 0.5f);

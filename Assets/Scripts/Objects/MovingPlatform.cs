@@ -10,7 +10,8 @@ public class MovingPlatform : _Object
     Vector3 destination;
     bool cycle;
 
-    private void Reset() {
+    [ContextMenu ("Reset Cycle Point")]
+    public void ResetCyclePoint() {
         isHit = false;
         angerAmount = 0;
         objType = _ObjectType.MovingPlatform;

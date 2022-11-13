@@ -8,8 +8,11 @@ TextureImporter:
   - first:
       213: -6608559871831894326
     second: key_big_1
+  - first:
+      213: 5806184012243372237
+    second: key_big_2
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -68,6 +71,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -113,11 +117,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 18
+        y: 36
         width: 45
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,8 +138,29 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 18
         width: 39
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac61f8a6fcda944a0800000000000000
+      internalID: -6608559871831894326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: key_big_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 29
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -144,8 +169,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac61f8a6fcda944a0800000000000000
-      internalID: -6608559871831894326
+      spriteID: dc8815eb895b39050800000000000000
+      internalID: 5806184012243372237
       vertices: []
       indices: 
       edges: []

@@ -12,25 +12,32 @@ public class Cannon : MonoBehaviour
     public float attackCooltime = 2.5f;
     public float bulletSpeed = 7.5f;
 
+    private bool isCoroutineRun;
+
     AudioSource AS;
 
     private void Awake()
     {
         AS = GetComponent<AudioSource>();
+        isCoroutineRun = false;
     }
 
     private void Start()
     {
-        StartCoroutine(RunCannonAttack());
+        if (!isCoroutineRun)
+            StartCoroutine(RunCannonAttack());
     }
 
     private void OnEnable()
     {
-        StartCoroutine(RunCannonAttack());
+        if (!isCoroutineRun)
+            StartCoroutine(RunCannonAttack());
     }
 
     IEnumerator RunCannonAttack()     //attack cycle
     {
+        isCoroutineRun = true;
+
         while (isAttack)
         {
             GameObject cannonBullet = Instantiate(cannonBulletObject, firePoint.position, firePoint.rotation);
@@ -43,5 +50,7 @@ public class Cannon : MonoBehaviour
 
             yield return new WaitForSeconds(attackCooltime);
         }
+
+        isCoroutineRun = false;
     }
 }

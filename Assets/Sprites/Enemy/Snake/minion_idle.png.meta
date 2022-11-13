@@ -1,34 +1,46 @@
 fileFormatVersion: 2
-guid: e199bfe73a0f79841b9b2196b0171bcc
+guid: 18d2f54b5f1868c4dac308166c3d15bf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3698806487719987219
-    second: snake_die_0
+      213: -2413704717543319485
+    second: minion_idle_0
   - first:
-      213: 1074316129878309605
-    second: snake_die_1
+      213: 8770438758811730805
+    second: minion_idle_1
   - first:
-      213: 6180415030584175796
-    second: snake_die_2
+      213: -8055288426951357076
+    second: minion_idle_2
   - first:
-      213: -2090430047436284251
-    second: snake_die_3
+      213: 2483823018225519330
+    second: minion_idle_3
   - first:
-      213: 7712726758852342581
-    second: snake_die_4
+      213: -7389281356132486362
+    second: minion_idle_4
   - first:
-      213: 7694853718381668757
-    second: snake_die_5
+      213: 2617114318357022920
+    second: minion_idle_5
   - first:
-      213: 6932485566256121756
-    second: snake_die_6
+      213: -2482130767658563148
+    second: minion_idle_6
   - first:
-      213: -4912330654027391937
-    second: snake_die_7
+      213: 6230974245189346876
+    second: minion_idle_7
   - first:
-      213: -1076899698755392996
-    second: snake_die_8
+      213: 242317728998896528
+    second: minion_idle_8
+  - first:
+      213: 8438444178295502343
+    second: snake_idle_9
+  - first:
+      213: 1425837848795149266
+    second: snake_idle_10
+  - first:
+      213: 8399822674721617033
+    second: snake_idle_11
+  - first:
+      213: 3412303601221872711
+    second: snake_idle_12
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -89,7 +101,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -115,11 +127,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: snake_die_0
+      name: minion_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de73a86b8133bacc0800000000000000
-      internalID: -3698806487719987219
+      spriteID: 3485526095cc08ed0800000000000000
+      internalID: -2413704717543319485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_1
+      name: minion_idle_1
       rect:
         serializedVersion: 2
         x: 50
@@ -154,14 +178,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ea7ed104dcb8ee00800000000000000
-      internalID: 1074316129878309605
+      spriteID: 5738a47559bd6b970800000000000000
+      internalID: 8770438758811730805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_2
+      name: minion_idle_2
       rect:
         serializedVersion: 2
         x: 100
@@ -175,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bc647e99be35c550800000000000000
-      internalID: 6180415030584175796
+      spriteID: c6dcf3cbaddd53090800000000000000
+      internalID: -8055288426951357076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_3
+      name: minion_idle_3
       rect:
         serializedVersion: 2
         x: 0
@@ -196,14 +220,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5aed1ca82fc4df2e0800000000000000
-      internalID: -2090430047436284251
+      spriteID: 2ea454e00ef487220800000000000000
+      internalID: 2483823018225519330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_4
+      name: minion_idle_4
       rect:
         serializedVersion: 2
         x: 50
@@ -217,14 +241,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5333b079f1c190b60800000000000000
-      internalID: 7712726758852342581
+      spriteID: 6237e46b1cff37990800000000000000
+      internalID: -7389281356132486362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_5
+      name: minion_idle_5
       rect:
         serializedVersion: 2
         x: 100
@@ -238,14 +262,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 599abb210bc99ca60800000000000000
-      internalID: 7694853718381668757
+      spriteID: 8c842424b9bd15420800000000000000
+      internalID: 2617114318357022920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_6
+      name: minion_idle_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +283,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c97083384e2253060800000000000000
-      internalID: 6932485566256121756
+      spriteID: 4b9c4abb733bd8dd0800000000000000
+      internalID: -2482130767658563148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_7
+      name: minion_idle_7
       rect:
         serializedVersion: 2
         x: 50
@@ -280,14 +304,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3c5f6bfb45e3dbb0800000000000000
-      internalID: -4912330654027391937
+      spriteID: c366e19101ed87650800000000000000
+      internalID: 6230974245189346876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: snake_die_8
+      name: minion_idle_8
       rect:
         serializedVersion: 2
         x: 100
@@ -301,8 +325,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1aa5fcfd651e01f0800000000000000
-      internalID: -1076899698755392996
+      spriteID: 09332cfc0b2ec5300800000000000000
+      internalID: 242317728998896528
       vertices: []
       indices: 
       edges: []
