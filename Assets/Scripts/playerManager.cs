@@ -8,14 +8,14 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] float maxSpeed;      //max speed
-    [SerializeField] float jumpSpeed;     //jump acceleration
-    [SerializeField] float horizontalFriction;    //horizontal air resistance
-    [SerializeField] float runStopSpeed;          //horizontal movement stop speed
+    public float maxSpeed = 10f;      //max speed
+    public float jumpSpeed = 26f;     //jump acceleration
+    public float horizontalFriction = 1.75f;    //horizontal air resistance
+    public float runStopSpeed = 2f;          //horizontal movement stop speed
     [HideInInspector] public bool updateAttackCombo = false;
     [HideInInspector] public bool createAttack = false;
     [HideInInspector] public bool isRolling;
-    [SerializeField] int[] consumeStamina = new int[] { 8, 6, 4, 16, 6 };
+    public int[] consumeStamina = new int[] { 7, 5, 3, 15, 8 };
     // stamina consumption. [Attack 1, Attack 2, Attack 3, Roll, Fly]
     [SerializeField] GameObject fireDirection;   //attack direction
     [SerializeField] Transform firePoint;   //attack point
@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
     private float horizontalInput;      //left-right movement input value
     private float verticalInput;        //up-down movement input value
     [SerializeField] private float groundDetectBox_y = 0.72f;
-    [SerializeField] private Vector2 groundDetectBox = new Vector2(0.71f, 0.1f);
+    [SerializeField] private Vector2 groundDetectBox = new Vector2(0.5f, 0.1f);
     private bool isGrounded;    //whether the floor is in contact
     private bool isTouchPlatform = false;   //whether moving platform contact
     private GameObject contactPlatform;     //contact moving platform
@@ -382,6 +382,19 @@ public class PlayerManager : MonoBehaviour
                         OnEnterPlatform(collision.gameObject);
                 }
             }
+            else if (collision.gameObject.tag == "Obstacle")
+            {
+                if(collision.gameObject.name == "String Attack")
+                {
+                    if (!GameManager.Instance.damageImmune)
+                    {
+                        Knockback(0.2f, collision.contacts[0].point, 0.1f);
+                        GameManager.Instance.GetDamage(33, 1f);
+                        Camera.main.GetComponent<ProCamera2DShake>().Shake("PlayerHit"); 
+                        SoundPlay_GetDamage();
+                    }
+                }
+            }
         }
     }
 
@@ -401,6 +414,41 @@ public class PlayerManager : MonoBehaviour
                  || obj.objType == _ObjectType.MovingPlatform)
                 {
                     OnExitPlatform();
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null && !GameManager.Instance.isPlayerDie)
+        {
+            if (collision.gameObject.tag == "Obstacle")
+            {
+                if (!GameManager.Instance.damageImmune)
+                {
+                    if (collision.gameObject.name == "String Attack")
+                    {
+                        if (collision.transform.position.x > transform.position.x)
+                            Knockback(0.75f, transform.position + Vector3.left * 0.1f, 0.3f);
+                        else
+                            Knockback(0.75f, transform.position + Vector3.right * 0.1f, 0.3f);
+
+                        GameManager.Instance.GetDamage(12, 1f);
+                        Camera.main.GetComponent<ProCamera2DShake>().Shake("PlayerHit");
+                        SoundPlay_GetDamage();
+                    }
+                    else if (collision.gameObject.name == "Big String Attack")
+                    {
+                        if (collision.transform.position.x > transform.position.x)
+                            Knockback(0.75f, transform.position + Vector3.left * 0.1f, 0.3f);
+                        else
+                            Knockback(0.75f, transform.position + Vector3.right * 0.1f, 0.3f);
+
+                        GameManager.Instance.GetDamage(36, 1.5f);
+                        Camera.main.GetComponent<ProCamera2DShake>().Shake("PlayerHit");
+                        SoundPlay_GetDamage();
+                    }
                 }
             }
         }

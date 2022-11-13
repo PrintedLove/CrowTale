@@ -10,10 +10,19 @@ public class MessageIconController : MonoBehaviour
 
     private bool fadeDone;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         alpha = spriteRenderer.color.a;
+    }
+
+    private void Reset()
+    {
+        show = false;
+        fadeDone = true;
+        alpha = alpha_min;
+        Color c = spriteRenderer.color;
+        spriteRenderer.color = new Color(c.r, c.g, c.b, alpha);
     }
 
     public void Fade(bool s)
@@ -55,7 +64,6 @@ public class MessageIconController : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && gameObject.activeSelf)
@@ -66,5 +74,10 @@ public class MessageIconController : MonoBehaviour
     {
         if (collision.CompareTag("Player") && gameObject.activeSelf)
             Fade(false);
+    }
+
+    public void ResetMessageIcon()
+    {
+        Reset();
     }
 }

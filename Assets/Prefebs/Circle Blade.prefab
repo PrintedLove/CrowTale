@@ -136,11 +136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841349be6d5a26f419913cd3dbf40b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objType: 5
   isHit: 0
-  angerAmount: 0
   maxHealth: 100
   health: 100
-  objType: 5
+  angerAmount: 0
+  dropItemType: 0
+  dropItem: {fileID: 0}
   deathEffect: {fileID: 0}
   speed: 3
   cyclePoint1: {x: 0, y: 0, z: 1}
@@ -448,7 +450,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0.04
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4922,7 +4924,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0df45572e2dfa304bb07f178e17dca26, type: 2}
+  - {fileID: 2100000, guid: 591e4627a98f426488527d57a5bcfaa0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

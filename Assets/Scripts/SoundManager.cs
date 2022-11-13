@@ -95,8 +95,10 @@ public class SoundManager : MonoBehaviour
     {
         BGMDescription.SetActive(true);
         BGMDescription.GetComponent<Text>().text = "BGM - " + BGM_description[(int)name];
+        BGMDescription.GetComponent<Animator>().ResetTrigger("show");
         BGMDescription.GetComponent<Animator>().SetTrigger("show");
 
+        StopAllCoroutines();
         StartCoroutine(RunBGMFade(audioClip_BGM[(int)name], maxVolume));
     }
 

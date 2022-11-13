@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lazer
+  m_Shader: {fileID: -6465566751694194690, guid: babc41e4274bbe04db470ebd8b3ba59a, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_213a00750f6845b4b473496e2d44b224: 5
+    - Vector1_770feccee21b41b387ec5dc6f6c87e72: -0.35
+    - Vector1_aca5187a9b6a4b288bc8439a424ba420: 1
+    m_Colors:
+    - Color_74280f50b5da4b6ea32ea4281becdb3f: {r: 1, g: 1, b: 1, a: 1}
+    - Vector2_fdcb157e56174933a17f05560277249e: {r: -1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

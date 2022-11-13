@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -14,7 +15,7 @@ public class Items : MonoBehaviour
     public float nSpeed = 10f, mSpeed = 5f;
 
     [SerializeField] private Sprite[] spr;
-    [SerializeField] private GameObject destroyEffect;
+    [SerializeField] private GameObject destroyEffect, healText;
 
     private GameObject player;
     private Vector3 playerDir;
@@ -58,19 +59,24 @@ public class Items : MonoBehaviour
             }
             else if (isMove == 2)
             {
-                if (type == itemType.heal)
+                if (type == itemType.heal)      // HP heal
                 {
                     GameManager.Instance.health = 100;
+
+                    GameObject HT = Instantiate(healText,
+                        player.transform.position + new Vector3(Random.Range(-0.25f, 0.25f)
+                        , Random.Range(-0.25f, 0.25f), 0f), new Quaternion(0, 0, 0, 0));
+                    HT.GetComponent<TextMeshPro>().text = "100";
                 }
-                else if (type == itemType.power)
+                else if (type == itemType.power)    // increase Max Power
                 {
                     GameManager.Instance.increasePower(2);
                 }
-                else if (type == itemType.energy)
+                else if (type == itemType.energy)   // increase stamina
                 {
                     GameManager.Instance.stamina = 100;
                 }
-                else
+                else                // increase anger
                 {
                     GameManager.Instance.increaseAngerLevel(101);
                 }

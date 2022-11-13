@@ -42,6 +42,8 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 4639062695367781006, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
+    - time: 0.5
+      value: {fileID: 8481588746708584773, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
     - time: 0.625
       value: {fileID: 8481588746708584773, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
     - time: 0.75
@@ -49,7 +51,7 @@ AnimationClip:
     - time: 1
       value: {fileID: 4639062695367781006, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
     attribute: m_Sprite
-    path: Summon Stone
+    path: Summon Stone Altar
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 8
@@ -67,7 +69,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     - serializedVersion: 2
-      path: 4250731707
+      path: 854484263
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -83,6 +85,7 @@ AnimationClip:
     - {fileID: 3192177913273618334, guid: 9c93c5922a4a1714bad6809ab18ce081, type: 3}
     - {fileID: -7268000271356345124, guid: 9c93c5922a4a1714bad6809ab18ce081, type: 3}
     - {fileID: 4639062695367781006, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
+    - {fileID: 8481588746708584773, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
     - {fileID: 8481588746708584773, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
     - {fileID: 4639062695367781006, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}
     - {fileID: 4639062695367781006, guid: b7f9a2c70861de04b9c1a402f20907ec, type: 3}

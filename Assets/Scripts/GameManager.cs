@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
+using UnityEngine.SceneManagement;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +39,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private PlayerManager PM;
     private SpriteRenderer playerRenderer, playerAttackDirectionRenderer;
-    private Camera mainCamera;
+    public Camera mainCamera;
+    [HideInInspector] public bool isUpdateState;
     private float playerMaterialIntensity;
     private int deathCount;          //number of player deaths
     private float _playTimeSec;      //play time
@@ -55,6 +58,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Font customFont;   //Font set in language data
     [HideInInspector] public bool isGameStart = false;   //Whether the game starts
 
+    [HideInInspector] public bool showFPS;
+    private float _deltaT;
+    private GUIStyle gUIStyle;
+    private Rect rect_FPS;
     private List<string> languageFileList = new List<string>();     // List of fetchable language data names
     private int languageSelectedIndex = 0;  // Current language data index
     private int maxLSIndex = -1;    // Max Language Data Index
@@ -62,7 +69,10 @@ public class GameManager : MonoBehaviour
     private string[] UITexts = new string[4];
     //0: warnning die, 1: warnning stamina, 2: death count, 3: play time
 
+    public GameObject currentSavepoint = null;
     public List<GameObject>  preSavePoints = new List<GameObject>();
+
+    public UnityEvent m_PlayerDieEvent;
 
     [Space]
     [Header("- - - - - UI - - - - -")]
@@ -98,11 +108,14 @@ public class GameManager : MonoBehaviour
 
         _playTimeSec = 0;
         _playTimeMin = 0;
+        showFPS = false;
         playerMaterialIntensity = 0;
         fixedPower = power;
+        isUpdateState = true;
         deathCount = 0;
         damageImmune = false;
         isPlayerDie = false;
+        Application.targetFrameRate = 60;
 
         player = GameObject.FindWithTag("Player");
         PM = player.GetComponent<PlayerManager>();
@@ -110,13 +123,21 @@ public class GameManager : MonoBehaviour
         playerAttackDirectionRenderer = player.transform.Find("Attack Direction").GetComponent<SpriteRenderer>();
         mainCamera = Camera.main;
         mainCamera.transform.Find("Background Sky").gameObject.SetActive(true);
+        mainCamera.GetComponent<ProCamera2D>().FollowHorizontal = false;
+        mainCamera.GetComponent<ProCamera2D>().FollowVertical = false;
 
         titleMenu.SetActive(true);
         storyUI.SetActive(true);
         blackFadeBox.SetActive(true);
 
-        Screen.fullScreen = true;
-        //Application.targetFrameRate = 60;
+        rect_FPS = new Rect(0, 0, Screen.width, Screen.height * 0.02f);
+        gUIStyle = new GUIStyle
+        {
+            font = munro,
+            alignment = TextAnchor.UpperCenter,
+            fontSize = Screen.height / 40
+        };
+        gUIStyle.normal.textColor = new Color(0.9647059f, 0.8392158f, 0.7411765f, 1.0f);
 
         GetLanguageFileList();
         LoadLanguageData(false);
@@ -133,6 +154,8 @@ public class GameManager : MonoBehaviour
             player.transform.position = new Vector3(-70f, 4f, -0f);
             ingameUI.SetActive(false);
         }
+
+        Resources.UnloadUnusedAssets();
     }
 
     private void Update()
@@ -150,6 +173,7 @@ public class GameManager : MonoBehaviour
                     {
                         staminaRegenTimer = 0;
                         stamina += 4;
+                        isUpdateState = true;
 
                         if (stamina > maxStamina) stamina = maxStamina;
                     }
@@ -157,28 +181,6 @@ public class GameManager : MonoBehaviour
             }
             else
                 staminaRegenCool -= Time.deltaTime;
-
-            //Health, Stamina, Anger Gauges
-            healthBar.value = (float)health / (float)maxHealth;
-            staminaBar.value = (float)stamina / (float)maxStamina;
-            angerBar.value = angerCharged == 0 ? (float)angerLevel / 100f : (float)angerCharged / 100f;
-        }
-
-        //Show setting menu
-        if (Input.GetKeyDown(KeyCode.Escape) && isGameStart && !dialogUI.activeSelf)
-        {
-            settingMenu.SetActive(!settingMenu.activeSelf);
-            SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
-            Resources.UnloadUnusedAssets();
-        }
-
-        //warning message
-        if (warnningTimer > 0)
-            warnningTimer -= Time.deltaTime;
-        else if (warnningTimer <= 0 && warnningTimer > -99f)
-        {
-            warnningText.text = "";
-            warnningTimer = -100f;
         }
 
         if(isGameStart)
@@ -194,6 +196,57 @@ public class GameManager : MonoBehaviour
             timeStr = _playTimeSec.ToString("00");
             timeStr = timeStr.Replace(".", " : ");
             playTime.text = UITexts[3] + "   " + _playTimeMin.ToString("00") + " : " + timeStr;
+
+            //cal fps
+            if(showFPS)
+            {
+                _deltaT += (Time.unscaledDeltaTime - _deltaT) * 0.1f;
+            }
+
+            //warning message
+            if (warnningTimer > 0)
+                warnningTimer -= Time.deltaTime;
+            else if (warnningTimer <= 0 && warnningTimer > -99f)
+            {
+                warnningText.text = "";
+                warnningTimer = -100f;
+            }
+
+            if (!dialogUI.activeSelf)
+            {
+                //Show setting menu
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    settingMenu.SetActive(!settingMenu.activeSelf);
+                    SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click1);
+                    showFPS = settingMenu.activeSelf;
+                }
+                //reset stage
+                else if (Input.GetKeyDown(KeyCode.N))
+                {
+                    if(!settingMenu.activeSelf) KillPlayer(true);
+                }
+            }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if(isUpdateState)
+        {
+            healthBar.value = (float)health / (float)maxHealth;
+            staminaBar.value = (float)stamina / (float)maxStamina;
+            angerBar.value = angerCharged == 0 ? (float)angerLevel / 100f : (float)angerCharged / 100f;
+
+            isUpdateState = false;
+        }
+    }
+
+    private void OnGUI()
+    {
+        if(showFPS)
+        {
+            GUI.Label(rect_FPS, string.Format("{0:0.0} ms ({1:0.} fps)", _deltaT * 1000.0f, 1.0f / _deltaT), gUIStyle);
         }
     }
 
@@ -210,35 +263,50 @@ public class GameManager : MonoBehaviour
             }
 
             damageImmune = true;
+            isUpdateState = true;
             StartCoroutine(RunDamageImmuneTime(immuneTime));
         }
     }
 
-    public void KillPlayer()
+    public void KillPlayer(bool fastRespawn = false)
     {
         healthBar.value = 0f;
-        PM.Die();
-        PlayerDie();
+        PM.Die(fastRespawn);
+        PlayerDie(fastRespawn);
+
+        if (m_PlayerDieEvent != null)
+            m_PlayerDieEvent.Invoke();
     }
 
     //Player Death
-    void PlayerDie()
+    void PlayerDie(bool fastRespawn)
     {
         isPlayerDie = true;
         deathCount += 1;
         deatCounter.text = UITexts[2] + "   " + deathCount.ToString();
-        ShowWarnning(0, 3f);
+        if(!fastRespawn)
+            ShowWarnning(0, 3f);
 
         health = 0;     
         stamina = 0;           
         angerLevel = 0;          
         angerCharged = 0;        
         fixedPower = power;
+        isUpdateState = true;
         playerMaterialIntensity = 0f;
         damageImmune = false;
         UpdatePlayerMaterialColor();
 
+        if(currentSavepoint != null)
+            currentSavepoint.GetComponent<SavePoint>().ResetObject();
+
         SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.die);
+
+        if(fastRespawn)
+            PM.Respawn();
+
+        GC.Collect();
+        Resources.UnloadUnusedAssets();
     }
 
     //Player Respawn
@@ -247,6 +315,7 @@ public class GameManager : MonoBehaviour
         isPlayerDie = false;
         health = maxHealth;
         stamina = maxStamina;
+        isUpdateState = true;
     }
 
     //Show Dialog UI
@@ -283,6 +352,7 @@ public class GameManager : MonoBehaviour
                 stamina -= val;
                 staminaRegenCool = 1.6f;
                 staminaRegenTimer = 0;
+                isUpdateState = true;
             }
             
             return true;
@@ -296,6 +366,7 @@ public class GameManager : MonoBehaviour
         if (angerCharged <= 0)
         {
             angerLevel += val;
+            isUpdateState = true;
 
             if (angerLevel >= 100)
             {
@@ -314,8 +385,9 @@ public class GameManager : MonoBehaviour
     public void increasePower(int val)
     {
         power += val;
+        isUpdateState = true;
 
-        if(angerCharged > 0)
+        if (angerCharged > 0)
             fixedPower = power * 2;
         else
             fixedPower = power;
@@ -456,9 +528,11 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(0.12f);
             angerCharged --;
+            isUpdateState = true;
         }
 
         fixedPower = power;
+        isUpdateState = true;
         powerText.text = fixedPower.ToString();
         angerEffect.gameObject.SetActive(false);
         StartCoroutine(RunIintensityUpdate(false));

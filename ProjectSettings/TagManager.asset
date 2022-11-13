@@ -9,6 +9,8 @@ TagManager:
   - Damageable Object
   - Interactive Object
   - Decoration Tile Generator
+  - Save Point
+  - Obstacle
   layers:
   - Default
   - TransparentFX
