@@ -211,7 +211,7 @@ public class Summoner : _Object
             //talk button
             if (!isTalking && Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
             {
-                GameManager.Instance.ShowDialogUI("Talk_viperFirstMeet");
+                GameManager.Instance.ShowDialogUI("Talk_summonerCombatAfter"); //Talk_viperFirstMeet
                 messageIcon.SetActive(false);
                 isTalking = true;
             }
@@ -364,11 +364,11 @@ public class Summoner : _Object
 
             SummonerString ss = strings[i].GetComponent<SummonerString>();
             ss.stringLength = Vector2.Distance(coord1, coord2);
-            ss.lifeTime = 2.5f * PatternSpeed;
+            ss.lifeTime = 2.75f * PatternSpeed;
             ss.Grow();
         }
 
-        yield return new WaitForSeconds(10f * PatternSpeed);
+        yield return new WaitForSeconds(8.5f * PatternSpeed);
         isPatternOperate_String = false;
     }
 
@@ -394,13 +394,13 @@ public class Summoner : _Object
 
             SummonerString ss = strings[i].GetComponent<SummonerString>();
             ss.stringLength = Vector2.Distance(coord1, coord2);
-            ss.lifeTime = 0.85f * PatternSpeed;
+            ss.lifeTime = 0.75f * PatternSpeed;
             ss.Grow();
 
             yield return new WaitForSeconds(1f * PatternSpeed);
         }
 
-        yield return new WaitForSeconds(10f * PatternSpeed);
+        yield return new WaitForSeconds(7.5f * PatternSpeed);
         isPatternOperate_String = false;
     }
 
@@ -415,7 +415,7 @@ public class Summoner : _Object
         ss.lifeTime = 10f * PatternSpeed;
         ss.Grow();
 
-        yield return new WaitForSeconds(17.5f * PatternSpeed);
+        yield return new WaitForSeconds(15.5f * PatternSpeed);
         isPatternOperate_BigString = false;
     }
 
@@ -441,7 +441,7 @@ public class Summoner : _Object
         foreach (GameObject summonStone in summonStones)
             summonStone.GetComponent<SummonStone>().EndLazer();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         isPatternOperate_Stone = false;
     }
 
@@ -470,7 +470,7 @@ public class Summoner : _Object
         foreach (GameObject summonStone in summonStones)
             summonStone.GetComponent<SummonStone>().EndLazer();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         isPatternOperate_Stone = false;
     }  
 

@@ -12,29 +12,15 @@ public class Snake : _Object
 
     private void Awake()
     {
-        if (GetComponent<Animator>() != null)
-            animator = GetComponent<Animator>();
-
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        hitAction = -1;
         objType = _ObjectType.Dummy;
     }
 
     private void Update()
     {
-        if (hitAction == 1)
-        {
-            animator.SetBool("isHit", true);
-            animator.SetBool("Direction", hitDirection);
-
-            hitAction = 0;
-        }
-        else if (hitAction == 0)
-        {
-            animator.SetBool("isHit", false);
-            hitAction = -1;
-        }
+        
     }
 
     //Damage handle

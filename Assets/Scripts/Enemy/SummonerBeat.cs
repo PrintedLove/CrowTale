@@ -63,7 +63,7 @@ public class SummonerBeat : MonoBehaviour
         {
             if(collision.gameObject.tag == "Player")
             {
-                int healAmount = 5 + 5 * contactCount;
+                int healAmount = 3 + 3 * contactCount;
                 GameManager.Instance.health += healAmount;
                 if(GameManager.Instance.health > 100) GameManager.Instance.health = 100;
 
