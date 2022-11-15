@@ -172,8 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objType: 6
   isHit: 0
-  maxHealth: 2450
-  health: 2450
+  maxHealth: 2850
+  health: 2850
   angerAmount: 5
   dropItemType: 0
   dropItem: {fileID: 0}

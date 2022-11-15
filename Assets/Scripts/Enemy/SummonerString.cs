@@ -48,7 +48,7 @@ public class SummonerString : MonoBehaviour
         }
         warnningBox.SetActive(false);
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
 
         //grow string
         attack.SetActive(true);

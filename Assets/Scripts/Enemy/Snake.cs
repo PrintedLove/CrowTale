@@ -1,11 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Summoner;
 
 public class Snake : _Object
 {
-    private short hitAction;
-    private bool hitDirection;
+    public enum Act
+    {
+        Watching, Talk, TalkEnd
+    }
+
+    public Act action;
+    [SerializeField] private GameObject dialogUI, messageIcon;
 
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
@@ -14,35 +21,33 @@ public class Snake : _Object
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        objType = _ObjectType.Dummy;
     }
 
     private void Update()
     {
-        
-    }
-
-    //Damage handle
-    public override void TakeDamage(int damage, float hitDir)
-    {
-        health -= damage;
-
-        if (angerAmount > 0)
-            GameManager.Instance.increaseAngerLevel(angerAmount);
-
-        if (health <= 0)
+        if (action == Act.Watching)
         {
-            base.Die();
+            //talk button
+            if (Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
+            {
+                GameManager.Instance.ShowDialogUI("Talk_viperFirstMeet");
+                messageIcon.SetActive(false);
+                //animator.ResetTrigger("CombatReset");
+                action = Act.Talk;
+            }
         }
-        else
+        else if (action == Act.Talk)
         {
-            hitAction = 1;
+            //standing
+            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 6)
+            {
+                //animator.SetTrigger("wakeUp");
+                action = Act.TalkEnd;
+            }
+        }
+        else if (action == Act.TalkEnd)
+        {
 
-            if (hitDir == 1f)
-                hitDirection = true;
-            else
-                hitDirection = false;
         }
     }
 }

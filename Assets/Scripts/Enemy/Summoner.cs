@@ -148,6 +148,8 @@ public class Summoner : _Object
                 messageIcon.SetActive(false);
                 animator.ResetTrigger("CombatReset");
                 action = Act.Talk;
+
+                Debug.Log(GameManager.Instance.dialogConversation);
             }
         }
         else if (action == Act.Talk)
@@ -181,7 +183,7 @@ public class Summoner : _Object
 
             if (!isPatternOperate_Beat) StartCoroutine(RunPattern_BeatsSpon());
 
-            if (phase > 1)    // boss phase 2 (HP <= 60%)
+            if (phase > 1)    // boss phase 2 (HP <= 50%)
             {
                 if (!isPatternOperate_BigString) StartCoroutine(RunPattern_BigString());
             }
@@ -211,7 +213,7 @@ public class Summoner : _Object
             //talk button
             if (!isTalking && Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
             {
-                GameManager.Instance.ShowDialogUI("Talk_summonerCombatAfter"); //Talk_viperFirstMeet
+                GameManager.Instance.ShowDialogUI("Talk_summonerCombatAfter");
                 messageIcon.SetActive(false);
                 isTalking = true;
             }
@@ -304,7 +306,7 @@ public class Summoner : _Object
      {
         hpBar.GetComponent<Slider>().value = (float)health / (float)maxHealth;
 
-        if ((float)health / maxHealth <= 0.6f && phase == 1)
+        if ((float)health / maxHealth <= 0.5f && phase == 1)
         {
             phase = 2;
             stoneRotateSpeed = 0.85f;
