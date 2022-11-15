@@ -3,7 +3,7 @@ guid: 1cd451db53e0b0e45b1966b32af3e8b6
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
+  fontSize: 30
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
@@ -11,7 +11,7 @@ TrueTypeFontImporter:
   fontNames:
   - Munro
   fallbackFontReferences: []
-  customCharacters: 
+  customCharacters: "!\"#$%&\u2019()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\u2018abcdefghijklmnopqrstuvwxyz{|}~\u2026"
   fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0

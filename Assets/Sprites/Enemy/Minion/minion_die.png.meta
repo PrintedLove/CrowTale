@@ -1,46 +1,61 @@
 fileFormatVersion: 2
-guid: 18d2f54b5f1868c4dac308166c3d15bf
+guid: e199bfe73a0f79841b9b2196b0171bcc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2413704717543319485
-    second: minion_idle_0
+      213: -3698806487719987219
+    second: minion_die_0
   - first:
-      213: 8770438758811730805
-    second: minion_idle_1
+      213: 1074316129878309605
+    second: minion_die_1
   - first:
-      213: -8055288426951357076
-    second: minion_idle_2
+      213: 6180415030584175796
+    second: minion_die_2
   - first:
-      213: 2483823018225519330
-    second: minion_idle_3
+      213: -2090430047436284251
+    second: minion_die_3
   - first:
-      213: -7389281356132486362
-    second: minion_idle_4
+      213: 7712726758852342581
+    second: minion_die_4
   - first:
-      213: 2617114318357022920
-    second: minion_idle_5
+      213: 7694853718381668757
+    second: minion_die_5
   - first:
-      213: -2482130767658563148
-    second: minion_idle_6
+      213: 6932485566256121756
+    second: minion_die_6
   - first:
-      213: 6230974245189346876
-    second: minion_idle_7
+      213: -4912330654027391937
+    second: minion_die_7
   - first:
-      213: 242317728998896528
-    second: minion_idle_8
+      213: -1076899698755392996
+    second: minion_die_8
   - first:
-      213: 8438444178295502343
-    second: snake_idle_9
+      213: 6833850531931924072
+    second: minion_die_0
   - first:
-      213: 1425837848795149266
-    second: snake_idle_10
+      213: 1078562597324663661
+    second: minion_die_1
   - first:
-      213: 8399822674721617033
-    second: snake_idle_11
+      213: -7719507298961932723
+    second: minion_die_2
   - first:
-      213: 3412303601221872711
-    second: snake_idle_12
+      213: -2684998221598148708
+    second: minion_die_3
+  - first:
+      213: -1211500621861877331
+    second: minion_die_4
+  - first:
+      213: -7060195359652974461
+    second: minion_die_5
+  - first:
+      213: 658989176627122055
+    second: minion_die_6
+  - first:
+      213: 5169916135332980307
+    second: minion_die_7
+  - first:
+      213: 3203832690957081027
+    second: minion_die_8
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -101,7 +116,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -127,23 +142,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: minion_idle_0
+      name: minion_die_0
       rect:
         serializedVersion: 2
         x: 0
@@ -151,20 +154,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3485526095cc08ed0800000000000000
-      internalID: -2413704717543319485
+      spriteID: 866aaebf9d6b6de50800000000000000
+      internalID: 6833850531931924072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_1
+      name: minion_die_1
       rect:
         serializedVersion: 2
         x: 50
@@ -172,20 +175,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5738a47559bd6b970800000000000000
-      internalID: 8770438758811730805
+      spriteID: d6b2f81c7f2d7fe00800000000000000
+      internalID: 1078562597324663661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_2
+      name: minion_die_2
       rect:
         serializedVersion: 2
         x: 100
@@ -193,20 +196,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6dcf3cbaddd53090800000000000000
-      internalID: -8055288426951357076
+      spriteID: d4eb654e20dced490800000000000000
+      internalID: -7719507298961932723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_3
+      name: minion_die_3
       rect:
         serializedVersion: 2
         x: 0
@@ -214,20 +217,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ea454e00ef487220800000000000000
-      internalID: 2483823018225519330
+      spriteID: c97361bd758fcbad0800000000000000
+      internalID: -2684998221598148708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_4
+      name: minion_die_4
       rect:
         serializedVersion: 2
         x: 50
@@ -235,20 +238,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6237e46b1cff37990800000000000000
-      internalID: -7389281356132486362
+      spriteID: da902cc6a92ef2fe0800000000000000
+      internalID: -1211500621861877331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_5
+      name: minion_die_5
       rect:
         serializedVersion: 2
         x: 100
@@ -256,20 +259,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c842424b9bd15420800000000000000
-      internalID: 2617114318357022920
+      spriteID: 380f5071ab5250e90800000000000000
+      internalID: -7060195359652974461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_6
+      name: minion_die_6
       rect:
         serializedVersion: 2
         x: 0
@@ -277,20 +280,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b9c4abb733bd8dd0800000000000000
-      internalID: -2482130767658563148
+      spriteID: 78fcfa72a23352900800000000000000
+      internalID: 658989176627122055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_7
+      name: minion_die_7
       rect:
         serializedVersion: 2
         x: 50
@@ -298,20 +301,20 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c366e19101ed87650800000000000000
-      internalID: 6230974245189346876
+      spriteID: 356251d655b3fb740800000000000000
+      internalID: 5169916135332980307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: minion_idle_8
+      name: minion_die_8
       rect:
         serializedVersion: 2
         x: 100
@@ -319,14 +322,14 @@ TextureImporter:
         width: 50
         height: 27
       alignment: 9
-      pivot: {x: 0.76, y: 0.4814815}
+      pivot: {x: 0.76, y: 0.4444444}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09332cfc0b2ec5300800000000000000
-      internalID: 242317728998896528
+      spriteID: 3c9d7489bdc467c20800000000000000
+      internalID: 3203832690957081027
       vertices: []
       indices: 
       edges: []
