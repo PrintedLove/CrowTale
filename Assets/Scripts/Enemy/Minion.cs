@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Summoner;
 
-public class Snake : _Object
+public class Minion : _Object
 {
     public enum Act
     {

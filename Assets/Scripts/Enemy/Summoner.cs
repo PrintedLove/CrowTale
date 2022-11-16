@@ -322,6 +322,8 @@ public class Summoner : _Object
             stringTraceNum = 4;
             stringRandomNum = 6;
 
+            StartCoroutine(RunPattern_StoneLazerStart());
+
             for (int i = 0; i < summonStones.Length; i++)
                 summonStones[i].GetComponent<Animator>().SetBool("transform", true);
         }
@@ -370,7 +372,7 @@ public class Summoner : _Object
             ss.Grow();
         }
 
-        yield return new WaitForSeconds(8.5f * PatternSpeed);
+        yield return new WaitForSeconds(6f * PatternSpeed);
         isPatternOperate_String = false;
     }
 
@@ -396,10 +398,10 @@ public class Summoner : _Object
 
             SummonerString ss = strings[i].GetComponent<SummonerString>();
             ss.stringLength = Vector2.Distance(coord1, coord2);
-            ss.lifeTime = 0.75f * PatternSpeed;
+            ss.lifeTime = 0.9f * PatternSpeed;
             ss.Grow();
 
-            yield return new WaitForSeconds(1f * PatternSpeed);
+            yield return new WaitForSeconds(0.9f * PatternSpeed);
         }
 
         yield return new WaitForSeconds(7.5f * PatternSpeed);
@@ -417,8 +419,15 @@ public class Summoner : _Object
         ss.lifeTime = 10f * PatternSpeed;
         ss.Grow();
 
-        yield return new WaitForSeconds(15.5f * PatternSpeed);
+        yield return new WaitForSeconds(9.5f * PatternSpeed);
         isPatternOperate_BigString = false;
+    }
+
+    IEnumerator RunPattern_StoneLazerStart()
+    {
+        isPatternOperate_Stone = true;
+        yield return new WaitForSeconds(4f);
+        isPatternOperate_Stone = false;
     }
 
     IEnumerator RunPattern_StoneLazerGround()
@@ -437,7 +446,7 @@ public class Summoner : _Object
         foreach (GameObject summonStone in summonStones)
             summonStone.GetComponent<SummonStone>().StartLazer();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.75f);
 
         lazerShootMode = 0;
         foreach (GameObject summonStone in summonStones)
