@@ -148,8 +148,6 @@ public class Summoner : _Object
                 messageIcon.SetActive(false);
                 animator.ResetTrigger("CombatReset");
                 action = Act.Talk;
-
-                Debug.Log(GameManager.Instance.dialogConversation);
             }
         }
         else if (action == Act.Talk)
@@ -419,7 +417,7 @@ public class Summoner : _Object
         ss.lifeTime = 10f * PatternSpeed;
         ss.Grow();
 
-        yield return new WaitForSeconds(9.5f * PatternSpeed);
+        yield return new WaitForSeconds(12.5f * PatternSpeed);
         isPatternOperate_BigString = false;
     }
 

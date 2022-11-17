@@ -172,8 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objType: 6
   isHit: 0
-  maxHealth: 2850
-  health: 2850
+  maxHealth: 2650
+  health: 2650
   angerAmount: 5
   dropItemType: 0
   dropItem: {fileID: 0}
@@ -579,6 +579,10 @@ PrefabInstance:
     - target: {fileID: 951808354342749627, guid: 35b444cc2bb053343976f4f456abb557, type: 3}
       propertyPath: m_Offset.y
       value: -1.2051678
+      objectReference: {fileID: 0}
+    - target: {fileID: 951808354342749628, guid: 35b444cc2bb053343976f4f456abb557, type: 3}
+      propertyPath: show
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 951808354342749630, guid: 35b444cc2bb053343976f4f456abb557, type: 3}
       propertyPath: m_Color.a

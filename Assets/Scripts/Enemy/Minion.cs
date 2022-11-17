@@ -12,7 +12,7 @@ public class Minion : _Object
     }
 
     public Act action;
-    [SerializeField] private GameObject dialogUI, messageIcon;
+    [SerializeField] private GameObject dialogUI, messageIcon, brodcast;
 
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
@@ -32,7 +32,6 @@ public class Minion : _Object
             {
                 GameManager.Instance.ShowDialogUI("Talk_viperFirstMeet");
                 messageIcon.SetActive(false);
-                //animator.ResetTrigger("CombatReset");
                 action = Act.Talk;
             }
         }
@@ -41,13 +40,20 @@ public class Minion : _Object
             //standing
             if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 6)
             {
-                //animator.SetTrigger("wakeUp");
+                StartCoroutine(RunCloseBrodcast());
                 action = Act.TalkEnd;
             }
         }
         else if (action == Act.TalkEnd)
         {
 
+        }
+
+        IEnumerator RunCloseBrodcast()
+        {
+            
+
+            yield return new WaitForSeconds(10f);
         }
     }
 }
