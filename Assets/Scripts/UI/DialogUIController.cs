@@ -15,6 +15,7 @@ public class DialogUIController : MonoBehaviour
     public int talkCounter = 1;    //A number indicating the current conversation
 
     private Animator animator_player, animator_opponent;
+    private GameObject player;
     private string conversation;
     private string[] nameTexts = new string[] { null, null };
     private string[] dialogTexts = new string[] { null, null, null };
@@ -27,6 +28,7 @@ public class DialogUIController : MonoBehaviour
         animator = GetComponent<Animator>();
         animator_player = ilust_player.GetComponent<Animator>();
         animator_opponent = ilust_opponent.GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
     }
 
     private void Update()
@@ -155,7 +157,7 @@ public class DialogUIController : MonoBehaviour
     private void OnEnable()
     {
         ingameUI.SetActive(false);
-        GameObject.FindWithTag("Player").GetComponent<PlayerManager>().PlayerStop();
+        player.GetComponent<PlayerManager>().PlayerStop();
         ResetDialog();
         ShowDialog();
     }
@@ -163,7 +165,7 @@ public class DialogUIController : MonoBehaviour
     private void OnDisable()
     {
         ingameUI.SetActive(true);
-        GameObject.FindWithTag("Player").GetComponent<PlayerManager>().PlayerPlay();
+        player.GetComponent<PlayerManager>().PlayerPlay();
     }
 
     public void Disable()

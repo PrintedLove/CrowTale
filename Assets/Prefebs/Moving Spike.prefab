@@ -71,6 +71,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moving Spike
       objectReference: {fileID: 0}
+    - target: {fileID: 8352486978988344085, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352486978988344085, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352486978988344085, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.29
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6776308831350808907, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 81f8d95a6d69f6349ad40f4c4a430866, type: 3}

@@ -414,7 +414,7 @@ public class Summoner : _Object
 
         SummonerString ss = stringBig.GetComponent<SummonerString>();
         ss.stringLength = 60f;
-        ss.lifeTime = 10f * PatternSpeed;
+        ss.lifeTime = 8.5f * PatternSpeed;
         ss.Grow();
 
         yield return new WaitForSeconds(12.5f * PatternSpeed);

@@ -12,15 +12,18 @@ public class Minion : _Object
     }
 
     public Act action;
-    [SerializeField] private GameObject dialogUI, messageIcon, brodcast;
+    [SerializeField] private GameObject dialogUI, messageIcon, brodcastScreen;
 
     protected Animator animator;
     protected SpriteRenderer spriteRenderer;
+
+    private GameObject player;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        player = GameObject.FindWithTag("Player");
     }
 
     private void Update()
@@ -38,7 +41,7 @@ public class Minion : _Object
         else if (action == Act.Talk)
         {
             //standing
-            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 6)
+            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 3)
             {
                 StartCoroutine(RunCloseBrodcast());
                 action = Act.TalkEnd;
@@ -51,9 +54,19 @@ public class Minion : _Object
 
         IEnumerator RunCloseBrodcast()
         {
-            
+            float screen_size = 1f;
 
-            yield return new WaitForSeconds(10f);
+            while(screen_size > 0)
+            {
+                brodcastScreen.transform.localScale = new Vector3(1, screen_size, 1);
+                screen_size -= 0.04f;
+
+                yield return new WaitForSeconds(0.01f);
+            }
+
+            brodcastScreen.SetActive(false);
+
+            spriteRenderer.flipX = player.transform.position.x < transform.position.x;
         }
     }
 }
