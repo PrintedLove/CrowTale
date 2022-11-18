@@ -41,16 +41,16 @@ public class Minion : _Object
         else if (action == Act.Talk)
         {
             //standing
-            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 3)
+            if (Input.GetKeyDown(KeyCode.Escape) || dialogUI.GetComponent<DialogUIController>().talkCounter == 5)
             {
                 StartCoroutine(RunCloseBrodcast());
                 action = Act.TalkEnd;
             }
         }
-        else if (action == Act.TalkEnd)
-        {
+        //else if (action == Act.TalkEnd)
+        //{
 
-        }
+        //}
 
         IEnumerator RunCloseBrodcast()
         {

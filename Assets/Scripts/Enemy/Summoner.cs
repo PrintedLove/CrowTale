@@ -7,6 +7,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 using static Summoner;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem;
 using Random = UnityEngine.Random;
 
 public class Summoner : _Object
@@ -33,6 +34,7 @@ public class Summoner : _Object
     [SerializeField] private MoveMode moveMode;
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject summonStoneAltar, messageIcon;
+    [SerializeField] private ParticleSystem particle;
     [SerializeField] private Light2D lt;
     [SerializeField] private GameObject[] summonStones;
     [SerializeField] private GameObject[] strings;
@@ -120,6 +122,7 @@ public class Summoner : _Object
         hpBar.SetActive(false);
         messageIcon.SetActive(true);
         messageIcon.GetComponent<MessageIconController>().ResetMessageIcon();
+        particle.Stop();
 
         for (int i = 0; i < summonStones.Length; i++)
         {
@@ -554,6 +557,7 @@ public class Summoner : _Object
         isHit = true;
         isCombat = true;
         hpBar.SetActive(true);
+        particle.Play();
         Text hpbarText = hpBar.transform.Find("Text").GetComponent<Text>();
         hpbarText.font = GameManager.Instance.customFont;
         hpbarText.text = GameManager.Instance.LoadTranslatedText("Meta", 4);
