@@ -151,8 +151,8 @@ public class GameManager : MonoBehaviour
         } else
         {
             mainCamera.transform.position = new Vector3(-110f, 24f, -10f);
-            player.transform.position = new Vector3(-70f, 4f, -0f);
-            respawnPosition = new Vector3(-70f, 4f, -0f);
+            player.transform.position = new Vector3(-110f, 4f, -0f);
+            respawnPosition = new Vector3(-110f, 4f, -0f);
             ingameUI.SetActive(false);
         }
 
