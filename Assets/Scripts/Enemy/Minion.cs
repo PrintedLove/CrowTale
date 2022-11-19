@@ -33,7 +33,7 @@ public class Minion : _Object
             //talk button
             if (Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
             {
-                GameManager.Instance.ShowDialogUI("Talk_viperFirstMeet");
+                GameManager.Instance.ShowDialogUI("Talk_viperFirstMeet", 1);
                 messageIcon.SetActive(false);
                 action = Act.Talk;
             }

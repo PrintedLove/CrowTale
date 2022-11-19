@@ -147,7 +147,7 @@ public class Summoner : _Object
             //talk button
             if (Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
             {
-                GameManager.Instance.ShowDialogUI("Talk_summonerMeet");
+                GameManager.Instance.ShowDialogUI("Talk_summonerMeet", 0);
                 messageIcon.SetActive(false);
                 animator.ResetTrigger("CombatReset");
                 action = Act.Talk;
@@ -214,7 +214,7 @@ public class Summoner : _Object
             //talk button
             if (!isTalking && Input.GetKeyDown(KeyCode.T) && messageIcon.GetComponent<MessageIconController>().show)
             {
-                GameManager.Instance.ShowDialogUI("Talk_summonerCombatAfter");
+                GameManager.Instance.ShowDialogUI("Talk_summonerCombatAfter", 0);
                 messageIcon.SetActive(false);
                 isTalking = true;
             }

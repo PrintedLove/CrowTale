@@ -13,6 +13,7 @@ public class DialogUIController : MonoBehaviour
     [SerializeField] private GameObject ingameUI;
     [SerializeField] private GameObject settingMenu;
     public int talkCounter = 1;    //A number indicating the current conversation
+    public Sprite[] opponentSprites;
 
     private Animator animator_player, animator_opponent;
     private GameObject player;
@@ -137,6 +138,11 @@ public class DialogUIController : MonoBehaviour
 
         isTyping = false;
         clickIcon.SetActive(!isTyping);
+    }
+
+    public void SetOpponentSprite(int index)
+    {
+        ilust_opponent.GetComponent<Image>().sprite = opponentSprites[index];
     }
 
     public void ResetDialog()

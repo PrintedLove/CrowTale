@@ -320,12 +320,13 @@ public class GameManager : MonoBehaviour
     }
 
     //Show Dialog UI
-    public void ShowDialogUI(string con)
+    public void ShowDialogUI(string con, int opponentSpriteIndex)
     {
         if (!dialogUI.activeSelf)
         {
             dialogConversation = con;
             dialogUI.SetActive(true);
+            dialogUI.GetComponent<DialogUIController>().SetOpponentSprite(opponentSpriteIndex);
             SoundManager.Instance.Play(SoundManager.AS.UI, SoundManager.UISound.click2);
         }
     }
