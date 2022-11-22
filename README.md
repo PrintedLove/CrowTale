@@ -27,3 +27,11 @@ Youtube: https://www.youtube.com/@printedlove
 Uzuhama Twitch https://www.twitch.tv/uzuhama
 
 Uzuhama Youtube: https://www.youtube.com/@uzuhama
+
+
+
+
+해당 프로젝트는 MIT 라이센스를 사용합니다.
+
+
+The project uses the MIT license.
