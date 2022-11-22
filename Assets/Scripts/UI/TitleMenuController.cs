@@ -42,7 +42,7 @@ public class TitleMenuController : MonoBehaviour
 
         string description
             = "App Ver - " + Application.version
-            + "$$printed.tistory.com$github.com/PrintedLove$$¨Ï 2022. Printed Love All rights reserved.";
+            + "$$printed.tistory.com$github.com/PrintedLove$$twitch.tv/uzuhama$youtube.com/@uzuhama$$¨Ï 2022. Printed Love All rights reserved.";
 
         description = description.Replace("$", "\n");
 

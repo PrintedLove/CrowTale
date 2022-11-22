@@ -32,9 +32,10 @@ public class Summoner : _Object
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private MoveMode moveMode;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private GameObject summonStoneAltar, messageIcon;
     [SerializeField] private ParticleSystem particle;
     [SerializeField] private Light2D lt;
+    [SerializeField] private AudioSource[] audioSources;
+    [SerializeField] private GameObject messageIcon, summonStoneAltar;
     [SerializeField] private GameObject[] summonStones;
     [SerializeField] private GameObject[] strings;
     [SerializeField] private GameObject stringBig;
@@ -372,6 +373,8 @@ public class Summoner : _Object
             ss.Grow();
         }
 
+        audioSources[0].Play();
+
         yield return new WaitForSeconds(6f * PatternSpeed);
         isPatternOperate_String = false;
     }
@@ -401,6 +404,8 @@ public class Summoner : _Object
             ss.lifeTime = 0.9f * PatternSpeed;
             ss.Grow();
 
+            audioSources[0].Play();
+
             yield return new WaitForSeconds(0.9f * PatternSpeed);
         }
 
@@ -418,6 +423,8 @@ public class Summoner : _Object
         ss.stringLength = 60f;
         ss.lifeTime = 8.5f * PatternSpeed;
         ss.Grow();
+
+        audioSources[0].Play();
 
         yield return new WaitForSeconds(12.5f * PatternSpeed);
         isPatternOperate_BigString = false;
@@ -442,6 +449,8 @@ public class Summoner : _Object
                         = Quaternion.AngleAxis(Vector3.Angle(transform.position, summonStone.transform.position) - 90, Vector3.forward);
 
         yield return new WaitForSeconds(0.01f);
+
+        audioSources[1].Play();
 
         foreach (GameObject summonStone in summonStones)
             summonStone.GetComponent<SummonStone>().StartLazer();
@@ -471,6 +480,8 @@ public class Summoner : _Object
         }
 
         yield return new WaitForSeconds(0.01f);
+
+        audioSources[1].Play();
 
         foreach (GameObject summonStone in summonStones)
             summonStone.GetComponent<SummonStone>().StartLazer();
