@@ -1,4 +1,4 @@
-Source code and resources for CrowTale, a fangame for streamer Uzuhama based on Unity. Commercial use is not permitted.
+Source code and resources for CrowTale, a fangame for streamer Uzuhama based on Unity.
 Assets with large capacity or copyright issues are excluded. The project uses the MIT license.
 
 
